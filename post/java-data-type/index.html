@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（六）：数据类型 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第六篇文章，介绍了 Java 的数据类型（基本类型 和 引用类型）。
+
+
+
+
+基本类型
+引用类型
+
+
+
+
+基本类型
+
+
+
+类型
+字节数
+最小值
+最大值
+默认值
+
+
+
+
+byte
+1字节
+-128（-2^7）
+1..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（六）：数据类型</h2>
+            <div class="post-date">2019-03-13</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第六篇文章，介绍了 Java 的数据类型（基本类型 和 引用类型）。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B">基本类型</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B">引用类型</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="基本类型">基本类型</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>字节数</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>1字节</td>
+<td>-128（-2^7）</td>
+<td>127（2^7-1）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2字节</td>
+<td>-32768（-2^15）</td>
+<td>32767（2^15 - 1）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4字节</td>
+<td>-2^31</td>
+<td>2^31 - 1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8字节</td>
+<td>-2^63</td>
+<td>2^63 -1</td>
+<td>0L</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4字节</td>
+<td></td>
+<td></td>
+<td>0.0F</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8字节</td>
+<td></td>
+<td></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>char</td>
+<td>2字节</td>
+<td>\u0000（十进制 0）</td>
+<td>\uffff（十进制 65535）</td>
+<td>'u0000'</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>1位（1/8字节）</td>
+<td></td>
+<td></td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>Java 中整数默认是 int 类型，为了方便区分，long 类型的整数数值后面要加上 L。</p>
+<p>Java 中浮点数默认是 double 类型，为了方便区分，float 类型的整数数值后面要加上 F。</p>
+<p>boolean 的值只能是 true 或 false，默认值是 false。</p>
+<h2 id="引用类型">引用类型</h2>
+<p>类、接口、数值 都是引用类型。</p>
+<p>所有引用类型的默认值都是 null。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-Identifier-and-keyword/">
+                  <h3 class="post-title">
+                    Java 入门指南（五）：标识符和关键字
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

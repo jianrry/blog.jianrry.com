@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（十）：包 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第十篇文章，介绍了 Java 的包。
+
+
+
+
+包
+
+描述：
+定义：
+实例：
+
+
+import
+
+描述：
+定义：
+实例：
+
+
+
+
+
+
+包
+描述：
+为了更好地组织类，Java 提供了包机制，用于区别类名的命名空间。..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（十）：包</h2>
+            <div class="post-date">2019-03-17</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第十篇文章，介绍了 Java 的包。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%8C%85">包</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#import">import</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89-2">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="包">包</h2>
+<h3 id="描述">描述：</h3>
+<p>为了更好地组织类，Java 提供了包机制，用于区别类名的命名空间。</p>
+<p>包的本质就是文件夹，里面存放了 Java 源文件（后缀名为 .java 的文件）。</p>
+<p>以下是包的作用：</p>
+<ol>
+<li>便利性。包对类进行了归类，相同作用的类存放在同一个包下，可以便于查找和使用。</li>
+<li>避免文件名冲突。不同的包下允许存在文件名相同的类，可以避免文件名冲突。</li>
+<li>安全性。包限定了访问权限，拥有包访问权限的类才能访问包中的某个类。</li>
+</ol>
+<h3 id="定义">定义：</h3>
+<pre><code class="language-java">//包 包名1[.包名2][.包名3...]
+package pkg1[.pkg2[.pkg3…]];
+</code></pre>
+<p>上面的定义位于类的第一行，表明该类所属的包。</p>
+<p><strong>一般在 <code>src</code> 目录下创建包，使用域名倒置，作为包名。</strong></p>
+<p>相同作用的类存放在同一个包下，便于查找和使用。</p>
+<h3 id="实例">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">//包    包名
+//其中 com.jianrry 包下有多个包，com.jianrry.test 包存放测试类。
+package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        System.out.println(&quot;Hello World!&quot;);
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code>Hello World!
+</code></pre>
+<h2 id="import">import</h2>
+<h3 id="描述-2">描述：</h3>
+<p>为了使用其他包中的类，我们需要导入包，可以使用 <code>import</code> 关键字导入。</p>
+<h3 id="定义-2">定义：</h3>
+<pre><code class="language-java">//导入 包名1[包名2...].(类名|通配符)
+import package1[.package2…].(classname|*);
+</code></pre>
+<p><strong><code>import</code> 声明在包声明和类声明之间，表明导入的类。</strong></p>
+<h3 id="实例-2">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">//包    包名
+//其中 com.jianrry 包下有多个包，com.jianrry.test 包存放测试类。
+package com.jianrry.test;
+
+//导入 com.jianrry.base 包下的 Demo01 类。
+import com.jianrry.base.Demo01;
+//导入 com.jianrry.operator.* 包下的所有类。
+import com.jianrry.operator.*;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        System.out.println(&quot;Hello World!&quot;);
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code>Hello World!
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-operator/">
+                  <h3 class="post-title">
+                    Java 入门指南（九）：运算符
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

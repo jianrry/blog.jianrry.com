@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（十一）：Scanner 类 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第十一篇文章，介绍了 Java 的 Scanner 类。
+
+
+
+
+Scanner 类
+
+描述：
+实例：
+区别：
+
+
+
+
+
+
+Scanner 类
+描述：
+java.util.Scanner 是 Java 5 的新..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（十一）：Scanner 类</h2>
+            <div class="post-date">2019-03-18</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第十一篇文章，介绍了 Java 的 Scanner 类。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#scanner-%E7%B1%BB">Scanner 类</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+<li><a href="#%E5%8C%BA%E5%88%AB">区别：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="scanner-类">Scanner 类</h2>
+<h3 id="描述">描述：</h3>
+<p><code>java.util.Scanner</code> 是 Java 5 的新特性，用于接收用户的输入。</p>
+<p>通过 Scanner 类的 <code>hasNext()</code> 和 <code>hasNextLine()</code> 判断用户是否输入，通过 <code>next()</code> 和 <code>nextLine</code> 接收用户的输入。</p>
+<h3 id="实例">实例：</h3>
+<p>示例代码（<code>hasNext()</code> 和 <code>next()</code>）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+//导入 java.util.Scanner 类。
+import java.util.Scanner;
+
+public class Test {
+
+    public static void main(String[] args) {
+        
+        System.out.println(&quot;使用 next() 接收用户的输入&quot;);
+
+        //创建一个 Scanner 对象，用于接收用户的输入。
+        Scanner scanner=new Scanner(System.in);
+
+        //使用 hasNext() 判断用户是否输入信息。
+        if (scanner.hasNext()){
+
+            //定义一个 String 类型的变量 str，用于接收用户输入的字符串。
+            String str=scanner.next();
+
+            System.out.println(&quot;用户输入的信息为：&quot;+str);
+
+        }
+
+        //关闭 Scanner 对象，减少资源浪费。
+        scanner.close();
+
+    }
+
+}
+</code></pre>
+<p>测试数据（<code>hasNext()</code> 和 <code>next()</code>）：</p>
+<pre><code class="language-java">  Hello World!
+</code></pre>
+<p>运行结果（<code>hasNext()</code> 和 <code>next()</code>）：</p>
+<pre><code class="language-java">使用 next() 接收用户的输入
+  Hello World!
+用户输入的信息为：Hello
+</code></pre>
+<p>示例代码（<code>hasNextLine()</code> 和 <code>nextLine()</code>）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+//导入 java.util.Scanner 类。
+import java.util.Scanner;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        System.out.println(&quot;使用 nextLine() 接收用户的输入&quot;);
+
+        //创建一个 Scanner 对象，用于接收用户的输入。
+        Scanner scanner=new Scanner(System.in);
+
+        //使用 hasNext() 判断用户是否输入信息。
+        if (scanner.hasNextLine()){
+
+            //定义一个 String 类型的变量 str，用于接收用户输入的字符串。
+            String str=scanner.nextLine();
+
+            System.out.println(&quot;用户输入的信息为：&quot;+str);
+
+        }
+
+        //关闭 Scanner 对象，减少资源浪费。
+        scanner.close();
+
+    }
+
+}
+</code></pre>
+<p>测试数据（<code>hasNextLine()</code> 和 <code>nextLine()</code>）：</p>
+<pre><code class="language-java">  Hello World!
+</code></pre>
+<p>运行结果（<code>hasNextLine()</code> 和 <code>nextLine()</code>）：</p>
+<pre><code class="language-java">使用 nextLine() 接收用户的输入
+  Hello World!
+用户输入的信息为：  Hello World!
+</code></pre>
+<p>示例代码（<code>hasNextInt()</code> 和 <code>nextInt()</code>）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+//导入 java.util.Scanner 类。
+import java.util.Scanner;
+
+public class Test {
+
+    public static void main(String[] args) {
+        
+        System.out.println(&quot;请输入整数或小数：&quot;);
+
+        //创建一个 Scanner 对象，用于接收用户的输入。
+        Scanner scanner=new Scanner(System.in);
+
+        //使用 hasNextInt() 判断用户是否输入 int 类型的信息。
+        if (scanner.hasNextInt()){
+
+            //定义一个 int 类型的变量 i，用于接收用户输入的整数。
+            int i=scanner.nextInt();
+
+            System.out.println(&quot;输入的整数为：&quot;+i);
+
+        } else if(scanner.hasNextDouble()){
+
+            //定义一个 double 类型的变量 d，用于接收用户输入的小数。
+            double d=scanner.nextDouble();
+
+            System.out.println(&quot;输入的小数为：&quot;+d);
+
+        } else {
+
+            System.out.println(&quot;你输入的数据不合法！&quot;);
+
+        }
+
+        //关闭 Scanner 对象，减少资源浪费。
+        scanner.close();
+
+    }
+
+}
+</code></pre>
+<p>测试数据（<code>hasNextInt()</code> 和 <code>nextInt()</code>）：</p>
+<pre><code class="language-java">//测试数据1
+2333
+
+//测试数据2
+3.1415926
+
+//测试数据3
+ABC
+</code></pre>
+<p>运行结果（<code>hasNextInt()</code> 和 <code>nextInt()</code>）：</p>
+<pre><code class="language-java">//运行结果1
+请输入整数或小数：
+2333
+输入的整数为：2333
+
+//运行结果2
+请输入整数或小数：
+3.1415926
+输入的小数为：3.1415926
+
+//运行结果3
+请输入整数或小数：
+ABC
+你输入的数据不合法！
+</code></pre>
+<p>示例代码（<code>hasNextDouble()</code> 和 <code>nextDouble()</code>）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+//导入 java.util.Scanner 类。
+import java.util.Scanner;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        System.out.println(&quot;请输入数据：&quot;);
+
+        //创建一个 Scanner 对象，用于接收用户的输入。
+        Scanner scanner=new Scanner(System.in);
+
+        double sum=0;
+
+        int i=0;
+
+        //使用 hasNextDouble() 判断用户是否输入 double 类型的信息。
+        while (scanner.hasNextDouble()){
+
+            //定义一个 double 类型的变量 d，用于接收用户输入的小数。
+            double d=scanner.nextDouble();
+
+            //等价于 sum+=d;
+            sum=sum+d;
+
+            //等价于 i++;
+            i=i+1;
+
+        }
+
+        System.out.println(&quot;总和为：&quot;+sum);
+
+        System.out.println(&quot;平均数为：&quot;+(sum/i));
+
+        //关闭 Scanner 对象，减少资源浪费。
+        scanner.close();
+
+    }
+
+}
+</code></pre>
+<p>测试数据（<code>hasNextDouble()</code> 和 <code>nextDouble()</code>）：</p>
+<pre><code class="language-java">10
+20
+30
+40
+A
+</code></pre>
+<p>运行结果（<code>hasNextDouble()</code> 和 <code>nextDouble()</code>）：</p>
+<pre><code class="language-java">请输入数据：
+10
+20
+30
+40
+A
+总和为：100.0
+平均数为：25.0
+</code></pre>
+<h3 id="区别">区别：</h3>
+<p><code>next()</code>:</p>
+<ol>
+<li>只有用户输入有效字符之后，才能结束。</li>
+<li>有效字符之前的空白，会自动去掉。</li>
+<li>有效字符之后的空白，会作为结束符，结束用户的输入。</li>
+<li><code>next()</code> 不能得到有空白的字符串。</li>
+</ol>
+<p><code>nextLine()</code>:</p>
+<ol>
+<li>不要求用户输入有效字符，用户也可以输入空白，结束输入。</li>
+<li>有效字符之前的空白，会保留。</li>
+<li>有效字符之后的 <code>Enter</code> 键，会作为结束符，结束用户的输入。</li>
+<li><code>nextLine()</code> 可以得到有空白的字符串。</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-package/">
+                  <h3 class="post-title">
+                    Java 入门指南（十）：包
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

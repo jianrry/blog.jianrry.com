@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>PT 入门指南 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文介绍了 PT 的基础知识，适合刚接触或还未接触 PT 的新手，可以帮助他们熟悉 PT 站点的基础规则。
+
+
+
+
+更新日志
+什么是 PT？
+为什么选择 PT？
+PT 站点介绍
+如何加入某个 PT 站点？
+
+捐款
+邀请码
+开放注册
+
+
+新手..." />
+    <meta name="keywords" content="pt" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">PT 入门指南</h2>
+            <div class="post-date">2019-01-29</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/untitled.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文介绍了 PT 的基础知识，适合刚接触或还未接触 PT 的新手，可以帮助他们熟悉 PT 站点的基础规则。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97">更新日志</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-pt">什么是 PT？</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-pt">为什么选择 PT？</a></li>
+<li><a href="#pt-%E7%AB%99%E7%82%B9%E4%BB%8B%E7%BB%8D">PT 站点介绍</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%8A%A0%E5%85%A5%E6%9F%90%E4%B8%AA-pt-%E7%AB%99%E7%82%B9">如何加入某个 PT 站点？</a>
+<ul>
+<li><a href="#%E6%8D%90%E6%AC%BE">捐款</a></li>
+<li><a href="#%E9%82%80%E8%AF%B7%E7%A0%81">邀请码</a></li>
+<li><a href="#%E5%BC%80%E6%94%BE%E6%B3%A8%E5%86%8C">开放注册</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B0%E6%89%8B%E8%80%83%E6%A0%B8">新手考核</a></li>
+<li><a href="#bittorrent-%E5%AE%A2%E6%88%B7%E7%AB%AF">BitTorrent 客户端</a></li>
+<li><a href="#%E7%A7%8D%E5%AD%90%E4%BF%83%E9%94%80%E8%A7%84%E5%88%99">种子促销规则</a></li>
+<li><a href="#%E4%B8%8B%E8%BD%BD%E9%87%8F">下载量</a></li>
+<li><a href="#%E4%B8%8A%E4%BC%A0%E9%87%8F">上传量</a></li>
+<li><a href="#%E9%AD%94%E5%8A%9B%E5%80%BC">魔力值</a></li>
+<li><a href="#%E5%88%86%E4%BA%AB%E7%8E%87">分享率</a></li>
+<li><a href="#h-r">H &amp; R</a></li>
+<li><a href="#%E8%B4%A6%E5%8F%B7%E4%BF%9D%E7%95%99%E8%A7%84%E5%88%99">账号保留规则</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="更新日志">更新日志</h2>
+<ul>
+<li>2021-11-28  更新文章。</li>
+<li>2019-03-12  本文首次发表在博客上。</li>
+</ul>
+<h2 id="什么是-pt">什么是 PT？</h2>
+<p>&quot;Private Tracker（私有种子服务器）&quot; 的缩写，一种改良自 BitTorrent 协议的 P2P 下载方式。</p>
+<p>你从 PT 站点下载了一个种子文件（后缀名为 torrent 的文件），用 BitTorrent 客户端打开后，会通过私有种子服务器，连接到下载同一个文件的其他用户。从其他用户那里下载未完成的文件，同时将已完成的文件上传给其他用户。</p>
+<p>在这个过程中，私有种子服务器会统计每一个用户的下载量、上传量、做种时间等。当分享率达不到要求时，甚至会被封掉账号。</p>
+<h2 id="为什么选择-pt">为什么选择 PT？</h2>
+<p>和其他下载方式相比，PT 有以下的优势：</p>
+<ol>
+<li>更加丰富的资源。比如说 《名侦探柯南剧场版24：绯红的子弹》，一般在网站只能找到 1080P 画质的版本，而你在 PT 站点可以找到 4K 蓝光 画质的版本。有一部分资源在网上已经绝种了，你甚至可以在 PT 站点找到。</li>
+<li>下载速度快，甚至可以达到满速。你下载一个文件时，同时也在上传。下载同一个文件的用户越多，你的下载速度越快，直到达到满速。</li>
+</ol>
+<h2 id="pt-站点介绍">PT 站点介绍</h2>
+<p>国内的 PT 站点分为 教育网 PT 站 和 公网 PT 站。</p>
+<p>教育网 PT 站，只能在教育网环境下才能访问，比如说北邮人（北京邮电大学）、蒲公英（西北工业大学）、和六维空间（东北大学）等。</p>
+<p>公网 PT 站，在公网环境下就能访问，比如说 HDChina（高清中国）、OpenCD（皇后）、U2、ToTheGlory（TTG）、M-Team（MT、馒头）等。</p>
+<p>其中每一个 PT 站都有自己的特色资源，你可以根据自己的需求，选择对应的 PT 站加入。</p>
+<ul>
+<li>HDChina（高清中国）：以影视资源为主。</li>
+<li>OpenCD（皇后）：以无损音乐为主。</li>
+<li>U2：以动漫资源为主。</li>
+<li>ToTheGlory（TTG）：以游戏资源为主。</li>
+<li>M-Team（MT、馒头）：以 R18 资源为主。</li>
+</ul>
+<h2 id="如何加入某个-pt-站点">如何加入某个 PT 站点？</h2>
+<h3 id="捐款">捐款</h3>
+<p>通过微信、支付宝、数字货币等支付宝方式，给某个 PT 站点捐款，会自动成为该 PT 站点的 VIP 会员。</p>
+<p>每个 PT 站点要求捐款的金额、支持的支付方式、VIP 会员享受的特权都可能不同，以该 PT 站点的规则为准。</p>
+<p>以 M-Team 为例：</p>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>金额</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30天</td>
+<td>30$</td>
+<td>获赠1个邀请码</td>
+</tr>
+<tr>
+<td>90天</td>
+<td>80$</td>
+<td>获赠1个邀请码</td>
+</tr>
+<tr>
+<td>180天</td>
+<td>150$</td>
+<td>获赠1个邀请码</td>
+</tr>
+<tr>
+<td>终身用户</td>
+<td>400$</td>
+<td>获赠1个邀请码</td>
+</tr>
+</tbody>
+</table>
+<p>成为 VIP 目前拥有几项福利：</p>
+<ul>
+<li>期间下载量不会增加。</li>
+<li>期间可获得捐赠星星，魔力加倍，过期后恢复正常。</li>
+<li>可率先试用实验室功能。</li>
+<li>无需通过账号考核（自动通过）。</li>
+<li>每次成为 VIP 时，假如有赠送邀请，皆为永久拥有。</li>
+</ul>
+<h3 id="邀请码">邀请码</h3>
+<p>通过邀请码（俗称 &quot;药&quot;），加入对应的 PT 站点，会自动成为该 PT 站点的新注册会员。</p>
+<p>新注册会员（ VIP 会员除外）只有完成新手考核，才能成为该 PT 站点的正式会员。新手考核不通过的，账户将会被删除。</p>
+<p>有以下渠道可以获得邀请码：</p>
+<ul>
+<li>官方邀请。一般 PT 站点的官方会在其他 PT 站点 或 百度贴吧 发放邀请码，如果你满足一定条件（达到一定的等级，上传量、下载量、保种时间达到多少），就可以得到邀请码。</li>
+<li>会员邀请。如果你认识 PT 站点的朋友，可以让朋友给你发放邀请码。或者在各大论坛发帖求邀请码，展示你的 PT 站点的数据（通过 <a href="https://github.com/ronggang/PT-Plugin-Plus">PT 助手 Plus</a> 生成）、硬件设备（比如说 NAS 等）、家庭宽带等。</li>
+</ul>
+<h3 id="开放注册">开放注册</h3>
+<p>少数 PT 站点在特定节假日期间，会限时开放注册。比如说 BT School，在国庆节期间，会限时开放注册一天。</p>
+<p>在开放注册期间，只要注册账号，就会自动成为该 PT 站点的新注册会员。</p>
+<p>新注册会员（ VIP 会员除外）只有完成新手考核，才能成为该 PT 站点的正式会员。新手考核不通过的，账户将会被删除。</p>
+<h2 id="新手考核">新手考核</h2>
+<p>新注册会员（ VIP 会员除外）只有完成新手考核，才能成为该 PT 站点的正式会员。新手考核不通过的，账户将会被删除。</p>
+<p>每个 PT 站点考核标准都可能不同，以该 PT 站点的规则为准。</p>
+<p>以 M-Team 为例（以下任意一项不达标被视为考核不通过。） ：</p>
+<ul>
+<li>上传量 &gt; 20G (Upload &gt; 20G)</li>
+<li>下载量 &gt; 15G (Download &gt; 15G)</li>
+<li>持有魔力值超过 4500 (Bonus Point &gt; 4500)</li>
+</ul>
+<p>M-Team 的考核期是 28 天，考核期截至前不要随意兑换魔力值，否则极有可能因为新手考核不通过导致账户被删除。</p>
+<h2 id="bittorrent-客户端">BitTorrent 客户端</h2>
+<p>请使用 PT 站点允许的 BitTorrent 客户端，使用其他 BitTorrent 客户端可能导致你的账号被删除。同时请使用 BitTorrent 客户端 的 STABLE（稳定版本），请不要使用 BETA（测试版本）。</p>
+<p>每个 PT 站点允许的 BitTorrent 客户端都可能不同，以该 PT 站点的规则为准。</p>
+<p>建议你选择 qBittorrent，可以到 <a href="https://www.qbittorrent.org/">qBittorrent 官网</a> 下载最新的稳定版本。</p>
+<p>以 M-Team 为例：</p>
+<p>Windows：</p>
+<ul>
+<li>Azureus：2.5.0.4, 3.0.5.0, 3.0.5.2及后续版本(不支持Java6)</li>
+<li>uTorrent：2.2.1, 3.0x, 3.1x, 3.2x, 3.3x ,3.4x ,3.5.x</li>
+<li>BitTorrent：6.0.1, 6.0.2, 6.0.3及后续版本</li>
+<li>Deluge：1.3.x, 2.0.x</li>
+<li>Rufus：0.6.9, 0.7.0及后续版本</li>
+<li>qBittorrent：3.x-3.3.11, 4.x (不支持Enhanced-Edition版本)</li>
+</ul>
+<p>Linux：</p>
+<ul>
+<li>Azureus：2.5.0.4, 3.0.5.0, 3.0.5.2及后续版本</li>
+<li>Deluge：1.3.x, 2.0.x</li>
+<li>Rufus：0.6.9, 0.7.0及后续版本</li>
+<li>Transmission：1.21及后续版本</li>
+<li>rTorrent：0.8.0（配合libtorrent 0.12.0或后续版本）及后续版本</li>
+<li>Enhanced CTorrent：3.3.2及后续版本</li>
+<li>qBittorrent：3.x-3.3.11, 4.x (不支持Enhanced-Edition版本)</li>
+</ul>
+<p>MacOS X：</p>
+<ul>
+<li>Azureus：2.5.0.4, 3.0.5.0, 3.0.5.2及后续版本</li>
+<li>Transmission：1.21及后续版本</li>
+<li>BitRocket：0.3.3(32)及后续版本</li>
+<li>uTorrent：1.8.x</li>
+<li>qBittorrent：3.x-3.3.11, 4.x (不支持Enhanced-Edition版本)</li>
+</ul>
+<h2 id="种子促销规则">种子促销规则</h2>
+<p>用户上传资源后，会给予促销，鼓励其他用户下载/上传。有一部分资源是限时促销，过期后促销规则会发生变化。</p>
+<p>每个 PT 站点的种子促销规则都可能不同，以该 PT 站点的规则为准。</p>
+<p>以 M-Team 为例：</p>
+<ul>
+<li>2X FREE：上传乘以 2 倍，下载不计算流量。</li>
+<li>FREE：上传计算正常流量，下载不计算流量。</li>
+<li>2X：上传乘以 2 倍，下载计算正常流量。</li>
+<li>2X 50%：上传乘以 2 倍，下载计算 0.5 倍流量。</li>
+<li>50%：上传计算正常流量，下载计算 0.5 倍流量。</li>
+<li>30%：上传计算正常流量，下载计算 0.3 倍流量。</li>
+</ul>
+<h2 id="下载量">下载量</h2>
+<p>下载量 = 实际下载流量 * 种子促销规则。</p>
+<p>比如说 你下载了 100 G 的资源，只计算 0.5 倍流量，你的下载量会增加 50 G。</p>
+<p>有以下方式可以增加下载量：</p>
+<ul>
+<li>下载付费种子。</li>
+<li>魔力值兑换。</li>
+<li>捐款。</li>
+</ul>
+<p>建议你先下载免费的种子（比如说免费的大包），增加上传量。然后再下载付费种子，增加下载量。否则整体的分享率过低，会导致你的账号被删除。</p>
+<h2 id="上传量">上传量</h2>
+<p>上传量 = 实际上传流量 * 种子促销规则。</p>
+<p>比如说 你上传了 100 G 的资源，计算 2 倍流量，你的上传量会增加 200 G。</p>
+<p>有以下方式可以增加上传量：</p>
+<ul>
+<li>发布种子。</li>
+<li>做种。</li>
+<li>魔力值兑换。</li>
+<li>捐款。</li>
+</ul>
+<p>建议你先下载免费的种子（比如说免费的大包），增加上传量。如果你的硬盘空间不够，可以只下载一部分（比如说 50%），然后持续做种。</p>
+<p>在做种期间，不要恶意限速，否则会引起公愤，导致账户被删除。同时上传速度不要超速（建议单个种子限速到 100 M/S），否则会被判断为作弊，导致账户被删除。</p>
+<h2 id="魔力值">魔力值</h2>
+<p>魔力值是 PT 站点的货币，可以兑换下载量、上传量和邀请资格，以及消除 H &amp; R 记录等。</p>
+<p>每个 PT 站点的魔力值获取规则都可能不同，以该 PT 站点的规则为准。</p>
+<p>以 M-Team 为例：</p>
+<ul>
+<li>0.7 个魔力值 * 你的做种数 （做种数最多计 14 个）。</li>
+<li>每小时获得的魔力值点数由下面的公式给出。</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/bonusformulaa.jpg" alt="" loading="lazy"></figure>
+<ul>
+<li>A 为中间变量</li>
+<li>Ti 为第 i 个种子的生存时间，即自种子发布起到现在所经过的时间，单位是周。</li>
+<li>T0 为参数。T0 = 4。</li>
+<li>Si 为第 i 个种子的大小，单位是 G。</li>
+<li>Ni 为第 i 个种子当前的做种者数。</li>
+<li>N0 为参数。N0 = 7。</li>
+<li>B 为 1 小时中用户获得的做种魔力值点数。</li>
+<li>B0 为参数，代表用户1小时获得的魔力值的上限。B0 = 50。</li>
+<li>L 为参数。L = 300。</li>
+</ul>
+<p>简而言之，为做种人数少、文件体积大的种子做种能获得更多的魔力值。</p>
+<p>建议你先下载体积最小的 14 个种子（比如说电子书分类的种子），然后 24 小时做种，考核期间至少可获得 6585.6 点魔力值。</p>
+<h2 id="分享率">分享率</h2>
+<p>分享率分为：整体分享率 和 独立分享率。</p>
+<p>整体分享率 = 整体的上传量 ÷ 整体的下载量。</p>
+<p>独立分享率 = 单个种子的上传量 ÷ 单个种子的下载量。</p>
+<p>如果整体分享率过低，会导致账户被删除。</p>
+<p>建议你的整体分享率保持在 1 以上，即上传多少 G 的流量，最多下载多少 G 的流量。</p>
+<h2 id="h-r">H &amp; R</h2>
+<p>为了提高种子的存活率，部分 PT 站点严格打击 H &amp; R （Hit &amp; Run 的缩写，即下完就跑）的行为，要求最低做种时间。H &amp; R 的记录达到一定的次数后，账户会被删除。可以使用魔力值消除 H &amp; R 记录。</p>
+<p>每个 PT 站点的 H &amp; R 规则都可能不同，以该 PT 站点的规则为准。</p>
+<p>以 M-Team 为例：</p>
+<p>对于 FREE 的种子，当你完成种子后的 7 天之内，做种时间累计 48 小时 或 分享率大于等于 1 才能停止做种。</p>
+<p>建议你完成种子后，不要停止做种，直到做种时间达到 48 小时为止。</p>
+<h2 id="账号保留规则">账号保留规则</h2>
+<p>如果你想长期保留账号，必须遵守该 PT 站点的账号保留规则。</p>
+<p>每个 PT 站点的账号保留规则都可能不同，以该 PT 站点的规则为准。</p>
+<p>以 M-Team 为例：</p>
+<ul>
+<li>没有流量的用户（即上传量、下载量都为 0），在注册 5 天后将会被删除账号。</li>
+<li>未封存账号的用户连续 40 天不登录，将被删除账号。</li>
+<li>封存账号的用户连续 90 天不登录，将被删除账号。</li>
+<li>府丞/Veteran User 及以上等级的用户封存账号后，将不会被删除账号。</li>
+<li>府尹/Extreme User 及以上等级的用户将永久保留。</li>
+</ul>
+<p>只有注册时间大于 24 周，下载量大于 2000 G ，分享率大于 7 的用户，才能永久保留账号。</p>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>不要长时间不登录（建议每 30 天，至少登录 1 次）。</li>
+<li>不要在公开场合讨论 PT（不要在各大论坛提到 PT 站点的名字和网址，甚至部分 PT 站点连名字的缩写也不能提）。</li>
+<li>不要随意发放邀请码（部分 PT 站点实行连坐制度，一旦被邀请者违反了规则被删除账号，邀请者同样也会被删除账号）。</li>
+<li>不要买卖或者交换邀请码（一旦发现买卖或者交换邀请码，双方都会被删除账号）。</li>
+<li>不要作弊（不要心存侥幸心理，作弊一旦被发现，就会被删除账号，极少数 PT 站点除外）。</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/pt/" class="tag">
+                    pt
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/windows-battery-report/">
+                  <h3 class="post-title">
+                    Windows 查看电池使用时间报告
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

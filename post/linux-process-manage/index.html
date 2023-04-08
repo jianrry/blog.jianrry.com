@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十一）：Linux 进程管理 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十一篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 进程管理。
+
+
+
+
+ps（显示当前进程的状态）
+
+描述：
+用法：
+选项：
+实例：
+
+
+kill（杀死指定的进程）
+
+描述：
+用法：
+选项：..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十一）：Linux 进程管理</h2>
+            <div class="post-date">2019-02-27</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十一篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 进程管理。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#ps%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81">ps（显示当前进程的状态）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#kill%E6%9D%80%E6%AD%BB%E6%8C%87%E5%AE%9A%E7%9A%84%E8%BF%9B%E7%A8%8B">kill（杀死指定的进程）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="ps显示当前进程的状态">ps（显示当前进程的状态）</h2>
+<h3 id="描述">描述：</h3>
+<p>&quot;process status（进程状态）&quot; 的缩写，显示当前进程的状态，类似于 Windows 中的资源管理器。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      ps [选项] 
+</code></pre>
+<h3 id="选项">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A, -e</td>
+<td></td>
+<td>列出所有的进程</td>
+</tr>
+<tr>
+<td>-a</td>
+<td></td>
+<td>显示所有终端机下执行的程序，除了阶段作业领导者之外</td>
+</tr>
+<tr>
+<td>a</td>
+<td></td>
+<td>显示现行终端机下的所有程序，包括其他用户的程序</td>
+</tr>
+<tr>
+<td>-d</td>
+<td></td>
+<td>显示所有程序，但不包括阶段作业领导者的程序</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>--deselect</td>
+<td>显示所有的程序，除了执行ps指令终端机下的程序之外</td>
+</tr>
+<tr>
+<td>r</td>
+<td></td>
+<td>只列出现行终端机正在执行中的程序</td>
+</tr>
+<tr>
+<td>T</td>
+<td></td>
+<td>显示现行终端机下的所有程序</td>
+</tr>
+<tr>
+<td>x</td>
+<td></td>
+<td>显示所有程序，不以终端机来区分</td>
+</tr>
+<tr>
+<td>-C &lt;命令&gt;</td>
+<td></td>
+<td>命令名称</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>--Group <GID></td>
+<td>列出属于该群组的程序的状况，也可使用群组名称来指定</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>--group <group></td>
+<td>此选项的效果和指定 &quot;-G&quot; 选项相同，当亦能使用阶段作业领导者的名称来指定</td>
+</tr>
+<tr>
+<td>-p, p</td>
+<td>--pid <PID></td>
+<td>进程编号</td>
+</tr>
+<tr>
+<td></td>
+<td>--ppid <PID></td>
+<td>父进程编号</td>
+</tr>
+<tr>
+<td>-q, q</td>
+<td>--quick-pid <PID></td>
+<td>进程 ID（快速模式）</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--sid <session></td>
+<td>会话 ID</td>
+</tr>
+<tr>
+<td>-t, t</td>
+<td>--tty <tty></td>
+<td>终端</td>
+</tr>
+<tr>
+<td>-u, U</td>
+<td>--user <UID></td>
+<td>列出属于该用户的程序的状况，也可使用用户名称来指定</td>
+</tr>
+<tr>
+<td>-U</td>
+<td>--User <UID></td>
+<td>真实用户编号或名称</td>
+</tr>
+<tr>
+<td>-F</td>
+<td></td>
+<td>完整格式，还包含额外的格式</td>
+</tr>
+<tr>
+<td>-f</td>
+<td></td>
+<td>完整格式，包含命令行</td>
+</tr>
+<tr>
+<td>f</td>
+<td>--forest</td>
+<td>ascii 字符艺术显示的进程树</td>
+</tr>
+<tr>
+<td>-H</td>
+<td></td>
+<td>显示树状结构，表示程序间的相互关系</td>
+</tr>
+<tr>
+<td>-j</td>
+<td></td>
+<td>采用工作控制的格式显示程序状况</td>
+</tr>
+<tr>
+<td>j</td>
+<td></td>
+<td>BSD 任务控制格式</td>
+</tr>
+<tr>
+<td>-l</td>
+<td></td>
+<td>长格式</td>
+</tr>
+<tr>
+<td>l</td>
+<td></td>
+<td>BSD 长格式</td>
+</tr>
+<tr>
+<td>-M, Z</td>
+<td></td>
+<td>添加安全数据（用于 SELinux）</td>
+</tr>
+<tr>
+<td>-O <format></td>
+<td></td>
+<td>预加载默认列</td>
+</tr>
+<tr>
+<td>O <format></td>
+<td></td>
+<td>和 &quot;-O&quot; 选项一样, with BSD personality</td>
+</tr>
+<tr>
+<td>-o, o</td>
+<td>--format &lt;格式&gt;</td>
+<td>用户定义的格式</td>
+</tr>
+<tr>
+<td>s</td>
+<td></td>
+<td>信号格式</td>
+</tr>
+<tr>
+<td>u</td>
+<td></td>
+<td>以用户为主的格式来显示程序状况</td>
+</tr>
+<tr>
+<td>v</td>
+<td></td>
+<td>虚拟内存格式</td>
+</tr>
+<tr>
+<td>X</td>
+<td></td>
+<td>寄存器格式</td>
+</tr>
+<tr>
+<td>-y</td>
+<td></td>
+<td>配合选项 &quot;-l&quot; 使用时，不显示 F(flag) 栏位，并以 RSS 栏位取代 ADDR 栏位</td>
+</tr>
+<tr>
+<td></td>
+<td>--context</td>
+<td>显示安全上下文（用于 SELinux）</td>
+</tr>
+<tr>
+<td></td>
+<td>--headers</td>
+<td>重复显示标题列</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-headers</td>
+<td>此选项的效果和指定 &quot;h&quot; 选项相同，只在列表格式方面稍有差异</td>
+</tr>
+<tr>
+<td></td>
+<td>--cols, --columns, --width <num></td>
+<td>设置每列的最大字符数</td>
+</tr>
+<tr>
+<td></td>
+<td>--rows, --lines <num></td>
+<td>设置显示画面的列数</td>
+</tr>
+<tr>
+<td>H</td>
+<td></td>
+<td>好像它们是进程</td>
+</tr>
+<tr>
+<td>-L</td>
+<td></td>
+<td>可能带有 LWP 和 NLWP 列</td>
+</tr>
+<tr>
+<td>-m, m</td>
+<td></td>
+<td>后处理</td>
+</tr>
+<tr>
+<td>-T</td>
+<td></td>
+<td>可能带有 SPID 列</td>
+</tr>
+<tr>
+<td>-c</td>
+<td></td>
+<td>显示 CLS 和 PRI 栏位</td>
+</tr>
+<tr>
+<td>c</td>
+<td></td>
+<td>列出程序时，显示每个程序真正的指令名称，而不包含路径，选项或常驻服务的标示</td>
+</tr>
+<tr>
+<td>e</td>
+<td></td>
+<td>列出程序时，显示每个程序所使用的环境变量</td>
+</tr>
+<tr>
+<td>k</td>
+<td>--sort</td>
+<td>指定排序顺序为：</td>
+</tr>
+<tr>
+<td>L</td>
+<td></td>
+<td>列出栏位的相关信息</td>
+</tr>
+<tr>
+<td>n</td>
+<td></td>
+<td>以数字来表示 USER 和 WCHAN 栏位</td>
+</tr>
+<tr>
+<td>S</td>
+<td>--cumulative</td>
+<td>列出程序时，包括已中断的子程序资料</td>
+</tr>
+<tr>
+<td>-y</td>
+<td></td>
+<td>配合选项 &quot;-l&quot; 使用时，不显示 F(flag) 栏位，并以 RSS 栏位取代 ADDR 栏位</td>
+</tr>
+<tr>
+<td>-V, V</td>
+<td>--version</td>
+<td>显示版本信息</td>
+</tr>
+<tr>
+<td>-w, w</td>
+<td></td>
+<td>不限制输出宽度</td>
+</tr>
+<tr>
+<td></td>
+<td>--help simple/list/output/threads/misc/all</td>
+<td>显示帮助信息并退出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例">实例：</h3>
+<p>显示当前进程的状态（查看所有的进程）</p>
+<pre><code>ps -aux
+</code></pre>
+<p>显示当前进程的状态（查看所有的进程，等同于 <code>ps -aux</code>）</p>
+<pre><code>ps -ef
+</code></pre>
+<p>显示当前进程的状态（以 wget 为关键字查找指定的进程）</p>
+<pre><code>ps -aux | grep wget
+</code></pre>
+<h2 id="kill杀死指定的进程">kill（杀死指定的进程）</h2>
+<h3 id="描述-2">描述：</h3>
+<p>&quot;kill（杀死）&quot; 的全称，杀死指定的进程。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      kill [选项] [PID] 
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s sig</td>
+<td>SIG 是信号名称</td>
+</tr>
+<tr>
+<td>-n sig</td>
+<td>SIG 是信号编号</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>列出信号名称；如果参数后跟 `-l'则被假设为信号编号，而相应的信号名称会被列出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-2">实例：</h3>
+<p>列出信号名称（只有第9种信号 (SIGKILL) 才可以无条件终止进程，其他信号进程都有权利忽略）</p>
+<pre><code>jianrry@jianrry:~$ kill -l
+
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP
+
+ 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1
+
+11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM
+
+16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP
+
+21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ
+
+26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR
+
+31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3
+
+38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
+
+43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
+
+48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
+
+53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
+
+58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
+
+63) SIGRTMAX-1	64) SIGRTMAX
+</code></pre>
+<p>杀死指定的进程（杀死 pid 为 12274 的进程）</p>
+<pre><code>kill -9 12274
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-background-command/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十）：Linux 后台命令
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

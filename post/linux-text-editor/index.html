@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十三）：Linux 文本编辑 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十三篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 文本编辑。
+
+
+
+
+cat（查看文件内容）
+
+描述：
+用法：
+选项：
+实例：
+
+
+head（查看文件的开头）
+
+描述：
+用法：
+选项：
+实..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十三）：Linux 文本编辑</h2>
+            <div class="post-date">2019-03-01</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十三篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 文本编辑。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#cat%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9">cat（查看文件内容）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#head%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%BC%80%E5%A4%B4">head（查看文件的开头）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#tail%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%93%E5%B0%BE">tail（查看文件的结尾）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-3">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-3">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+<li><a href="#nano%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8">nano（文本编辑器）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-4">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-4">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-4">选项：</a></li>
+<li><a href="#%E5%BF%AB%E6%8D%B7%E9%94%AE">快捷键：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-4">实例：</a></li>
+</ul>
+</li>
+<li><a href="#vim%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8">vim（文本编辑器）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-5">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-5">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-5">选项：</a></li>
+<li><a href="#%E6%A8%A1%E5%BC%8F">模式：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-5">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="cat查看文件内容">cat（查看文件内容）</h2>
+<h3 id="描述">描述：</h3>
+<p>&quot;concatenate（连续）&quot; 的缩写，查看文件内容。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      cat [选项] [文件名]
+</code></pre>
+<h3 id="选项">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A</td>
+<td>--show-all</td>
+<td>等效于 -vET</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>--number-nonblank</td>
+<td>对非空输出行编号，同时取消 -n 选项效果</td>
+</tr>
+<tr>
+<td>-e</td>
+<td></td>
+<td>等效于 -vE</td>
+</tr>
+<tr>
+<td>-E</td>
+<td>--show-ends</td>
+<td>在每行结束处显示&quot;$&quot;</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>--number</td>
+<td>对输出的所有行编号</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--squeeze-blank</td>
+<td>不输出多行空行</td>
+</tr>
+<tr>
+<td>-t</td>
+<td></td>
+<td>与 -vT 等效</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>--show-tabs</td>
+<td>将跳格字符显示为^I</td>
+</tr>
+<tr>
+<td>-u</td>
+<td></td>
+<td>(被忽略)</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--show-nonprinting</td>
+<td>使用^ 和M- 引用，除了LFD和 TAB 之外</td>
+</tr>
+<tr>
+<td></td>
+<td>--help</td>
+<td>显示此帮助信息并退出</td>
+</tr>
+<tr>
+<td></td>
+<td>--version</td>
+<td>显示版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例">实例：</h3>
+<p>查看文件内容（查看 <code>/etc/issue</code> 的内容）</p>
+<pre><code>cat /etc/issue
+</code></pre>
+<p>查看文件内容（查看 <code>id_rsa.pub</code> 的内容，并将内容追加到 <code>authorized_keys</code>）</p>
+<pre><code>cat id_rsa.pub &gt;&gt; authorized_keys
+</code></pre>
+<h2 id="head查看文件的开头">head（查看文件的开头）</h2>
+<h3 id="描述-2">描述：</h3>
+<p>&quot;head（头部）&quot; 的全称，查看文件的开头。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      head [选项] [文件名]
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>--bytes=[-]K</td>
+<td>显示每个文件的前 K 字节内容；如果数字前附加“-”字符，则除了每个文件的最后 K 字节数据外显示其余全部内容</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>-lines=[-]K</td>
+<td>显示每个文件的前 K 行内容而非前 10 行内容；如果数字前附加“-”字符，则除了每个文件的最后 K 行数据外显示其余全部内容</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>--quiet,--silent</td>
+<td>不显示包含给定文件名的文件头</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--verbose</td>
+<td>总是显示包含给定文件名的文件头</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>--zero-terminated</td>
+<td>以 NUL 字符而非换行符作为行尾分隔符</td>
+</tr>
+<tr>
+<td></td>
+<td>--help</td>
+<td>显示此帮助信息并退出</td>
+</tr>
+<tr>
+<td></td>
+<td>--version</td>
+<td>显示版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-2">实例：</h3>
+<p>查看文件的开头（查看 <code>.bash_history</code> 的开头，默认查看前10行）</p>
+<pre><code> head .bash_history
+</code></pre>
+<p>查看文件的开头（查看 <code>.bash_history</code> 的开头，查看前20行）</p>
+<pre><code>head -n 20 .bash_history
+</code></pre>
+<h2 id="tail查看文件的结尾">tail（查看文件的结尾）</h2>
+<h3 id="描述-3">描述：</h3>
+<p>&quot;tail（尾部）&quot; 的全称，查看文件的结尾。</p>
+<h3 id="用法-3">用法：</h3>
+<pre><code>      tail [选项] [文件名]
+</code></pre>
+<h3 id="选项-3">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>--bytes=[+]NUM</td>
+<td>输出最后 NUM 字节；或者使用 -c +NUM 以输出每个文件第 NUM 个字节之后的全部内容</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>`--follow[={name</td>
+<td>descriptor}]`</td>
+</tr>
+<tr>
+<td>-F</td>
+<td></td>
+<td>和 --follow=name --retry 相同</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>--lines=[+]NUM</td>
+<td>输出最后 NUM 行，而不是最后 10 行；或使用 -n +NUM 输出从第 NUM 行开始</td>
+</tr>
+<tr>
+<td></td>
+<td>--max-unchanged-stats=N</td>
+<td>使用 --follow=name，重新打开一个在 N（默认 5）次迭代后没有改变大小的 FILE 以查看它是否已被取消链接或重命名（这是轮换日志文件的常见情况）; 对于inotify，这个选项很少有用</td>
+</tr>
+<tr>
+<td></td>
+<td>--pid=PID</td>
+<td>同 -f 一起使用，当所指定<PID>对应的进程死去后终止</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>--quiet, --silent</td>
+<td>不输出给出文件名的头</td>
+</tr>
+<tr>
+<td></td>
+<td>--retry</td>
+<td>即使目标文件不可访问依然重复试图打开</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--sleep-interval=N</td>
+<td>使用 -f，在迭代之间休眠大约 N 秒（默认为 1.0）; 使用 inotify 和 --pid=P，每 N 秒至少检查一次进程 P</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--verbose</td>
+<td>总是输出给出文件名的标题</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>--zero-terminated</td>
+<td>以 NUL 字符而非换行符作为行尾分隔符</td>
+</tr>
+<tr>
+<td></td>
+<td>--help</td>
+<td>显示此帮助信息并退出</td>
+</tr>
+<tr>
+<td></td>
+<td>--version</td>
+<td>显示版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-3">实例：</h3>
+<p>查看文件的结尾（查看 <code>.bash_history</code> 的结尾，默认查看倒数10行）</p>
+<pre><code>tail .bash_history
+</code></pre>
+<p>查看文件的结尾（查看 <code>.bash_history</code> 的结尾，查看倒数20行）</p>
+<pre><code>tail -n 20 .bash_history
+</code></pre>
+<h2 id="nano文本编辑器">nano（文本编辑器）</h2>
+<h3 id="描述-4">描述：</h3>
+<p>nano 是一款文本编辑器，可以查看或编辑文本。</p>
+<h3 id="用法-4">用法：</h3>
+<pre><code>      nano [选项] [行]/[列] [文件名]
+</code></pre>
+<h3 id="选项-4">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A</td>
+<td>--smarthome</td>
+<td>启用智能 HOME 键</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>--backup</td>
+<td>储存既有文件的备份</td>
+</tr>
+<tr>
+<td>-C &lt;目录&gt;</td>
+<td>--backupdir=&lt;目录&gt;</td>
+<td>用以储存独一备份文件的目录</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>--boldtext</td>
+<td>用粗体替代颜色反转</td>
+</tr>
+<tr>
+<td>-E</td>
+<td>--tabstospaces</td>
+<td>将已输入的制表符转换为空白</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>--multibuffer</td>
+<td>默认从文件读入到一个新的缓冲区</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>--locking</td>
+<td>使用（vim 风格）锁文件</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>--historylog</td>
+<td>记录与读取搜索/替换的历史字符串</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>--ignorercfiles</td>
+<td>不要参考 nanorc 文件</td>
+</tr>
+<tr>
+<td>-J &lt;数字&gt;</td>
+<td>--guidestripe=&lt;数字&gt;</td>
+<td>在此栏显示一个导引条</td>
+</tr>
+<tr>
+<td>-K</td>
+<td>--rawsequences</td>
+<td>修正数字键区按键混淆问题</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>--nonewlines</td>
+<td>不要自动添加换行符</td>
+</tr>
+<tr>
+<td>-M</td>
+<td>--trimblanks</td>
+<td>强制折行时移除末尾空白</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>--noconvert</td>
+<td>不要从 DOS/Mac 格式转换</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>--bookstyle</td>
+<td>以空白字符起始表示新的段落</td>
+</tr>
+<tr>
+<td>-P</td>
+<td>--positionlog</td>
+<td>记录并读取光标位置</td>
+</tr>
+<tr>
+<td>-Q</td>
+<td>&lt;正则表达式&gt; --quotestr=&lt;正则表达式&gt;</td>
+<td>匹配引用的正则表达式</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>--restricted</td>
+<td>限制对文件系统的访问</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>--softwrap</td>
+<td>以多行显示过长的行</td>
+</tr>
+<tr>
+<td>-T &lt;数字&gt;</td>
+<td>--tabsize=&lt;数字&gt;</td>
+<td>令制表符宽度为指定行数</td>
+</tr>
+<tr>
+<td>-U</td>
+<td>--quickblank</td>
+<td>在下一次按键后清除状态栏内容</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>--version</td>
+<td>显示版本信息并离开</td>
+</tr>
+<tr>
+<td>-W</td>
+<td>--wordbounds</td>
+<td>更正确地侦测单字边界</td>
+</tr>
+<tr>
+<td>-X &lt;字符串&gt;</td>
+<td>--wordchars=&lt;字符串&gt;</td>
+<td>指定哪些其它特殊字符也是单词的一部分</td>
+</tr>
+<tr>
+<td>-Y &lt;名称&gt;</td>
+<td>--syntax=&lt;名称&gt;</td>
+<td>用于加亮的语法定义</td>
+</tr>
+<tr>
+<td>-Z</td>
+<td>--zap</td>
+<td>让退格键和删除键清除选中的区域</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>--atblanks</td>
+<td>软折行时在空白处进行</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>--breaklonglines</td>
+<td>对过长的行自动强制换行</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>--constantshow</td>
+<td>持续显示游标位置</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>--rebinddelete</td>
+<td>修正退格键/删除键混淆问题</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>--emptyline</td>
+<td>保持标题栏下面的行一直为空</td>
+</tr>
+<tr>
+<td>-f &lt;文件&gt;</td>
+<td>--rcfile=&lt;文件&gt;</td>
+<td>只使用这个文件配置 nano</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>--showcursor</td>
+<td>在文件浏览器和帮助文本中显示游标</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--help</td>
+<td>显示本帮助文本并退出</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--autoindent</td>
+<td>自动缩进新行</td>
+</tr>
+<tr>
+<td>-j</td>
+<td>--jumpyscrolling</td>
+<td>按半屏幕滚动文本，不按行</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>--cutfromcursor</td>
+<td>从游标剪切至行尾</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--linenumbers</td>
+<td>在文本之前显示行号</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>--mouse</td>
+<td>启用鼠标功能</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>--noread</td>
+<td>不要读取文件（仅写入）</td>
+</tr>
+<tr>
+<td>-o &lt;目录&gt;</td>
+<td>--operatingdir=&lt;目录&gt;</td>
+<td>设定操作目录</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>--preserve</td>
+<td>保留XON (^Q) 和XOFF (^S) 按键</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>--indicator</td>
+<td>显示位置+部分指示器</td>
+</tr>
+<tr>
+<td>-r &lt;数字&gt;</td>
+<td>--fill=&lt;数字&gt;</td>
+<td>设置强制换行宽度并进行重排</td>
+</tr>
+<tr>
+<td>-s &lt;程序&gt;</td>
+<td>--speller=&lt;程序&gt;</td>
+<td>使用此替代的拼写检查程序</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--saveonexit</td>
+<td>退出时自动保存修改，不要提示</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>--unix</td>
+<td>默认将文件保存为 Unix 格式</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--view</td>
+<td>查看（只读）模式</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>--nowrap</td>
+<td>不要为过长行强制折行 [默认]</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>--nohelp</td>
+<td>不要显示辅助区</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>--afterends</td>
+<td>使 Ctrl+Right 在单词末尾处停止</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>--suspendable</td>
+<td>启用挂起功能</td>
+</tr>
+<tr>
+<td>-%</td>
+<td>--stateflags</td>
+<td>在标题栏显示某些状态</td>
+</tr>
+<tr>
+<td>-_</td>
+<td>--minibar</td>
+<td>在底部显示一个反馈条</td>
+</tr>
+</tbody>
+</table>
+<h3 id="快捷键">快捷键：</h3>
+<p><strong>↑↓←→（移动光标）</strong></p>
+<p><code>↑ </code> 光标向上移动</p>
+<p><code>↓</code>  光标向下移动</p>
+<p><code>←</code>  光标向左移动</p>
+<p><code>→</code> 光标向右移动</p>
+<p><strong>Ctrl + 6（标记）</strong></p>
+<p>按下 <code>Ctrl + 6</code> 键，开始标记。</p>
+<p>再次按下 <code>Ctrl + 6</code> 键，取消标记。</p>
+<p>移动光标，标记需要复制/剪贴的文本，被标记的文本的背景会变成白色。</p>
+<p><strong>Alt + 6（复制）</strong></p>
+<p>按下 <code>Alt + 6</code> 键，将被标记的文本复制到剪贴板。</p>
+<p><strong>Ctrl + K（剪贴）</strong></p>
+<p>按下 <code>Ctrl + K</code> 键，将被标记的文本剪贴到剪贴板。</p>
+<p><strong>Ctrl + U（粘贴）</strong></p>
+<p>按下 <code>Ctrl + U</code> 键，粘贴剪贴板中的文本。</p>
+<p><strong>Ctrl + W（搜索）</strong></p>
+<p>按下 <code>Ctrl + W</code> 键，输入关键字，会自动定位到第一个匹配的文本。</p>
+<p>再次按下 <code>Alt + W</code> 键，会定位到下一个匹配的文本。</p>
+<p><strong>Ctrl + \（替换）</strong></p>
+<p>按下 <code>Ctrl + \</code> 键，先后两次输入关键字，会自动替换匹配的文本。</p>
+<p><strong>Ctrl + Y（上一页）</strong></p>
+<p>按下 <code>Ctrl + Y</code> 键，光标移动到上一页。</p>
+<p><strong>Ctrl + V（下一页）</strong></p>
+<p>按下 <code>Ctrl + V</code> 键，光标移动到下一页。</p>
+<p><strong>Ctrl + O（保存）</strong></p>
+<p>按下 <code>Ctrl + O</code> 键，保存已经修改的内容。</p>
+<p><strong>Ctrl + X（退出）</strong></p>
+<p>按下 <code>Ctrl + X</code> 键，退出文本编辑器。</p>
+<p>如果你修改了内容，会提示你是否保存。</p>
+<p><strong>Ctrl + G（显示帮助）</strong></p>
+<p>按下 <code>Ctrl + G</code> 键，查看帮助文档。</p>
+<h3 id="实例-4">实例：</h3>
+<p>编辑文本（编辑 <code>.bash_history</code> 文件）</p>
+<pre><code>nano .bash_history
+</code></pre>
+<h2 id="vim文本编辑器">vim（文本编辑器）</h2>
+<h3 id="描述-5">描述：</h3>
+<p>vim 是一款文本编辑器，可以查看或编辑文本。</p>
+<h3 id="用法-5">用法：</h3>
+<pre><code>      vim [选项] [文件名]
+</code></pre>
+<h3 id="选项-5">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>--</td>
+<td>在这以后只有文件名</td>
+</tr>
+<tr>
+<td>-v</td>
+<td></td>
+<td>Vi 模式 (同 &quot;vi&quot;)</td>
+</tr>
+<tr>
+<td>-e</td>
+<td></td>
+<td>Ex 模式 (同 &quot;ex&quot;)</td>
+</tr>
+<tr>
+<td>-E</td>
+<td></td>
+<td>Improved Ex mode</td>
+</tr>
+<tr>
+<td>-s</td>
+<td></td>
+<td>安静(批处理)模式 (只能与 &quot;ex&quot; 一起使用)</td>
+</tr>
+<tr>
+<td>-d</td>
+<td></td>
+<td>Diff 模式 (同 &quot;vimdiff&quot;)</td>
+</tr>
+<tr>
+<td>-y</td>
+<td></td>
+<td>容易模式 (同 &quot;evim&quot;，无模式)</td>
+</tr>
+<tr>
+<td>-R</td>
+<td></td>
+<td>只读模式 (同 &quot;view&quot;)</td>
+</tr>
+<tr>
+<td>-Z</td>
+<td></td>
+<td>限制模式 (同 &quot;rvim&quot;)</td>
+</tr>
+<tr>
+<td>-m</td>
+<td></td>
+<td>不可修改(写入文件)</td>
+</tr>
+<tr>
+<td>-M</td>
+<td></td>
+<td>文本不可修改</td>
+</tr>
+<tr>
+<td>-b</td>
+<td></td>
+<td>二进制模式</td>
+</tr>
+<tr>
+<td>-l</td>
+<td></td>
+<td>Lisp 模式</td>
+</tr>
+<tr>
+<td>-C</td>
+<td></td>
+<td>兼容传统的 Vi: 'compatible'</td>
+</tr>
+<tr>
+<td>-N</td>
+<td></td>
+<td>不完全兼容传统的 Vi: 'nocompatible'</td>
+</tr>
+<tr>
+<td>-V[N][fname]</td>
+<td></td>
+<td>显示 [level N] [log messages to fname] 的详细信息</td>
+</tr>
+<tr>
+<td>-D</td>
+<td></td>
+<td>调试模式</td>
+</tr>
+<tr>
+<td>-n</td>
+<td></td>
+<td>不使用交换文件，只使用内存</td>
+</tr>
+<tr>
+<td>-r</td>
+<td></td>
+<td>列出交换文件并退出</td>
+</tr>
+<tr>
+<td>-r (跟文件名)</td>
+<td></td>
+<td>恢复崩溃的会话</td>
+</tr>
+<tr>
+<td>-L</td>
+<td></td>
+<td>同 -r</td>
+</tr>
+<tr>
+<td>-A</td>
+<td></td>
+<td>以 Arabic 模式启动</td>
+</tr>
+<tr>
+<td>-H</td>
+<td></td>
+<td>以 Hebrew 模式启动</td>
+</tr>
+<tr>
+<td>-T <terminal></td>
+<td></td>
+<td>设定终端类型为 <terminal></td>
+</tr>
+<tr>
+<td></td>
+<td>--not-a-term</td>
+<td>跳过输入/输出不是终端的警告</td>
+</tr>
+<tr>
+<td></td>
+<td>--ttyfail</td>
+<td>如果输入或输出不是终端则退出</td>
+</tr>
+<tr>
+<td>-u <vimrc></td>
+<td></td>
+<td>使用 <vimrc> 替代任何 .vimrc</td>
+</tr>
+<tr>
+<td></td>
+<td>--noplugin</td>
+<td>不加载 plugin 脚本</td>
+</tr>
+<tr>
+<td>-p[N]</td>
+<td></td>
+<td>打开 N 个标签页 (默认值: 每个文件一个)</td>
+</tr>
+<tr>
+<td>-o[N]</td>
+<td></td>
+<td>打开 N 个窗口 (默认值: 每个文件一个)</td>
+</tr>
+<tr>
+<td>-O[N]</td>
+<td></td>
+<td>同 -o 但垂直分割</td>
+</tr>
+<tr>
+<td>+</td>
+<td></td>
+<td>启动后跳到文件末尾</td>
+</tr>
+<tr>
+<td>+<lnum></td>
+<td></td>
+<td>启动后跳到第 <lnum> 行</td>
+</tr>
+<tr>
+<td></td>
+<td>--cmd <command></td>
+<td>加载任何 vimrc 文件前执行 <command></td>
+</tr>
+<tr>
+<td>-c <command></td>
+<td></td>
+<td>加载第一个文件后执行 <command></td>
+</tr>
+<tr>
+<td>-S <session></td>
+<td></td>
+<td>加载第一个文件后执行文件 <session></td>
+</tr>
+<tr>
+<td>-s <scriptin></td>
+<td></td>
+<td>从文件 <scriptin> 读入正常模式的命令</td>
+</tr>
+<tr>
+<td>-w <scriptout></td>
+<td></td>
+<td>将所有输入的命令追加到文件 <scriptout></td>
+</tr>
+<tr>
+<td>-W <scriptout></td>
+<td></td>
+<td>将所有输入的命令写入到文件 <scriptout></td>
+</tr>
+<tr>
+<td>-x</td>
+<td></td>
+<td>编辑加密的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--startuptime <file></td>
+<td>将启动计时消息写入 <file></td>
+</tr>
+<tr>
+<td>-i <viminfo></td>
+<td></td>
+<td>使用 <viminfo> 取代 .viminfo</td>
+</tr>
+<tr>
+<td></td>
+<td>--clean</td>
+<td>'nocompatible'，Vim 默认值，无插件，无 viminfo</td>
+</tr>
+<tr>
+<td></td>
+<td>-h  或  --help</td>
+<td>打印帮助(本信息)并退出</td>
+</tr>
+<tr>
+<td></td>
+<td>--version</td>
+<td>打印版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模式">模式：</h3>
+<p><strong>Command mode（命令模式）</strong></p>
+<p>使用 <code>vim</code> 时，默认进入命令模式。</p>
+<p>按下 <code>i</code> 键，会切换到输入模式。</p>
+<p>按下 <code>:</code> 键，会切换到底线命令模式。</p>
+<p>命令模式下，只能输入一些最基本的命令。</p>
+<p><strong>Insert mode（输入模式）</strong></p>
+<p>按下 <code>Esc</code> 键，会切换到命令模式。</p>
+<p>输入模式下，可以编辑文本。</p>
+<p><strong>Last line mode（底线命令模式）</strong></p>
+<p>按下 <code>Esc</code> 键，会切换到命令模式。</p>
+<p>底线命令模式下，可以输入更多的命令：</p>
+<ul>
+<li><code>w</code> 保存</li>
+<li><code>q</code> 退出</li>
+</ul>
+<h3 id="实例-5">实例：</h3>
+<p>编辑文本（编辑 <code>.bash_history</code> 文件）</p>
+<pre><code>vim .bash_history
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-file-manage/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十二）：Linux 文件管理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

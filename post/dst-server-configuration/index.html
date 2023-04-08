@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Don&#39;t Starve Together（饥荒联机版）配置文件 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文介绍了 Don't Starve Together（饥荒联机版）的配置文件， 适用于专用服务器端（服务器端）&amp; 客户端、Windows 版本 &amp; Linux 版本。
+
+
+
+
+前言
+服务器
+
+cluster_token.t..." />
+    <meta name="keywords" content="dst,steam" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Don&#39;t Starve Together（饥荒联机版）配置文件</h2>
+            <div class="post-date">2019-02-13</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/dst-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文介绍了 Don't Starve Together（饥荒联机版）的配置文件， 适用于专用服务器端（服务器端）&amp; 客户端、Windows 版本 &amp; Linux 版本。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8">服务器</a>
+<ul>
+<li><a href="#cluster_tokentxt%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C">cluster_token.txt（访问令牌）</a></li>
+<li><a href="#clusterini%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">cluster.ini（服务器配置文件）</a></li>
+<li><a href="#admintxt%E7%AE%A1%E7%90%86%E5%91%98%E5%90%8D%E5%8D%95">admin.txt（管理员名单）</a></li>
+<li><a href="#whitelisttxt%E7%99%BD%E5%90%8D%E5%8D%95">whitelist.txt（白名单）</a></li>
+<li><a href="#blocklisttxt%E9%BB%91%E5%90%8D%E5%8D%95">blocklist.txt（黑名单）</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A3%AE%E6%9E%97">森林</a>
+<ul>
+<li><a href="#serverini%E6%A3%AE%E6%9E%97%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">server.ini（森林服务器配置文件）</a></li>
+<li><a href="#leveldataoverridelua%E6%A3%AE%E6%9E%97%E5%9C%B0%E5%BD%A2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">leveldataoverride.lua（森林地形配置文件）</a></li>
+<li><a href="#modoverrideslua%E6%A3%AE%E6%9E%97-mod-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">modoverrides.lua（森林 Mod 配置文件）</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B4%9E%E7%A9%B4">洞穴</a>
+<ul>
+<li><a href="#serverini%E6%B4%9E%E7%A9%B4%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">server.ini（洞穴服务器配置文件）</a></li>
+<li><a href="#leveldataoverridelua%E6%B4%9E%E7%A9%B4%E5%9C%B0%E5%BD%A2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">leveldataoverride.lua（洞穴地形配置文件）</a></li>
+<li><a href="#modoverrideslua%E6%B4%9E%E7%A9%B4-mod-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">modoverrides.lua（洞穴 Mod 配置文件）</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E4%BB%B6%E6%B1%87%E6%80%BB">文件汇总</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="前言">前言</h2>
+<p>Don't Starve Together（饥荒联机版）的绝大部分配置文件是通用的，可以使用客户端生成的绝大部分配置文件。</p>
+<p>其中 客户端生成的 &quot;cluster_token.txt（访问令牌）&quot; 不是通用的，专用服务器建议使用 Klei 官网生成的，而不是客户端生成的。</p>
+<p>客户端可以生成绝大部分配置文件，只有 &quot;admin.txt（管理员名单）&quot;、&quot;whitelist.txt（白名单）&quot;、&quot; blocklist.txt（黑名单）&quot; 需要手动创建。</p>
+<h2 id="服务器">服务器</h2>
+<p>服务器的配置文件包含了以下的全部文件，其中 &quot;admin.txt（管理员名单）&quot;、&quot;whitelist.txt（白名单）&quot;、&quot; blocklist.txt（黑名单）&quot; 是可选的。</p>
+<p>Windows：</p>
+<pre><code>\文档\Klei\DoNotStarveTogether\MyDediServer
+│
+│  cluster_token.txt-------------------------------访问令牌
+│  cluster.ini-------------------------------------服务器配置文件
+│  admin.txt---------------------------------------管理员名单（可选）
+│  whitelist.txt-----------------------------------白名单（可选）        
+│  blocklist.txt-----------------------------------黑名单（可选）
+</code></pre>
+<p>Linux：</p>
+<pre><code>~/.klei/DoNotStarveTogether/MyDediServer
+│
+│  cluster_token.txt-------------------------------访问令牌
+│  cluster.ini-------------------------------------服务器配置文件
+│  admin.txt---------------------------------------管理员名单（可选）
+│  whitelist.txt-----------------------------------白名单（可选）        
+│  blocklist.txt-----------------------------------黑名单（可选）
+</code></pre>
+<h3 id="cluster_tokentxt访问令牌">cluster_token.txt（访问令牌）</h3>
+<p>没有 &quot; cluster_token.txt（访问令牌）&quot; 就无法启动游戏，生成 &quot; cluster_token.txt（访问令牌）&quot; 的账户默认拥有管理员权限。</p>
+<p>Step1：登陆你的 Klei 账号</p>
+<p>打开<a href="https://accounts.klei.com/login">官网</a>，登录你的 Klei 账号。</p>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/klei-sign-in.jpg" alt="" loading="lazy"></figure>
+<p>Step2：生成访问令牌</p>
+<p>点击<a href="https://accounts.klei.com/account/game/servers?game=DontStarveTogether">此处</a>，生成访问令牌。</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/dst-cluster-token.jpg" alt="" loading="lazy"></figure>
+<h3 id="clusterini服务器配置文件">cluster.ini（服务器配置文件）</h3>
+<p>cluster.ini（服务器配置文件）：</p>
+<pre><code>[GAMEPLAY]
+game_mode = survival
+max_players = 6
+pvp = false
+pause_when_empty = true
+
+
+[NETWORK]
+lan_only_cluster = false
+cluster_intention = social
+cluster_password = 
+cluster_description = 
+cluster_name = Jianrry的世界
+offline_cluster = false
+cluster_language = zh
+whitelist_slots = 0
+
+
+[MISC]
+console_enabled = true
+
+
+[SHARD]
+shard_enabled = true
+bind_ip = 127.0.0.1
+master_ip = 127.0.0.1
+master_port = 10888
+cluster_key = defaultPass
+
+[STEAM]
+steam_group_admins = false
+steam_group_id = 0
+steam_group_only = false
+</code></pre>
+<p><strong>[GAMEPLAY]</strong></p>
+<p>game_mode（游戏模式）</p>
+<ul>
+<li>默认值： survival（生存）。</li>
+<li>只有 survival（生存）、 endless（无尽） 、wilderness（荒野）这3种游戏模式。</li>
+</ul>
+<p>max_players（最大人数）</p>
+<ul>
+<li>默认值：16。</li>
+<li>服务器内玩家同时在线的最大人数。</li>
+</ul>
+<p>pvp（ pvp 模式）</p>
+<ul>
+<li>默认值：false。</li>
+<li>pvp 模式下，玩家可以互相伤害。</li>
+</ul>
+<p>pause_when_empty（服务器内没有玩家在线时，暂停服务器）</p>
+<ul>
+<li>默认值：true。</li>
+<li>服务器内没有玩家在线时，暂停服务器。</li>
+</ul>
+<p><strong>[NETWORK]</strong></p>
+<p>lan_only_cluster（局域网游戏）</p>
+<ul>
+<li>默认值：false。</li>
+<li>只允许同一个局域网中的玩家加入。</li>
+</ul>
+<p>cluster_intention（游戏风格）</p>
+<ul>
+<li>默认值：无。</li>
+<li>只有 cooperative（合作）、 competitive（竞争）、social（社交）、madness（疯狂）这4种游戏风格，对游戏无任何影响。</li>
+</ul>
+<p>cluster_password（服务器密码）</p>
+<ul>
+<li>默认值：空。</li>
+<li>服务器密码为空时，玩家加入不需要输入密码，否则需要输入密码。</li>
+</ul>
+<p>cluster_description（服务器描述）</p>
+<ul>
+<li>默认值：空。</li>
+<li>服务器的描述。</li>
+</ul>
+<p>cluster_name（服务器名）</p>
+<ul>
+<li>默认值：无。</li>
+<li>服务器的名字。</li>
+</ul>
+<p>offline_cluster（离线）</p>
+<ul>
+<li>默认值：false。</li>
+<li>创建一个离线服务器，该服务器不会公开。只有本地网络上的玩家才能加入，任何与 Steam 相关的功能都将无法使用。</li>
+</ul>
+<p>cluster_language（服务器语言）</p>
+<ul>
+<li>默认值：无。</li>
+<li>服务器内显示的语言。</li>
+</ul>
+<p>whitelist_slots（白名单席位）</p>
+<ul>
+<li>默认值：0。</li>
+<li>为白名单玩家预留的空位，只有白名单玩家才能加入。</li>
+</ul>
+<p><strong>[MISC]</strong></p>
+<p>console_enabled（启用控制台）</p>
+<ul>
+<li>默认值：true。</li>
+<li>允许玩家在控制台中输入命令。</li>
+</ul>
+<p><strong>[SHARD]</strong></p>
+<p>shard_enabled（启用共享）</p>
+<ul>
+<li>默认值：false。</li>
+<li>启用服务器共享。对于多层世界，值必须是 true。对于单层世界，值可以省略。</li>
+</ul>
+<p>bind_ip</p>
+<ul>
+<li>默认值：127.0.0.1。</li>
+<li>这是 主世界 将侦听其他 从世界 连接到的网络地址。如果所有服务器都在同一台机器上，则将此设置为 127.0.0.1，如果服务器在不同的机器上，则将其设置为 0.0.0.0。</li>
+</ul>
+<p>master_ip（主 ip）</p>
+<ul>
+<li>默认值：无。</li>
+<li>从世界 在尝试连接到 主世界 时将使用的 IP 地址。如果所有服务器都在同一台机器上，请将其设置为 127.0.0.1。如果所有服务器不在同一台机器上，请将其设置为 运行主世界的那台机器的公网 ip。</li>
+</ul>
+<p>master_port（主端口）</p>
+<ul>
+<li>默认值：10888。</li>
+<li>这是 主世界 将侦听的 UDP 端口，从世界 在尝试连接到 主世界 时将使用该端口。所有的机器上的 master_port 必须保持一致，而且不能和同一台机器上的 server_port 相同。</li>
+</ul>
+<p>cluster_key（服务器认证密码）</p>
+<ul>
+<li>默认值：无。</li>
+<li>主世界 验证 从世界 的密码。如果所有世界都在同一台机器上，则只需要设置一次。所有的世界运行在不同的机器上，值只能保持一致。</li>
+</ul>
+<p><strong>[STEAM]</strong></p>
+<p>steam_group_only（只允许组成员加入）</p>
+<ul>
+<li>默认值：false。</li>
+<li>服务器只允许加入了steam_group_id 中指定的 Steam 组的成员加入。</li>
+</ul>
+<p>steam_group_id（ Steam 组 ID ）</p>
+<ul>
+<li>默认值：0。</li>
+<li>steam_group_only / steam_group_admins 设置的 Steam 组 ID。</li>
+</ul>
+<p>steam_group_admins（Steam 组管理员）</p>
+<ul>
+<li>默认值：false。</li>
+<li>steam_group_id 中指定的 Steam 组的管理员，拥有服务器的管理员权限。</li>
+</ul>
+<h3 id="admintxt管理员名单">admin.txt（管理员名单）</h3>
+<p>&quot;admin.txt（管理员名单）&quot; 上的用户，拥有服务器的管理员权限。</p>
+<p>Step1：查看服务器日志，获取 &quot;Klei ID&quot;。</p>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/dst-klei-id.jpg" alt="" loading="lazy"></figure>
+<p>Step2：用记事本打开&quot;admin.txt（管理员名单）&quot;。</p>
+<figure data-type="image" tabindex="4"><img src="https://netdisk.jianrry.com/image/dst-admin-txt.jpg" alt="" loading="lazy"></figure>
+<p>Step3：逐行添加 &quot;Klei ID&quot;，一个占据一行。</p>
+<h3 id="whitelisttxt白名单">whitelist.txt（白名单）</h3>
+<p>&quot;whitelist.txt（白名单）&quot; 上的用户，在服务器人数达到上限时，可以通过 &quot;whitelist_slots（白名单席位）&quot; 加入服务器。</p>
+<p>Step1：编辑 &quot;cluster.ini（服务器配置文件）&quot;，设置 &quot;whitelist_slots（白名单席位）&quot;。</p>
+<figure data-type="image" tabindex="5"><img src="https://netdisk.jianrry.com/image/dst-whitelist-slots.jpg" alt="" loading="lazy"></figure>
+<p>Step2：查看服务器日志，获取 &quot;Klei ID&quot;。</p>
+<figure data-type="image" tabindex="6"><img src="https://netdisk.jianrry.com/image/dst-klei-id.jpg" alt="" loading="lazy"></figure>
+<p>Step3：用记事本打开&quot;whitelist.txt（白名单）&quot;。</p>
+<figure data-type="image" tabindex="7"><img src="https://netdisk.jianrry.com/image/dst-whitelist-txt.jpg" alt="" loading="lazy"></figure>
+<p>Step4：逐行添加 &quot;Klei ID&quot;，一个占据一行。</p>
+<h3 id="blocklisttxt黑名单">blocklist.txt（黑名单）</h3>
+<p>&quot;blocklist.txt（黑名单）&quot; 上的用户，无法加入服务器。</p>
+<p>Step1：查看服务器日志，获取 &quot;Steam 64位 ID&quot;。</p>
+<figure data-type="image" tabindex="8"><img src="https://netdisk.jianrry.com/image/dst-klei-id.jpg" alt="" loading="lazy"></figure>
+<p>Step2：用记事本打开&quot;blocklist.txt（黑名单）&quot;。</p>
+<figure data-type="image" tabindex="9"><img src="https://netdisk.jianrry.com/image/dst-blocklist-txt.jpg" alt="" loading="lazy"></figure>
+<p>Step3：逐行添加 &quot;Steam 64位 ID&quot;，一个占据一行。</p>
+<h2 id="森林">森林</h2>
+<p>森林的配置文件包含了以下的全部文件：</p>
+<p>Windows：</p>
+<pre><code>\文档\Klei\DoNotStarveTogether\MyDediServer\Master
+│
+│  server.ini----------------------------------森林服务器配置文件
+│  leveldataoverride.lua-----------------------森林地形配置文件
+│  modoverrides.lua----------------------------森林 Mod 配置文件        
+</code></pre>
+<p>Linux：</p>
+<pre><code>~/.klei/DoNotStarveTogether/MyDediServer/Master
+│
+│  server.ini----------------------------------森林服务器配置文件
+│  leveldataoverride.lua-----------------------森林地形配置文件
+│  modoverrides.lua----------------------------森林 Mod 配置文件   
+</code></pre>
+<h3 id="serverini森林服务器配置文件">server.ini（森林服务器配置文件）</h3>
+<p>server.ini（森林服务器配置文件）:</p>
+<pre><code>[NETWORK]
+server_port = 10999
+
+
+[SHARD]
+is_master = true
+name = Master
+id = 1
+
+
+[ACCOUNT]
+encode_user_path = true
+
+
+[STEAM]
+master_server_port = 27014
+authentication_port = 8764
+</code></pre>
+<p><strong>[NETWORK]</strong></p>
+<p>server_port（服务器端口）</p>
+<ul>
+<li>默认值：10999。</li>
+<li>取值范围：10998 - 11018。</li>
+<li>此服务器将侦听连接的 UDP 端口。如果您正在运行多层世界，则同一台机器上的每个世界的此端口必须不同。</li>
+</ul>
+<p><strong>[SHARD]</strong></p>
+<p>is_master（主世界）</p>
+<ul>
+<li>默认值：无。</li>
+<li>只有一个世界是 主世界 ，主世界 的值是 true，从世界的值是 false。</li>
+</ul>
+<p>name（服务器名）</p>
+<ul>
+<li>默认值：无。</li>
+</ul>
+<p>id（服务器 id）</p>
+<ul>
+<li>默认值：随机生成的数字。</li>
+<li>为 从世界 随机生成的数字，每个世界都有一个独一无二的 id，用于区分不同的世界。</li>
+</ul>
+<p><strong>[STEAM]</strong></p>
+<p>master_server_port（主服务器端口）</p>
+<ul>
+<li>默认值：27016。</li>
+<li>Steam 使用的内部端口。确保在同一台机器上运行的每个世界的 &quot;master_server_port（主服务器端口）&quot; 都不同。</li>
+</ul>
+<p>authentication_port（认证端口）</p>
+<ul>
+<li>默认值：8766。</li>
+<li>Steam 使用的内部端口。确保在同一台机器上运行的每个世界的 &quot;authentication_port（认证端口）&quot; 都不同。</li>
+</ul>
+<h3 id="leveldataoverridelua森林地形配置文件">leveldataoverride.lua（森林地形配置文件）</h3>
+<p>leveldataoverride.lua（森林地形配置文件）：</p>
+<pre><code>return {
+  desc=&quot;标准《饥荒》体验。&quot;,
+  hideminimap=false,
+  id=&quot;SURVIVAL_TOGETHER&quot;,
+  location=&quot;forest&quot;,
+  max_playlist_position=999,
+  min_playlist_position=0,
+  name=&quot;标准森林&quot;,
+  numrandom_set_pieces=4,
+  override_level_string=false,
+  overrides={
+    alternatehunt=&quot;default&quot;,
+    angrybees=&quot;default&quot;,
+    antliontribute=&quot;default&quot;,
+    autumn=&quot;default&quot;,
+    bats_setting=&quot;default&quot;,
+    bearger=&quot;default&quot;,
+    beefalo=&quot;default&quot;,
+    beefaloheat=&quot;default&quot;,
+    beequeen=&quot;default&quot;,
+    bees=&quot;default&quot;,
+    bees_setting=&quot;default&quot;,
+    berrybush=&quot;default&quot;,
+    birds=&quot;default&quot;,
+    boons=&quot;default&quot;,
+    branching=&quot;default&quot;,
+    brightmarecreatures=&quot;default&quot;,
+    bunnymen_setting=&quot;default&quot;,
+    butterfly=&quot;default&quot;,
+    buzzard=&quot;default&quot;,
+    cactus=&quot;default&quot;,
+    carrot=&quot;default&quot;,
+    carrots_regrowth=&quot;default&quot;,
+    catcoon=&quot;default&quot;,
+    catcoons=&quot;default&quot;,
+    chess=&quot;default&quot;,
+    cookiecutters=&quot;default&quot;,
+    crabking=&quot;default&quot;,
+    day=&quot;default&quot;,
+    deciduousmonster=&quot;default&quot;,
+    deciduoustree_regrowth=&quot;default&quot;,
+    deerclops=&quot;default&quot;,
+    dragonfly=&quot;default&quot;,
+    dropeverythingondespawn=&quot;default&quot;,
+    evergreen_regrowth=&quot;default&quot;,
+    extrastartingitems=&quot;default&quot;,
+    fishschools=&quot;default&quot;,
+    flint=&quot;default&quot;,
+    flowers=&quot;default&quot;,
+    flowers_regrowth=&quot;default&quot;,
+    frograin=&quot;default&quot;,
+    frogs=&quot;default&quot;,
+    fruitfly=&quot;default&quot;,
+    gnarwail=&quot;default&quot;,
+    goosemoose=&quot;default&quot;,
+    grass=&quot;default&quot;,
+    grassgekkos=&quot;default&quot;,
+    has_ocean=true,
+    hound_mounds=&quot;default&quot;,
+    houndmound=&quot;default&quot;,
+    hounds=&quot;default&quot;,
+    hunt=&quot;default&quot;,
+    keep_disconnected_tiles=true,
+    klaus=&quot;default&quot;,
+    krampus=&quot;default&quot;,
+    layout_mode=&quot;LinkNodesByKeys&quot;,
+    liefs=&quot;default&quot;,
+    lightning=&quot;default&quot;,
+    lightninggoat=&quot;default&quot;,
+    loop=&quot;default&quot;,
+    lureplants=&quot;default&quot;,
+    malbatross=&quot;default&quot;,
+    marshbush=&quot;default&quot;,
+    merm=&quot;default&quot;,
+    merms=&quot;default&quot;,
+    meteorshowers=&quot;default&quot;,
+    meteorspawner=&quot;default&quot;,
+    moles=&quot;default&quot;,
+    moles_setting=&quot;default&quot;,
+    moon_berrybush=&quot;default&quot;,
+    moon_bullkelp=&quot;default&quot;,
+    moon_carrot=&quot;default&quot;,
+    moon_fissure=&quot;default&quot;,
+    moon_fruitdragon=&quot;default&quot;,
+    moon_hotspring=&quot;default&quot;,
+    moon_rock=&quot;default&quot;,
+    moon_sapling=&quot;default&quot;,
+    moon_spider=&quot;default&quot;,
+    moon_spiders=&quot;default&quot;,
+    moon_starfish=&quot;default&quot;,
+    moon_tree=&quot;default&quot;,
+    moon_tree_regrowth=&quot;default&quot;,
+    mosquitos=&quot;default&quot;,
+    mushroom=&quot;default&quot;,
+    mutated_hounds=&quot;default&quot;,
+    no_joining_islands=true,
+    no_wormholes_to_disconnected_tiles=true,
+    ocean_bullkelp=&quot;default&quot;,
+    ocean_seastack=&quot;ocean_default&quot;,
+    ocean_shoal=&quot;default&quot;,
+    ocean_waterplant=&quot;ocean_default&quot;,
+    ocean_wobsterden=&quot;default&quot;,
+    penguins=&quot;default&quot;,
+    penguins_moon=&quot;default&quot;,
+    perd=&quot;default&quot;,
+    petrification=&quot;default&quot;,
+    pigs=&quot;default&quot;,
+    pigs_setting=&quot;default&quot;,
+    ponds=&quot;default&quot;,
+    prefabswaps_start=&quot;default&quot;,
+    rabbits=&quot;default&quot;,
+    rabbits_setting=&quot;default&quot;,
+    reeds=&quot;default&quot;,
+    regrowth=&quot;default&quot;,
+    roads=&quot;default&quot;,
+    rock=&quot;default&quot;,
+    rock_ice=&quot;default&quot;,
+    saltstack_regrowth=&quot;default&quot;,
+    sapling=&quot;default&quot;,
+    season_start=&quot;default&quot;,
+    seasonalstartingitems=&quot;default&quot;,
+    shadowcreatures=&quot;default&quot;,
+    sharks=&quot;default&quot;,
+    spawnprotection=&quot;default&quot;,
+    specialevent=&quot;default&quot;,
+    spider_warriors=&quot;default&quot;,
+    spiderqueen=&quot;default&quot;,
+    spiders=&quot;default&quot;,
+    spiders_setting=&quot;default&quot;,
+    spring=&quot;default&quot;,
+    squid=&quot;default&quot;,
+    start_location=&quot;default&quot;,
+    summer=&quot;default&quot;,
+    tallbirds=&quot;default&quot;,
+    task_set=&quot;default&quot;,
+    tentacles=&quot;default&quot;,
+    touchstone=&quot;default&quot;,
+    trees=&quot;default&quot;,
+    tumbleweed=&quot;default&quot;,
+    twiggytrees_regrowth=&quot;default&quot;,
+    walrus=&quot;default&quot;,
+    walrus_setting=&quot;default&quot;,
+    wasps=&quot;default&quot;,
+    weather=&quot;default&quot;,
+    wildfires=&quot;default&quot;,
+    winter=&quot;default&quot;,
+    wobsters=&quot;default&quot;,
+    world_size=&quot;default&quot;,
+    wormhole_prefab=&quot;wormhole&quot; 
+  },
+  random_set_pieces={
+    &quot;Sculptures_2&quot;,
+    &quot;Sculptures_3&quot;,
+    &quot;Sculptures_4&quot;,
+    &quot;Sculptures_5&quot;,
+    &quot;Chessy_1&quot;,
+    &quot;Chessy_2&quot;,
+    &quot;Chessy_3&quot;,
+    &quot;Chessy_4&quot;,
+    &quot;Chessy_5&quot;,
+    &quot;Chessy_6&quot;,
+    &quot;Maxwell1&quot;,
+    &quot;Maxwell2&quot;,
+    &quot;Maxwell3&quot;,
+    &quot;Maxwell4&quot;,
+    &quot;Maxwell6&quot;,
+    &quot;Maxwell7&quot;,
+    &quot;Warzone_1&quot;,
+    &quot;Warzone_2&quot;,
+    &quot;Warzone_3&quot; 
+  },
+  required_prefabs={ &quot;multiplayer_portal&quot; },
+  required_setpieces={ &quot;Sculptures_1&quot;, &quot;Maxwell5&quot; },
+  settings_desc=&quot;标准《饥荒》体验。&quot;,
+  settings_id=&quot;SURVIVAL_TOGETHER&quot;,
+  settings_name=&quot;标准森林&quot;,
+  substitutes={  },
+  version=4,
+  worldgen_desc=&quot;标准《饥荒》体验。&quot;,
+  worldgen_id=&quot;SURVIVAL_TOGETHER&quot;,
+  worldgen_name=&quot;标准森林&quot; 
+}
+</code></pre>
+<h3 id="modoverrideslua森林-mod-配置文件">modoverrides.lua（森林 Mod 配置文件）</h3>
+<p>modoverrides.lua（森林 Mod 配置文件）：</p>
+<pre><code>return {  }
+</code></pre>
+<h2 id="洞穴">洞穴</h2>
+<p>洞穴的配置文件包含了以下的全部文件：</p>
+<p>Windows：</p>
+<pre><code>\文档\Klei\DoNotStarveTogether\MyDediServer\Caves
+│
+│  server.ini----------------------------------洞穴服务器配置文件
+│  leveldataoverride.lua-----------------------洞穴地形配置文件
+│  modoverrides.lua----------------------------洞穴 Mod 配置文件        
+</code></pre>
+<p>Linux：</p>
+<pre><code>~/.klei/DoNotStarveTogether/MyDediServer/Caves
+│
+│  server.ini----------------------------------洞穴服务器配置文件
+│  leveldataoverride.lua-----------------------洞穴地形配置文件
+│  modoverrides.lua----------------------------洞穴 Mod 配置文件   
+</code></pre>
+<h3 id="serverini洞穴服务器配置文件">server.ini（洞穴服务器配置文件）</h3>
+<p>server.ini（洞穴服务器配置文件）:</p>
+<pre><code>[NETWORK]
+server_port = 11001
+
+
+[SHARD]
+is_master = false
+name = Caves
+id = 3
+
+
+[ACCOUNT]
+encode_user_path = true
+
+
+[STEAM]
+master_server_port = 27016
+authentication_port = 8766
+</code></pre>
+<p><strong>[NETWORK]</strong></p>
+<p>server_port（服务器端口）</p>
+<ul>
+<li>默认值：10999。</li>
+<li>取值范围：10998 - 11018。</li>
+<li>此服务器将侦听连接的 UDP 端口。如果您正在运行多层世界，则同一台机器上的每个世界的此端口必须不同。</li>
+</ul>
+<p><strong>[SHARD]</strong></p>
+<p>is_master（主世界）</p>
+<ul>
+<li>默认值：无。</li>
+<li>只有一个世界是 主世界 ，主世界 的值是 true，从世界的值是 false。</li>
+</ul>
+<p>name（服务器名）</p>
+<ul>
+<li>默认值：无。</li>
+</ul>
+<p>id（服务器 id）</p>
+<ul>
+<li>默认值：随机生成的数字。</li>
+<li>为 从世界 随机生成的数字，每个世界都有一个独一无二的 id，用于区分不同的世界。</li>
+</ul>
+<p><strong>[STEAM]</strong></p>
+<p>master_server_port（主服务器端口）</p>
+<ul>
+<li>默认值：27016。</li>
+<li>Steam 使用的内部端口。确保在同一台机器上运行的每个世界的 &quot;master_server_port（主服务器端口）&quot; 都不同。</li>
+</ul>
+<p>authentication_port（认证端口）</p>
+<ul>
+<li>默认值：8766。</li>
+<li>Steam 使用的内部端口。确保在同一台机器上运行的每个世界的 &quot;authentication_port（认证端口）&quot; 都不同。</li>
+</ul>
+<h3 id="leveldataoverridelua洞穴地形配置文件">leveldataoverride.lua（洞穴地形配置文件）</h3>
+<p>leveldataoverride.lua（洞穴地形配置文件）：</p>
+<pre><code>return {
+  background_node_range={ 0, 1 },
+  desc=&quot;探查洞穴…… 一起！&quot;,
+  hideminimap=false,
+  id=&quot;DST_CAVE&quot;,
+  location=&quot;cave&quot;,
+  max_playlist_position=999,
+  min_playlist_position=0,
+  name=&quot;洞穴&quot;,
+  numrandom_set_pieces=0,
+  override_level_string=false,
+  overrides={
+    atriumgate=&quot;default&quot;,
+    banana=&quot;default&quot;,
+    bats=&quot;default&quot;,
+    bats_setting=&quot;default&quot;,
+    beefaloheat=&quot;default&quot;,
+    berrybush=&quot;default&quot;,
+    boons=&quot;default&quot;,
+    branching=&quot;default&quot;,
+    brightmarecreatures=&quot;default&quot;,
+    bunnymen=&quot;default&quot;,
+    bunnymen_setting=&quot;default&quot;,
+    cave_ponds=&quot;default&quot;,
+    cave_spiders=&quot;default&quot;,
+    cavelight=&quot;default&quot;,
+    chess=&quot;default&quot;,
+    day=&quot;default&quot;,
+    dropeverythingondespawn=&quot;default&quot;,
+    dustmoths=&quot;default&quot;,
+    earthquakes=&quot;default&quot;,
+    extrastartingitems=&quot;default&quot;,
+    fern=&quot;default&quot;,
+    fissure=&quot;default&quot;,
+    flint=&quot;default&quot;,
+    flower_cave=&quot;default&quot;,
+    flower_cave_regrowth=&quot;default&quot;,
+    fruitfly=&quot;default&quot;,
+    grass=&quot;default&quot;,
+    grassgekkos=&quot;default&quot;,
+    krampus=&quot;default&quot;,
+    layout_mode=&quot;RestrictNodesByKey&quot;,
+    lichen=&quot;default&quot;,
+    liefs=&quot;default&quot;,
+    lightflier_flower_regrowth=&quot;default&quot;,
+    lightfliers=&quot;default&quot;,
+    loop=&quot;default&quot;,
+    marshbush=&quot;default&quot;,
+    merms=&quot;default&quot;,
+    molebats=&quot;default&quot;,
+    moles_setting=&quot;default&quot;,
+    monkey=&quot;default&quot;,
+    monkey_setting=&quot;default&quot;,
+    mushgnome=&quot;default&quot;,
+    mushroom=&quot;default&quot;,
+    mushtree=&quot;default&quot;,
+    mushtree_moon_regrowth=&quot;default&quot;,
+    mushtree_regrowth=&quot;default&quot;,
+    nightmarecreatures=&quot;default&quot;,
+    pigs_setting=&quot;default&quot;,
+    prefabswaps_start=&quot;default&quot;,
+    reeds=&quot;default&quot;,
+    regrowth=&quot;default&quot;,
+    roads=&quot;never&quot;,
+    rock=&quot;default&quot;,
+    rocky=&quot;default&quot;,
+    rocky_setting=&quot;default&quot;,
+    sapling=&quot;default&quot;,
+    season_start=&quot;default&quot;,
+    seasonalstartingitems=&quot;default&quot;,
+    shadowcreatures=&quot;default&quot;,
+    slurper=&quot;default&quot;,
+    slurtles=&quot;default&quot;,
+    slurtles_setting=&quot;default&quot;,
+    snurtles=&quot;default&quot;,
+    spawnprotection=&quot;default&quot;,
+    specialevent=&quot;default&quot;,
+    spider_dropper=&quot;default&quot;,
+    spider_hider=&quot;default&quot;,
+    spider_spitter=&quot;default&quot;,
+    spider_warriors=&quot;default&quot;,
+    spiderqueen=&quot;default&quot;,
+    spiders=&quot;default&quot;,
+    spiders_setting=&quot;default&quot;,
+    start_location=&quot;caves&quot;,
+    task_set=&quot;cave_default&quot;,
+    tentacles=&quot;default&quot;,
+    toadstool=&quot;default&quot;,
+    touchstone=&quot;default&quot;,
+    trees=&quot;default&quot;,
+    weather=&quot;default&quot;,
+    world_size=&quot;default&quot;,
+    wormattacks=&quot;default&quot;,
+    wormhole_prefab=&quot;tentacle_pillar&quot;,
+    wormlights=&quot;default&quot;,
+    worms=&quot;default&quot; 
+  },
+  required_prefabs={ &quot;multiplayer_portal&quot; },
+  settings_desc=&quot;探查洞穴…… 一起！&quot;,
+  settings_id=&quot;DST_CAVE&quot;,
+  settings_name=&quot;洞穴&quot;,
+  substitutes={  },
+  version=4,
+  worldgen_desc=&quot;探查洞穴…… 一起！&quot;,
+  worldgen_id=&quot;DST_CAVE&quot;,
+  worldgen_name=&quot;洞穴&quot; 
+}
+</code></pre>
+<h3 id="modoverrideslua洞穴-mod-配置文件">modoverrides.lua（洞穴 Mod 配置文件）</h3>
+<p>modoverrides.lua（洞穴 Mod 配置文件）：</p>
+<pre><code>return {  }
+</code></pre>
+<h2 id="文件汇总">文件汇总</h2>
+<p>Windows ：</p>
+<pre><code>\文档\Klei\DoNotStarveTogether\MyDediServer
+│
+│  cluster_token.txt-------------------------------访问令牌
+│  cluster.ini-------------------------------------服务器配置文件
+│  admin.txt---------------------------------------管理员名单（可选）
+│  whitelist.txt-----------------------------------白名单（可选）        
+│  blocklist.txt-----------------------------------黑名单（可选）
+│
+├─Master
+│      server.ini----------------------------------森林服务器配置文件
+│      leveldataoverride.lua-----------------------森林地形配置文件
+│      modoverrides.lua----------------------------森林Mod配置文件
+│
+└─Caves 
+        server.ini----------------------------------洞穴服务器配置文件
+        leveldataoverride.lua-----------------------洞穴地形配置文件
+        modoverrides.lua----------------------------洞穴Mod配置文件
+</code></pre>
+<p>Linux ：</p>
+<pre><code>~/.klei/DoNotStarveTogether/MyDediServer
+│
+│  cluster_token.txt-------------------------------访问令牌
+│  cluster.ini-------------------------------------服务器配置文件
+│  admin.txt---------------------------------------管理员名单（可选）
+│  whitelist.txt-----------------------------------白名单（可选）        
+│  blocklist.txt-----------------------------------黑名单（可选）
+│
+├─Master
+│      server.ini----------------------------------森林服务器配置文件
+│      leveldataoverride.lua-----------------------森林地形配置文件
+│      modoverrides.lua----------------------------森林Mod配置文件
+│
+└─Caves 
+        server.ini----------------------------------洞穴服务器配置文件
+        leveldataoverride.lua-----------------------洞穴地形配置文件
+        modoverrides.lua----------------------------洞穴Mod配置文件  
+</code></pre>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://forums.kleientertainment.com/forums/topic/64552-dedicated-server-settings-guide/">Dedicated Server Settings Guide</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/dst/" class="tag">
+                    dst
+                  </a>
+                
+                  <a href="https://blog.jianrry.com/tag/steam/" class="tag">
+                    steam
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/multi-level-dst-server/">
+                  <h3 class="post-title">
+                    部署 Don&#39;t Starve Together（饥荒联机版）专用服务器多层世界
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

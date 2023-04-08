@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>NameSilo 修改 NS 服务器 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="NameSilo 域名的 DNS 记录生效很慢，建议修改域名的 NS 服务器，使用 Cloudflare 的 NS 服务器。
+
+
+
+
+Step1：登录 NameSilo 账号
+Step2：打开域名管理
+Step3: 更改 NS 服务器
+
+
+..." />
+    <meta name="keywords" content="namesilo,domain" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">NameSilo 修改 NS 服务器</h2>
+            <div class="post-date">2019-02-05</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/namesilo-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>NameSilo 域名的 DNS 记录生效很慢，建议修改域名的 NS 服务器，使用 Cloudflare 的 NS 服务器。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#step1%E7%99%BB%E5%BD%95-namesilo-%E8%B4%A6%E5%8F%B7">Step1：登录 NameSilo 账号</a></li>
+<li><a href="#step2%E6%89%93%E5%BC%80%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86">Step2：打开域名管理</a></li>
+<li><a href="#step3-%E6%9B%B4%E6%94%B9-ns-%E6%9C%8D%E5%8A%A1%E5%99%A8">Step3: 更改 NS 服务器</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="step1登录-namesilo-账号">Step1：登录 NameSilo 账号</h2>
+<p>打开<a href="https://www.namesilo.com/?rid=8d76430jj">官网</a>，登录你的 NameSilo 账号（如果没有，就注册一个 NameSilo 账号）。</p>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/namesilo-sign-in.jpg" alt="" loading="lazy"></figure>
+<h2 id="step2打开域名管理">Step2：打开域名管理</h2>
+<p>打开<a href="https://www.namesilo.com/account_domains.php?rid=8d76430jj">域名管理页面</a>，选中想要修改的域名。</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/namesilo-account-domain.jpg" alt="" loading="lazy"></figure>
+<h2 id="step3-更改-ns-服务器">Step3: 更改 NS 服务器</h2>
+<p>点击 “Change Nameserver（更改 NS 服务器）”，填写你想要设置的 NS 服务器地址，最后点击 &quot;Submit（提交）&quot; 按钮。</p>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/namesilo-change-ns-server.jpg" alt="" loading="lazy"></figure>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/namesilo/" class="tag">
+                    namesilo
+                  </a>
+                
+                  <a href="https://blog.jianrry.com/tag/domain/" class="tag">
+                    domain
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/namesilo/">
+                  <h3 class="post-title">
+                    NameSilo 域名注册、域名解析、域名续费（附1美元优惠码）
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

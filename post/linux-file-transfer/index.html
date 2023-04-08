@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十四）：Linux 文件传输 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十四篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 文件传输。
+
+
+
+
+wget（下载文件）
+
+描述：
+用法：
+选项：
+实例：
+
+
+curl（下载文件）
+
+描述：
+用法：
+选项：
+实例：
+
+..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十四）：Linux 文件传输</h2>
+            <div class="post-date">2019-03-02</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十四篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 文件传输。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#wget%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6">wget（下载文件）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#curl%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6">curl（下载文件）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#scp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6">scp（传输文件）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-3">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-3">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="wget下载文件">wget（下载文件）</h2>
+<h3 id="描述">描述：</h3>
+<p>wget 是一款文件下载器，可以下载文件。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      wget [选项] [URL]
+</code></pre>
+<h3 id="选项">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-V</td>
+<td>--version</td>
+<td>显示 Wget 的版本信息并退出</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--help</td>
+<td>打印此帮助</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>--background</td>
+<td>启动后转入后台</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>--execute=命令</td>
+<td>运行一个“.wgetrc”风格的命令</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>--output-file=文件</td>
+<td>将日志信息写入 FILE</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>--append-output=文件</td>
+<td>将信息添加至 FILE</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>--debug</td>
+<td>打印大量调试信息</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>--quiet</td>
+<td>安静模式 (无信息输出)</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--verbose</td>
+<td>详尽的输出 (此为默认值)</td>
+</tr>
+<tr>
+<td>-nv</td>
+<td>--no-verbose</td>
+<td>关闭详尽输出，但不进入安静模式</td>
+</tr>
+<tr>
+<td></td>
+<td>--report-speed=类型</td>
+<td>以 &lt;类型&gt; 报告带宽。类型可以是 bits</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--input-file=文件</td>
+<td>下载本地或外部 &lt;文件&gt; 中的 URL</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>--force-html</td>
+<td>把输入文件当成 HTML 文件</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>--base=URL</td>
+<td>解析相对于 URL 的 HTML 输入文件链接 (-i -F)</td>
+</tr>
+<tr>
+<td></td>
+<td>--config=文件</td>
+<td>指定要使用的配置文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-cookies</td>
+<td>不读取任何配置文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--rejected-log=文件</td>
+<td>将拒绝 URL 的原因写入 &lt;文件&gt;</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--tries=数字</td>
+<td>设置重试次数为 &lt;数字&gt; (0 代表无限制)</td>
+</tr>
+<tr>
+<td></td>
+<td>--retry-connrefused</td>
+<td>即使拒绝连接也是重试</td>
+</tr>
+<tr>
+<td></td>
+<td>--retry-on-http-error=ERRORS</td>
+<td>提供以逗号分隔的列表，列出遇到时进行重试的 HTTP 错误</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>--output-document=文件</td>
+<td>将文档写入 FILE</td>
+</tr>
+<tr>
+<td>-nc</td>
+<td>--no-clobber</td>
+<td>不要下载已存在将被覆盖的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-netrc</td>
+<td>不要尝试从 .netrc 获取凭据</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>--continue</td>
+<td>断点续传下载文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--start-pos=偏移量</td>
+<td>从由零计数的 &lt;偏移量&gt; 开始下载</td>
+</tr>
+<tr>
+<td></td>
+<td>--progress=类型</td>
+<td>选择进度条类型</td>
+</tr>
+<tr>
+<td></td>
+<td>--show-progress</td>
+<td>在任意啰嗦状态下都显示进度条</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>--timestamping</td>
+<td>只获取比本地文件新的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-if-modified-since</td>
+<td>不要在时间戳 (timestamping) 模式下使用 if-modified-since get 条件请求</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-use-server-timestamps</td>
+<td>不用服务器上的时间戳来设置本地文件</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>--server-response</td>
+<td>打印服务器响应</td>
+</tr>
+<tr>
+<td></td>
+<td>--spider</td>
+<td>不下载任何文件</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>--timeout=SECONDS</td>
+<td>将所有超时设为 SECONDS 秒</td>
+</tr>
+<tr>
+<td></td>
+<td>--dns-timeout=SECS</td>
+<td>设置 DNS 查寻超时为 SECS 秒</td>
+</tr>
+<tr>
+<td></td>
+<td>--connect-timeout=SECS</td>
+<td>设置连接超时为 SECS 秒</td>
+</tr>
+<tr>
+<td></td>
+<td>--read-timeout=SECS</td>
+<td>设置读取超时为 SECS 秒</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>--wait=SECONDS</td>
+<td>在检索之间等待 SECONDS 秒（如果要检索超过 1 个 URL，则适用）</td>
+</tr>
+<tr>
+<td></td>
+<td>--waitretry=SECONDS</td>
+<td>在检索重试之间等待 SECONDS 秒（如果要检索超过 1 个 URL，则适用）</td>
+</tr>
+<tr>
+<td></td>
+<td>--random-wait</td>
+<td>在检索之间等待 0.5<em>WAIT...1.5</em>WAIT 秒（如果要检索超过 1 个 URL，则适用）</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-proxy</td>
+<td>禁止使用代理</td>
+</tr>
+<tr>
+<td>-Q</td>
+<td>--quota=数字</td>
+<td>设置获取配额为 &lt;数字&gt; 字节</td>
+</tr>
+<tr>
+<td></td>
+<td>--bind-address=ADDRESS</td>
+<td>绑定至本地主机上的 ADDRESS (主机名或是 IP)</td>
+</tr>
+<tr>
+<td></td>
+<td>--limit-rate=RATE</td>
+<td>限制下载速率为 RATE</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-dns-cache</td>
+<td>关闭 DNS 查询缓存</td>
+</tr>
+<tr>
+<td></td>
+<td>--restrict-file-names=系统</td>
+<td>限定文件名中的字符为 &lt;系统&gt; 允许的字符</td>
+</tr>
+<tr>
+<td></td>
+<td>--ignore-case</td>
+<td>匹配文件/目录时忽略大小写</td>
+</tr>
+<tr>
+<td>-4</td>
+<td>--inet4-only</td>
+<td>仅连接至 IPv4 地址</td>
+</tr>
+<tr>
+<td>-6</td>
+<td>--inet6-only</td>
+<td>仅连接至 IPv6 地址</td>
+</tr>
+<tr>
+<td></td>
+<td>--prefer-family=地址族</td>
+<td>首先连接至指定家族（IPv6，IPv4 或 none）的地址</td>
+</tr>
+<tr>
+<td></td>
+<td>--user=用户</td>
+<td>将 ftp 和 http 的用户名均设置为 &lt;用户&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>--password=密码</td>
+<td>将 ftp 和 http 的密码均设置为 &lt;密码&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>--ask-password</td>
+<td>提示输入密码</td>
+</tr>
+<tr>
+<td></td>
+<td>--use-askpass=命令</td>
+<td>指定用于请求用户名和密码的凭据管理器。如果没有提供指定命令，程序将使用 WGET_ASKPASS 或 SSH_ASKPASS 环境变量。</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-iri</td>
+<td>关闭 IRI 支持</td>
+</tr>
+<tr>
+<td></td>
+<td>--local-encoding=ENC</td>
+<td>使用 ENC 作为 IRI (国际化资源标识符) 的本地编码</td>
+</tr>
+<tr>
+<td></td>
+<td>--remote-encoding=ENC</td>
+<td>使用 ENC 作为默认远程编码</td>
+</tr>
+<tr>
+<td></td>
+<td>--unlink</td>
+<td>覆盖前移除文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--xattr</td>
+<td>在文件的拓展属性中储存元数据</td>
+</tr>
+<tr>
+<td>-nd</td>
+<td>--no-directories</td>
+<td>不创建目录</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>--force-directories</td>
+<td>强制创建目录</td>
+</tr>
+<tr>
+<td>-nH</td>
+<td>--no-host-directories</td>
+<td>不要创建主 (host) 目录</td>
+</tr>
+<tr>
+<td></td>
+<td>--protocol-directories</td>
+<td>在目录中使用协议名称</td>
+</tr>
+<tr>
+<td>-P</td>
+<td>--directory-prefix=前缀</td>
+<td>保存文件到 &lt;前缀&gt;/..</td>
+</tr>
+<tr>
+<td></td>
+<td>--cut-dirs=数字</td>
+<td>忽略远程目录中 &lt;数字&gt; 个目录层。</td>
+</tr>
+<tr>
+<td></td>
+<td>--http-user=用户</td>
+<td>设置 http 用户名为 &lt;用户&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>--http-password=密码</td>
+<td>设置 http 密码为 &lt;密码&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-cache</td>
+<td>不使用服务器缓存的数据。</td>
+</tr>
+<tr>
+<td></td>
+<td>--default-page=NAME</td>
+<td>改变默认页 (通常是“index.html”)。</td>
+</tr>
+<tr>
+<td>-E</td>
+<td>--adjust-extension</td>
+<td>以合适的扩展名保存 HTML/CSS 文档</td>
+</tr>
+<tr>
+<td></td>
+<td>--ignore-length</td>
+<td>忽略头部的‘Content-Length’区域</td>
+</tr>
+<tr>
+<td></td>
+<td>--header=字符串</td>
+<td>在头部插入 &lt;字符串&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>--compression=类型</td>
+<td>选择压缩类型，值可以为 auto、gzip 和 none。（默认：none）</td>
+</tr>
+<tr>
+<td></td>
+<td>--max-redirect</td>
+<td>每页所允许的最大重定向</td>
+</tr>
+<tr>
+<td></td>
+<td>--proxy-user=用户</td>
+<td>使用 &lt;用户&gt; 作为代理用户名</td>
+</tr>
+<tr>
+<td></td>
+<td>--proxy-password=密码</td>
+<td>使用 &lt;密码&gt; 作为代理密码</td>
+</tr>
+<tr>
+<td></td>
+<td>--referer=URL</td>
+<td>在 HTTP 请求头包含‘Referer: URL’</td>
+</tr>
+<tr>
+<td></td>
+<td>--save-headers</td>
+<td>将 HTTP 头保存至文件。</td>
+</tr>
+<tr>
+<td>-U</td>
+<td>--user-agent=代理</td>
+<td>标识自己为 &lt;代理&gt; 而不是 Wget/VERSION。</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-http-keep-alive</td>
+<td>禁用 HTTP keep-alive (持久连接)。</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-cookies</td>
+<td>不使用 cookies。</td>
+</tr>
+<tr>
+<td></td>
+<td>--load-cookies=文件</td>
+<td>会话开始前从 &lt;文件&gt; 中载入 cookies。</td>
+</tr>
+<tr>
+<td></td>
+<td>--save-cookies=文件</td>
+<td>会话结束后保存 cookies 至 FILE。</td>
+</tr>
+<tr>
+<td></td>
+<td>--keep-session-cookies</td>
+<td>载入并保存会话 (非永久) cookies。</td>
+</tr>
+<tr>
+<td></td>
+<td>--post-data=字符串</td>
+<td>使用 POST 方式；把 &lt;字串&gt;作为数据发送。</td>
+</tr>
+<tr>
+<td></td>
+<td>--post-file=文件</td>
+<td>使用 POST 方式；发送 &lt;文件&gt; 内容。</td>
+</tr>
+<tr>
+<td></td>
+<td>--method=HTTP方法</td>
+<td>在请求中使用指定的 &lt;HTTP 方法&gt;。</td>
+</tr>
+<tr>
+<td></td>
+<td>--post-data=字符串</td>
+<td>把 &lt;字串&gt; 作为数据发送，必须设置 --method</td>
+</tr>
+<tr>
+<td></td>
+<td>--post-file=文件</td>
+<td>发送 &lt;文件&gt; 内容，必须设置 --method</td>
+</tr>
+<tr>
+<td></td>
+<td>--content-disposition</td>
+<td>当选择本地文件名时允许 Content-Disposition 头部 (实验中)。</td>
+</tr>
+<tr>
+<td></td>
+<td>--content-on-error</td>
+<td>在服务器错误时输出接收到的内容</td>
+</tr>
+<tr>
+<td></td>
+<td>--auth-no-challenge</td>
+<td>不先等待服务器询问就发送基本 HTTP 验证信息。</td>
+</tr>
+<tr>
+<td></td>
+<td>--secure-protocol=PR</td>
+<td>选择安全协议，值可以是 auto、SSLv2、SSLv3、TLSv1、TLSv1_1、TLSv1_2 或 PFS</td>
+</tr>
+<tr>
+<td></td>
+<td>--https-only</td>
+<td>只跟随安全的 HTTPS 链接</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-check-certificate</td>
+<td>不要验证服务器的证书。</td>
+</tr>
+<tr>
+<td></td>
+<td>--certificate=文件</td>
+<td>客户端证书文件。</td>
+</tr>
+<tr>
+<td></td>
+<td>--certificate-type=类型</td>
+<td>客户端证书类型，PEM 或 DER。</td>
+</tr>
+<tr>
+<td></td>
+<td>--private-key=文件</td>
+<td>私钥文件。</td>
+</tr>
+<tr>
+<td></td>
+<td>--private-key-type=类型</td>
+<td>私钥文件类型，PEM 或 DER。</td>
+</tr>
+<tr>
+<td></td>
+<td>--ca-certificate=文件</td>
+<td>带有一组 CA 证书的文件。</td>
+</tr>
+<tr>
+<td></td>
+<td>--ca-directory=DIR</td>
+<td>保存 CA 证书的哈希列表的目录。</td>
+</tr>
+<tr>
+<td></td>
+<td>--ca-certificate=文件</td>
+<td>带有一组 CA 证书的文件。</td>
+</tr>
+<tr>
+<td></td>
+<td>--pinnedpubkey=文件/散列值</td>
+<td>用于验证节点的公钥（PEM/DER）文件或任何数量的 sha256 散列值，以 base64 编码、“sha256//” 开头、用“;”间隔</td>
+</tr>
+<tr>
+<td></td>
+<td>--random-file=文件</td>
+<td>用于初始化 SSL 伪随机数生成器（PRNG）的文件，应含有随机数据</td>
+</tr>
+<tr>
+<td></td>
+<td>--ciphers=STR</td>
+<td>直接设置 priority string (GnuTLS) 或 cipher list string(OpenSSL)。请小心使用。该选项会覆盖 --secure-protocol。其具体格式和字符串语法取决于对应的 SSL/TLS 引擎。</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-hsts</td>
+<td>禁用 HSTS</td>
+</tr>
+<tr>
+<td></td>
+<td>--hsts-file</td>
+<td>HSTS 数据库路径（将覆盖默认值）</td>
+</tr>
+<tr>
+<td></td>
+<td>--ftp-user=用户</td>
+<td>设置 ftp 用户名为 &lt;用户&gt;。</td>
+</tr>
+<tr>
+<td></td>
+<td>--ftp-password=密码</td>
+<td>设置 ftp 密码为 &lt;密码&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-remove-listing</td>
+<td>不要删除‘.listing’文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-glob</td>
+<td>不在 FTP 文件名中使用通配符展开</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-passive-ftp</td>
+<td>禁用“passive”传输模式</td>
+</tr>
+<tr>
+<td></td>
+<td>--preserve-permissions</td>
+<td>保留远程文件的权限</td>
+</tr>
+<tr>
+<td></td>
+<td>--retr-symlinks</td>
+<td>递归目录时，获取链接的文件 (而非目录)</td>
+</tr>
+<tr>
+<td></td>
+<td>--ftps-implicit</td>
+<td>使用隐式 FTPS（默认端口 990）</td>
+</tr>
+<tr>
+<td></td>
+<td>--ftps-resume-ssl</td>
+<td>打开数据连接时继续控制连接中的 SSL/TLS 会话</td>
+</tr>
+<tr>
+<td></td>
+<td>--ftps-clear-data-connection</td>
+<td>只加密控制信道；数据传输使用明文</td>
+</tr>
+<tr>
+<td></td>
+<td>--ftps-fallback-to-ftp</td>
+<td>回落到 FTP，如果目标服务器不支持 FTPS</td>
+</tr>
+<tr>
+<td></td>
+<td>--warc-file=文件名</td>
+<td>在一个 .warc.gz 文件里保持请求/响应数据</td>
+</tr>
+<tr>
+<td></td>
+<td>--warc-header=字符串</td>
+<td>在头部插入 &lt;字符串&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>--warc-max-size=数字</td>
+<td>将 WARC 的最大尺寸设置为 &lt;数字&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>--warc-cdx</td>
+<td>写入 CDX 索引文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--warc-dedup=文件名</td>
+<td>不要记录列在此 CDX 文件内的记录</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-warc-compression</td>
+<td>不要 GZIP 压缩 WARC 文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-warc-digests</td>
+<td>不要计算 SHA1 摘要</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-warc-keep-log</td>
+<td>不要在 WARC 记录中存储日志文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--warc-tempdir=目录</td>
+<td>WARC 写入器的临时文件目录</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>--recursive</td>
+<td>指定递归下载</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--level=数字</td>
+<td>最大递归深度 (inf 或 0 代表无限制，即全部下载)。</td>
+</tr>
+<tr>
+<td></td>
+<td>--delete-after</td>
+<td>下载完成后删除本地文件</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>--convert-links</td>
+<td>让下载得到的 HTML 或 CSS 中的链接指向本地文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--convert-file-only</td>
+<td>只转换 URL 的文件部分（一般叫做“基础名”/basename）</td>
+</tr>
+<tr>
+<td></td>
+<td>--backups=N</td>
+<td>写入文件 X 前，轮换移动最多 N 个备份文件</td>
+</tr>
+<tr>
+<td>-K</td>
+<td>--backup-converted</td>
+<td>在转换文件 X 前先将它备份为 X.orig。</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>--mirror</td>
+<td>-N -r -l inf --no-remove-listing 的缩写形式。</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>--page-requisites</td>
+<td>下载所有用于显示 HTML 页面的图片之类的元素。</td>
+</tr>
+<tr>
+<td></td>
+<td>--strict-comments</td>
+<td>用严格方式 (SGML) 处理 HTML 注释。</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>--accept=列表</td>
+<td>逗号分隔的可接受的扩展名列表</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>--reject=列表</td>
+<td>逗号分隔的要拒绝的扩展名列表</td>
+</tr>
+<tr>
+<td></td>
+<td>--accept-regex=REGEX</td>
+<td>匹配接受的 URL 的正则表达式</td>
+</tr>
+<tr>
+<td></td>
+<td>--reject-regex=REGEX</td>
+<td>匹配拒绝的 URL 的正则表达式</td>
+</tr>
+<tr>
+<td></td>
+<td>--regex-type=类型</td>
+<td>正则类型 (posix</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>--domains=列表</td>
+<td>逗号分隔的可接受的域名列表</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-domains=列表</td>
+<td>逗号分隔的要拒绝的域名列表</td>
+</tr>
+<tr>
+<td></td>
+<td>--follow-ftp</td>
+<td>跟踪 HTML 文档中的 FTP 链接</td>
+</tr>
+<tr>
+<td></td>
+<td>--follow-tags=列表</td>
+<td>逗号分隔的跟踪的 HTML 标识列表</td>
+</tr>
+<tr>
+<td></td>
+<td>--ignore-tags=列表</td>
+<td>逗号分隔的忽略的 HTML 标识列表</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>--span-hosts</td>
+<td>递归时转向外部主机</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>--relative</td>
+<td>仅跟踪相对链接</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>--include-directories=列表</td>
+<td>允许目录的列表</td>
+</tr>
+<tr>
+<td></td>
+<td>--trust-server-names</td>
+<td>使用重定向 URL 的最后一段作为本地文件名</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>--exclude-directories=列表</td>
+<td>排除目录的列表</td>
+</tr>
+<tr>
+<td>-np</td>
+<td>--no-parent</td>
+<td>不追溯至父目录</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例">实例：</h3>
+<p>下载文件（下载 https://speed.hetzner.de/1GB.bin ）</p>
+<pre><code>wget https://speed.hetzner.de/1GB.bin
+</code></pre>
+<p>下载文件（下载 https://speed.hetzner.de/1GB.bin ，并另存为 1GB ）</p>
+<pre><code>wget -O 1GB https://speed.hetzner.de/1GB.bin
+</code></pre>
+<p>下载文件（后台下载 https://speed.hetzner.de/1GB.bin ，<code>cat wget-log</code> 可以查看文件下载进程 ）</p>
+<pre><code>wget -b https://speed.hetzner.de/1GB.bin
+</code></pre>
+<p>下载文件（继续下载 https://speed.hetzner.de/1GB.bin ）</p>
+<pre><code>wget -c https://speed.hetzner.de/1GB.bin
+</code></pre>
+<h2 id="curl下载文件">curl（下载文件）</h2>
+<h3 id="描述-2">描述：</h3>
+<p>curl 是一款文件下载器，可以下载文件。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      curl [选项] [URL]
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-d</td>
+<td>HTTP POST方式传送数据</td>
+<td></td>
+</tr>
+<tr>
+<td>-f</td>
+<td>--fail</td>
+<td>连接失败时不显示http错误</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--help <category></td>
+<td>显示帮助信息</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--include</td>
+<td>输出时包括protocol头信息</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>--output <file></td>
+<td>把输出写到该文件中</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>--remote-name</td>
+<td>把输出写到该文件中，保留远程文件的文件名</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--silent</td>
+<td>静默模式</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>--upload-file <file></td>
+<td>上传文件</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>--user <a href="user:password">user:password</a></td>
+<td>设置服务器的用户和密码</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>--user-agent <name></td>
+<td>设置用户代理发送给服务器</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--verbose</td>
+<td>显示详细过程</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>--version</td>
+<td>显示版本信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-2">实例：</h3>
+<p>下载文件（下载 https://speed.hetzner.de/1GB.bin ）</p>
+<pre><code>curl -O https://speed.hetzner.de/1GB.bin
+</code></pre>
+<p>下载文件（下载 https://speed.hetzner.de/1GB.bin ，并另存为 1GB ）</p>
+<pre><code>curl -o 1GB https://speed.hetzner.de/1GB.bin
+</code></pre>
+<h2 id="scp传输文件">scp（传输文件）</h2>
+<h3 id="描述-3">描述：</h3>
+<p>&quot;secure copy（安全复制）&quot; 的缩写，在本地和远程之间复制文件。</p>
+<h3 id="用法-3">用法：</h3>
+<pre><code>      scp [选项] [文件名]/[目录名] [文件名]/[目录名]
+</code></pre>
+<h3 id="选项-3">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-1</td>
+<td>强制scp命令使用协议ssh1</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>强制scp命令使用协议ssh2</td>
+</tr>
+<tr>
+<td>-4</td>
+<td>强制scp命令只使用IPv4寻址</td>
+</tr>
+<tr>
+<td>-6</td>
+<td>强制scp命令只使用IPv6寻址</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>使用批处理模式（传输过程中不询问传输口令或短语）</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>允许压缩。（将-C标志传递给ssh，从而打开压缩功能）</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>保留原文件的修改时间，访问时间和访问权限。</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>不显示传输进度条。</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>递归复制整个目录。</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>详细方式显示输出。scp和ssh(1)会显示出整个过程的调试信息。这些信息用于调试连接，验证和配置问题。</td>
+</tr>
+<tr>
+<td>-c cipher</td>
+<td>以cipher将数据传输进行加密，这个选项将直接传递给ssh。</td>
+</tr>
+<tr>
+<td>-F ssh_config</td>
+<td>指定一个替代的ssh配置文件，此参数直接传递给ssh。</td>
+</tr>
+<tr>
+<td>-i identity_file</td>
+<td>从指定文件中读取传输时使用的密钥文件，此参数直接传递给ssh。</td>
+</tr>
+<tr>
+<td>-l limit</td>
+<td>限定用户所能使用的带宽，以Kbit/s为单位。</td>
+</tr>
+<tr>
+<td>-o ssh_option</td>
+<td>如果习惯于使用ssh_config(5)中的参数传递方式</td>
+</tr>
+<tr>
+<td>-P port</td>
+<td>注意是大写的P, port是指定数据传输用到的端口号</td>
+</tr>
+<tr>
+<td>-S program</td>
+<td>指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-3">实例：</h3>
+<p>上传文件（将本地文件 C:\Users\Jianrry\Downloads\1GB.bin 上传到远程目录 /home/jianrry 下）</p>
+<pre><code>scp C:\Users\Jianrry\Downloads\1GB.bin jianrry@127.0.0.1:/home/jianrry
+</code></pre>
+<p>上传目录（将本地目录 C:\Users\Jianrry\Downloads\1GB.bin 上传到远程目录 /home/jianrry 下）</p>
+<pre><code>scp -r C:\Users\Jianrry\Downloads\1GB.bin jianrry@127.0.0.1:/home/jianrry
+</code></pre>
+<p>下载文件（将远程文件 /home/jianrry/1GB.bin 下载到本地目录 C:\Users\Jianrry\Downloads 下）</p>
+<pre><code>scp jianrry@127.0.0.1:/home/jianrry/1GB.bin C:\Users\Jianrry\Downloads
+</code></pre>
+<p>下载目录（将远程目录 /home/jianrry/1GB.bin 下载到本地目录 C:\Users\Jianrry\Downloads 下）</p>
+<pre><code>scp -r jianrry@127.0.0.1:/home/jianrry/1GB.bin C:\Users\Jianrry\Downloads
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-text-editor/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十三）：Linux 文本编辑
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

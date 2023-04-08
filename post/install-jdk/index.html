@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（一）：JDK 的下载 &amp; 安装 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第一篇文章，介绍了 JDK 的下载 &amp; 安装。
+
+
+
+
+Step1：下载 JDK
+Step2：安装 JDK
+Step3：配置环境变量
+Step4：测试环境变量是否配置成功
+
+
+
+
+Step1：下载 JD..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（一）：JDK 的下载 &amp; 安装</h2>
+            <div class="post-date">2019-03-08</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第一篇文章，介绍了 JDK 的下载 &amp; 安装。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#step1%E4%B8%8B%E8%BD%BD-jdk">Step1：下载 JDK</a></li>
+<li><a href="#step2%E5%AE%89%E8%A3%85-jdk">Step2：安装 JDK</a></li>
+<li><a href="#step3%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">Step3：配置环境变量</a></li>
+<li><a href="#step4%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F">Step4：测试环境变量是否配置成功</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="step1下载-jdk">Step1：下载 JDK</h2>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/oracle-jdk-download.jpg" alt="" loading="lazy"></figure>
+<p>Oracle 官网：<a href="https://www.oracle.com/java/technologies/downloads/">https://www.oracle.com/java/technologies/downloads/</a></p>
+<p>根据你的操作系统，下载对应平台的最新版本的 JDK。</p>
+<p>比如说，我的操作系统是 Windows x64，下载的是 <strong>jdk-17_windows-x64_bin.exe</strong>。</p>
+<h2 id="step2安装-jdk">Step2：安装 JDK</h2>
+<p>双击已下载的安装包，比如说 <strong>jdk-17_windows-x64_bin.exe</strong>，开始安装 JDK。</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/oracle-jdk-install.jpg" alt="" loading="lazy"></figure>
+<p>将 JDK 安装到指定的安装目录下，比如说 <strong>D:\App\Java\jdk-17.0.1</strong>。</p>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/oracle-jdk-install2.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://netdisk.jianrry.com/image/oracle-jdk-install3.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://netdisk.jianrry.com/image/oracle-jdk-install4.jpg" alt="" loading="lazy"></figure>
+<h2 id="step3配置环境变量">Step3：配置环境变量</h2>
+<p>依次打开 <strong>此电脑→属性→高级系统设置→高级→环境变量(N)</strong>，开始配置环境变量。</p>
+<figure data-type="image" tabindex="6"><img src="https://netdisk.jianrry.com/image/oracle-jdk-env.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://netdisk.jianrry.com/image/oracle-jdk-env2.jpg" alt="" loading="lazy"></figure>
+<p>在系统变量下，新建一个环境变量。变量名为 <code>JAVA_HOME</code>，变量值为 JDK 的安装目录，比如说</p>
+<pre><code>D:\App\Java\jdk-17.0.1\
+</code></pre>
+<figure data-type="image" tabindex="8"><img src="https://netdisk.jianrry.com/image/oracle-jdk-env3.jpg" alt="" loading="lazy"></figure>
+<p>在系统变量下，编辑 <code>Path</code> 环境变量。在顶部添加下面的一行，然后保存。</p>
+<pre><code>%JAVA_HOME%\bin
+</code></pre>
+<figure data-type="image" tabindex="9"><img src="https://netdisk.jianrry.com/image/oracle-jdk-env4.jpg" alt="" loading="lazy"></figure>
+<h2 id="step4测试环境变量是否配置成功">Step4：测试环境变量是否配置成功</h2>
+<p>打开命令提示符，输入下面的代码，然后回车。</p>
+<pre><code class="language-java">java -version
+</code></pre>
+<p>如果出现了类似下面的提示，则说明环境变量已经配置成功。</p>
+<figure data-type="image" tabindex="10"><img src="https://netdisk.jianrry.com/image/oracle-jdk-env5.jpg" alt="" loading="lazy"></figure>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-docker-compose/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十九）：Linux 安装 Docker Compose
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

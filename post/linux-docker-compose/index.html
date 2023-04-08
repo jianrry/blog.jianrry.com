@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十九）：Linux 安装 Docker Compose | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十九篇文章，以 Ubuntu 20.04 为例，介绍了 Linux 安装 Docker Compose。
+
+
+
+
+下载 &amp; 安装
+
+海外地区
+中国大陆地区
+
+
+卸载
+常用命令
+
+
+
+
+下载 &amp..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十九）：Linux 安装 Docker Compose</h2>
+            <div class="post-date">2019-03-07</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十九篇文章，以 Ubuntu 20.04 为例，介绍了 Linux 安装 Docker Compose。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%8B%E8%BD%BD-%E5%AE%89%E8%A3%85">下载 &amp; 安装</a>
+<ul>
+<li><a href="#%E6%B5%B7%E5%A4%96%E5%9C%B0%E5%8C%BA">海外地区</a></li>
+<li><a href="#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%9C%B0%E5%8C%BA">中国大陆地区</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8D%B8%E8%BD%BD">卸载</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="下载-安装">下载 &amp; 安装</h2>
+<h3 id="海外地区">海外地区</h3>
+<p>你可以使用官方的脚本，从官方镜像源下载并安装 Docker Compose ，推荐海外地区用户使用。</p>
+<p>v1.29.2(只支持 x86_64)</p>
+<pre><code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose &amp;&amp; sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>v2.2.3(支持 x86_64 s390x armv7 armv6 aarch64)</p>
+<pre><code>mkdir -p ~/.docker/cli-plugins/ &amp;&amp; curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o ~/.docker/cli-plugins/docker-compose &amp;&amp; chmod +x ~/.docker/cli-plugins/docker-compose
+</code></pre>
+<h3 id="中国大陆地区">中国大陆地区</h3>
+<p>你也可以使用 DaoCloud 的脚本，从 DaoCloud 镜像源下载并安装 Docker Compose ，推荐中国大陆地区用户使用。</p>
+<p>v1.29.2(只支持 x86_64)</p>
+<pre><code>sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose &amp;&amp; sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<h2 id="卸载">卸载</h2>
+<p>卸载 Docker Compose</p>
+<p>v1.29.2(只支持 x86_64)</p>
+<pre><code>sudo rm /usr/local/bin/docker-compose
+</code></pre>
+<h2 id="常用命令">常用命令</h2>
+<p>v2+</p>
+<table>
+<thead>
+<tr>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>docker compose version</td>
+<td>查看 docker compose 版本</td>
+</tr>
+<tr>
+<td>docker compose up</td>
+<td>创建并启动全部容器</td>
+</tr>
+<tr>
+<td>docker compose up -d</td>
+<td>创建并启动全部容器（在后台运行）</td>
+</tr>
+<tr>
+<td>docker compose ps</td>
+<td>列出全部容器</td>
+</tr>
+<tr>
+<td>docker compose ps 容器名</td>
+<td>列出指定容器</td>
+</tr>
+<tr>
+<td>docker compose logs</td>
+<td>查看全部容器的日志</td>
+</tr>
+<tr>
+<td>docker compose logs 容器名</td>
+<td>查看指定容器的日志</td>
+</tr>
+<tr>
+<td>docker compose start</td>
+<td>启动全部容器</td>
+</tr>
+<tr>
+<td>docker compose start 容器名</td>
+<td>启动指定容器</td>
+</tr>
+<tr>
+<td>docker compose restart</td>
+<td>重新启动全部容器</td>
+</tr>
+<tr>
+<td>docker compose restart 容器名</td>
+<td>重新启动指定容器</td>
+</tr>
+<tr>
+<td>docker compose stop</td>
+<td>停止全部容器</td>
+</tr>
+<tr>
+<td>docker compose stop 容器名</td>
+<td>停止指定容器</td>
+</tr>
+<tr>
+<td>docker compose rm</td>
+<td>删除全部（已停止的）容器</td>
+</tr>
+<tr>
+<td>docker compose rm 容器名</td>
+<td>删除指定（已停止的）容器</td>
+</tr>
+<tr>
+<td>docker compose down</td>
+<td>停止并删除全部容器、镜像、存储卷、网络</td>
+</tr>
+<tr>
+<td>docker compose down 容器名</td>
+<td>停止并删除指定容器、镜像、存储卷、网络</td>
+</tr>
+</tbody>
+</table>
+<p>v1.29.2(只支持 x86_64)</p>
+<table>
+<thead>
+<tr>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>docker-compose version</td>
+<td>查看 docker compose 版本</td>
+</tr>
+<tr>
+<td>docker-compose up</td>
+<td>创建并启动全部容器</td>
+</tr>
+<tr>
+<td>docker-compose up -d</td>
+<td>创建并启动全部容器（在后台运行）</td>
+</tr>
+<tr>
+<td>docker-compose ps</td>
+<td>列出全部容器</td>
+</tr>
+<tr>
+<td>docker-compose ps 容器名</td>
+<td>列出指定容器</td>
+</tr>
+<tr>
+<td>docker-compose logs</td>
+<td>查看全部容器的日志</td>
+</tr>
+<tr>
+<td>docker-compose logs 容器名</td>
+<td>查看指定容器的日志</td>
+</tr>
+<tr>
+<td>docker-compose start</td>
+<td>启动全部容器</td>
+</tr>
+<tr>
+<td>docker-compose start 容器名</td>
+<td>启动指定容器</td>
+</tr>
+<tr>
+<td>docker-compose restart</td>
+<td>重新启动全部容器</td>
+</tr>
+<tr>
+<td>docker-compose restart 容器名</td>
+<td>重新启动指定容器</td>
+</tr>
+<tr>
+<td>docker-compose stop</td>
+<td>停止全部容器</td>
+</tr>
+<tr>
+<td>docker-compose stop 容器名</td>
+<td>停止指定容器</td>
+</tr>
+<tr>
+<td>docker-compose rm</td>
+<td>删除全部（已停止的）容器</td>
+</tr>
+<tr>
+<td>docker-compose rm 容器名</td>
+<td>删除指定（已停止的）容器</td>
+</tr>
+<tr>
+<td>docker-compose down</td>
+<td>停止并删除全部容器、镜像、存储卷、网络</td>
+</tr>
+<tr>
+<td>docker-compose down 容器名</td>
+<td>停止并删除指定容器、镜像、存储卷、网络</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-docker/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十八）：Linux 安装 Docker
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

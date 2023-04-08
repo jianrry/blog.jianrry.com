@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（十六）：for 循环 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第十六篇文章，介绍了 Java 的 for 循环。
+
+
+
+
+for 循环
+
+定义：
+实例：
+
+
+增强 for 循环
+
+定义：
+实例：
+
+
+
+
+
+
+for 循环
+定义：
+for(初始化;循环条件;更新){
+
+  ..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（十六）：for 循环</h2>
+            <div class="post-date">2019-03-22</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第十六篇文章，介绍了 Java 的 for 循环。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#for-%E5%BE%AA%E7%8E%AF">for 循环</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A2%9E%E5%BC%BA-for-%E5%BE%AA%E7%8E%AF">增强 for 循环</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89-2">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="for-循环">for 循环</h2>
+<h3 id="定义">定义：</h3>
+<pre><code class="language-java">for(初始化;循环条件;更新){
+
+    //循环内容
+
+}
+</code></pre>
+<p>以下是 for 循环的步骤：</p>
+<ol>
+<li>初始化变量。</li>
+<li>进入循环体，执行循环内容。</li>
+<li>更新变量。</li>
+<li>判断变量是否符合循环条件。</li>
+<li>如果符合条件，就继续循环，直到不符合条件为止。</li>
+<li>如果不符合条件，就退出循环。</li>
+</ol>
+<p>for 循环的初始化、循环条件、更新可以为空，甚至三者可以同时为空。</p>
+<p>如果三者同时为空，则这个 for 循环是一个死循环，会造成资源的浪费。</p>
+<h3 id="实例">实例：</h3>
+<p>示例代码（打印 1-100 的奇数和 和 偶数和）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        //定义一个 int 类型的变量，表示奇数和。
+        int oddSum=0;
+
+        //定义一个 int 类型的变量，表示偶数和。
+        int evenSum=0;
+
+        for (int i = 0; i &lt;= 100; i++) {
+
+            if(i%2!=0){
+
+                //等价于 oddSum=oddSum+i;
+                oddSum+=i;
+
+            } else {
+
+                //等价于 evenSum=evenSum+i;
+                evenSum+=i;
+
+            }
+
+        }
+
+        System.out.println(&quot;1-100 的奇数和为：&quot;+oddSum);
+
+        System.out.println(&quot;1-100 的偶数和为：&quot;+evenSum);
+
+    }
+
+}
+</code></pre>
+<p>运行结果（打印 1-100 的奇数和 和 偶数和）：</p>
+<pre><code class="language-java">1-100 的奇数和为：2500
+1-100 的偶数和为：2550
+</code></pre>
+<p>示例代码（打印 1-1000 的能被 5 整除的数，并且每行打印 3 个）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        for (int i = 1; i &lt;= 1000; i++) {
+
+            if(i%5==0){
+
+                System.out.print(i+&quot;\t&quot;);
+
+            }
+
+            if (i%(5*3)==0){
+
+                System.out.print(&quot;\n&quot;);
+
+            }
+
+        }
+
+    }
+
+}
+</code></pre>
+<p>运行结果（打印 1-1000 的能被 5 整除的数，并且每行打印 3 个）：</p>
+<pre><code class="language-java">5	10	15	
+20	25	30	
+35	40	45	
+50	55	60	
+65	70	75	
+80	85	90	
+95	100	105	
+110	115	120	
+125	130	135	
+140	145	150	
+155	160	165	
+170	175	180	
+185	190	195	
+200	205	210	
+215	220	225	
+230	235	240	
+245	250	255	
+260	265	270	
+275	280	285	
+290	295	300	
+305	310	315	
+320	325	330	
+335	340	345	
+350	355	360	
+365	370	375	
+380	385	390	
+395	400	405	
+410	415	420	
+425	430	435	
+440	445	450	
+455	460	465	
+470	475	480	
+485	490	495	
+500	505	510	
+515	520	525	
+530	535	540	
+545	550	555	
+560	565	570	
+575	580	585	
+590	595	600	
+605	610	615	
+620	625	630	
+635	640	645	
+650	655	660	
+665	670	675	
+680	685	690	
+695	700	705	
+710	715	720	
+725	730	735	
+740	745	750	
+755	760	765	
+770	775	780	
+785	790	795	
+800	805	810	
+815	820	825	
+830	835	840	
+845	850	855	
+860	865	870	
+875	880	885	
+890	895	900	
+905	910	915	
+920	925	930	
+935	940	945	
+950	955	960	
+965	970	975	
+980	985	990	
+995	1000	
+</code></pre>
+<p>示例代码（打印九九乘法表）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        for (int i = 1; i &lt;= 9; i++) {
+
+            for (int j = 1; j &lt;= i; j++) {
+
+                System.out.print(i+&quot;*&quot;+j+&quot;=&quot;+(i*j)+&quot;\t&quot;);
+
+            }
+
+            System.out.print(&quot;\n&quot;);
+
+        }
+
+    }
+
+}
+</code></pre>
+<p>运行结果（打印九九乘法表）：</p>
+<pre><code class="language-java">1*1=1	
+2*1=2	2*2=4	
+3*1=3	3*2=6	3*3=9	
+4*1=4	4*2=8	4*3=12	4*4=16	
+5*1=5	5*2=10	5*3=15	5*4=20	5*5=25	
+6*1=6	6*2=12	6*3=18	6*4=24	6*5=30	6*6=36	
+7*1=7	7*2=14	7*3=21	7*4=28	7*5=35	7*6=42	7*7=49	
+8*1=8	8*2=16	8*3=24	8*4=32	8*5=40	8*6=48	8*7=56	8*8=64	
+9*1=9	9*2=18	9*3=27	9*4=36	9*5=45	9*6=54	9*7=63	9*8=72	9*9=81	
+</code></pre>
+<p>示例代码（打印三角形）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        int n=10;
+
+        for (int i = 1; i &lt;= n; i++) {
+
+            for(int j = n; j &gt;= i; j--){
+
+                System.out.print(&quot; &quot;);
+
+            }
+
+            for(int j = 1; j &lt;= i; j++){
+
+                System.out.print(&quot;*&quot;);
+
+            }
+
+            for(int j = 1; j &lt; i; j++){
+
+                System.out.print(&quot;*&quot;);
+
+            }
+
+            System.out.print(&quot;\n&quot;);
+
+        }
+
+    }
+
+}
+</code></pre>
+<p>运行结果（打印三角形）：</p>
+<pre><code class="language-java">          *
+         ***
+        *****
+       *******
+      *********
+     ***********
+    *************
+   ***************
+  *****************
+ *******************
+</code></pre>
+<p>示例代码（打印倒三角形）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        int n=10;
+
+        for (int i = 1; i &lt;= n; i++) {
+
+            for (int j = 1; j &lt;= i; j++) {
+
+                System.out.print(&quot; &quot;);
+
+            }
+
+            for (int j = n; j &gt;= i; j--) {
+
+                System.out.print(&quot;*&quot;);
+
+            }
+
+            for (int j = n; j &gt; i; j--) {
+
+                System.out.print(&quot;*&quot;);
+
+            }
+
+            System.out.print(&quot;\n&quot;);
+
+        }
+
+    }
+
+}
+</code></pre>
+<p>运行结果（打印倒三角形）：</p>
+<pre><code class="language-java"> *******************
+  *****************
+   ***************
+    *************
+     ***********
+      *********
+       *******
+        *****
+         ***
+          *
+</code></pre>
+<h2 id="增强-for-循环">增强 for 循环</h2>
+<h3 id="定义-2">定义：</h3>
+<pre><code class="language-java">for(声明语句 : 表达式){
+
+    //循环内容
+
+}
+</code></pre>
+<p>声明语句：定义一个局部变量，该变量的类型和数值元素相同，该变量的作用域是整个 for 循环。</p>
+<p>表达式：数组名，或者返回值为数组的方法名。</p>
+<p>以下是增强 for 循环的步骤：</p>
+<ol>
+<li>定义一个局部变量。</li>
+<li>依次取出数组中的元素，并给局部变量赋值。</li>
+<li>进入循环体，执行循环内容。</li>
+<li>重复以上步骤，直到数组中的元素全部取出为止。</li>
+<li>如果数组中的元素全部取出，就退出循环。</li>
+</ol>
+<p>增强 for 循环 和 for 循环是等价的，甚至可以相互转换。</p>
+<h3 id="实例-2">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        //定义一个 int 类型的数组。
+        int[] number={10,20,30,40,50};
+
+        //增强 for 循环
+        for (int i:number){
+
+            System.out.print(i+&quot;\t&quot;);
+
+        }
+
+        System.out.print(&quot;\n&quot;);
+
+        //for 循环
+        //数组的下标是从 0 开始的，数组中的第一个元素是 number[0]。
+        for (int i = 0; i &lt; number.length; i++) {
+
+            System.out.print(number[i]+&quot;\t&quot;);
+
+        }
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">10	20	30	40	50	
+10	20	30	40	50	
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-do-while/">
+                  <h3 class="post-title">
+                    Java 入门指南（十五）：do while 循环
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

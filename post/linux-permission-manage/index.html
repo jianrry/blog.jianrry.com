@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（七）：Linux 权限管理 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第七篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 权限管理。
+
+
+
+
+前言
+数字
+符号
+chmod（设置 文件/目录 的权限）
+
+描述：
+用法：
+选项：
+实例：
+
+
+chown（设置 文件/..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（七）：Linux 权限管理</h2>
+            <div class="post-date">2019-02-23</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第七篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 权限管理。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E6%95%B0%E5%AD%97">数字</a></li>
+<li><a href="#%E7%AC%A6%E5%8F%B7">符号</a></li>
+<li><a href="#chmod%E8%AE%BE%E7%BD%AE-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95-%E7%9A%84%E6%9D%83%E9%99%90">chmod（设置 文件/目录 的权限）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#chown%E8%AE%BE%E7%BD%AE-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95-%E7%9A%84-%E6%89%80%E6%9C%89%E8%80%85%E6%89%80%E5%B1%9E%E7%BE%A4%E7%BB%84">chown（设置 文件/目录 的 所有者/所属群组 ）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="前言">前言</h2>
+<p>Linux 对文件的权限有着严格的控制，某个用户想要对某个 文件/目录 执行某种操作，需要有相应的权限才能执行。</p>
+<p>Linux 权限的级别分为：所有者（Owner）、所属群组（Group）、其他用户（Others），可以对不同的级别设置不同的权限。</p>
+<p>Linux 权限的类型分为：Read（读）、Write（写）、Execute（执行），对应的符号分别是 r、w、x，对应的数字分别是 4、2、1。</p>
+<p>Linux 通过 <code>chmod</code> 设置 文件/目录 的权限，通过 <code>chown</code> 设置 文件/目录 的 所有者/所属群组。</p>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/ubuntu-permission.jpg" alt="" loading="lazy"></figure>
+<h2 id="数字">数字</h2>
+<p>Linux 通过 <code>chmod</code> 设置 文件/目录 的权限，通过 八进制数字 表示 文件/目录 的权限。</p>
+<p>Linux 权限的级别分为：所有者（Owner）、所属群组（Group）、其他用户（Others），每个级别上的 八进制数字之和 表示该级别所拥有的权限。</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>权限</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>读+写+执行</td>
+<td>rwx</td>
+</tr>
+<tr>
+<td>6</td>
+<td>读+写</td>
+<td>rw-</td>
+</tr>
+<tr>
+<td>5</td>
+<td>读+执行</td>
+<td>r-x</td>
+</tr>
+<tr>
+<td>4</td>
+<td>读</td>
+<td>r--</td>
+</tr>
+<tr>
+<td>3</td>
+<td>写+执行</td>
+<td>-wx</td>
+</tr>
+<tr>
+<td>2</td>
+<td>写</td>
+<td>-w-</td>
+</tr>
+<tr>
+<td>1</td>
+<td>执行</td>
+<td>--x</td>
+</tr>
+<tr>
+<td>0</td>
+<td>无</td>
+<td>---</td>
+</tr>
+</tbody>
+</table>
+<h2 id="符号">符号</h2>
+<p>除了 八进制数字，Linux 还可以通过符号组合表示 文件/目录 的权限。</p>
+<p>通过符号组合，对 文件/目录  增加、减少、重置权限。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>用户类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u</td>
+<td>user</td>
+<td>文件/目录 的所有者</td>
+</tr>
+<tr>
+<td>g</td>
+<td>group</td>
+<td>文件/目录 的所属群组</td>
+</tr>
+<tr>
+<td>o</td>
+<td>others</td>
+<td>其他用户</td>
+</tr>
+<tr>
+<td>a</td>
+<td>all</td>
+<td>全部用户</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>对指定的用户类型增加权限</td>
+</tr>
+<tr>
+<td>-</td>
+<td>对指定的用户类型减少权限</td>
+</tr>
+<tr>
+<td>=</td>
+<td>对指定的用户类型重置权限</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>权限</th>
+<th>数字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>读</td>
+<td>4</td>
+</tr>
+<tr>
+<td>w</td>
+<td>写</td>
+<td>2</td>
+</tr>
+<tr>
+<td>x</td>
+<td>执行</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>无</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="chmod设置-文件目录-的权限">chmod（设置 文件/目录 的权限）</h2>
+<h3 id="描述">描述：</h3>
+<p>&quot;change mode（改变模式）&quot; 的缩写，设置 文件/目录 的权限。</p>
+<p>普通用户无法设置权限，只有 root 用户和 文件/目录 的所有者才能设置权限。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      chmod [选项] [模式] [文件名]/[目录名]
+</code></pre>
+<h3 id="选项">选项：</h3>
+<pre><code>      -c, --changes          类似 verbose 选项，但仅在做出修改时进行报告
+
+  -f, --silent, --quiet      不显示大多数错误消息
+
+  -v, --verbose              输出各个处理的文件的诊断信息
+
+      --no-preserve-root     不特殊对待“/”（默认行为）
+
+      --preserve-root        不允许在“/”上递归操作
+
+      --reference=参考文件    使用参考文件的模式而非给定模式的值
+
+  -R, --recursive            递归修改文件和目录
+
+      --help		         显示此帮助信息并退出
+
+      --version		         显示版本信息并退出
+</code></pre>
+<h3 id="实例">实例：</h3>
+<p>设置 文件/目录 的权限（文件 rat 的所有者增加可执行的权限）</p>
+<pre><code>chmod u+x rat
+</code></pre>
+<p>设置 文件/目录 的权限（文件 rat 的所有者、所属群组、其他用户都有读、写、执行的权限）</p>
+<pre><code>chmod 777 rat
+</code></pre>
+<p>设置 文件/目录 的权限（等同于 <code>chmod 777 rat</code>）</p>
+<pre><code>chmod a=rwx rat
+</code></pre>
+<p>设置 文件/目录 的权限（文件 rat 的所有者有读、写、执行的权限，所属群组有读、执行的权限，其他用户有读的权限）</p>
+<pre><code>chmod 754 rat
+</code></pre>
+<p>设置 文件/目录 的权限（等同于 <code>chmod 754 rat</code>）</p>
+<pre><code>chmod u=rwx,g=rx,o=r rat
+</code></pre>
+<h2 id="chown设置-文件目录-的-所有者所属群组">chown（设置 文件/目录 的 所有者/所属群组 ）</h2>
+<h3 id="描述-2">描述：</h3>
+<p>&quot;change owner（改变所有者）&quot; 的缩写，设置 文件/目录 的 所有者/所属群组。</p>
+<p>普通用户无法设置 所有者/所属群组，只有 root 用户和 文件/目录 的所有者才能设置 所有者/所属群组。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      chown [选项] [用户名] [:用户组名] [文件名]/[目录名]
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<pre><code>    -c, --changes                       类似 verbose 选项，但仅在做出修改时进行报告
+
+  -f, --silent, --quiet                 不显示大多数错误消息
+
+  -v, --verbose                         输出各个处理的文件的诊断信息
+
+      --dereference                     影响每个符号链接的原始引用文件（这是默认行为），而非符号链接本身
+
+  -h, --no-dereference                  只影响符号链接，而非被引用的任何文件(仅当系统支持更改符号链接的所有者时，该选项才有用）
+
+      --from=当前所有者:当前所属组       只当每个文件的所有者和组符合选项所指定时才更改所有者和组。其中一个可以省略，这时已省略的属性就不需要符合原有的属性。
+
+      --no-preserve-root                不特殊对待“/”（默认行为）
+
+      --preserve-root                   不允许在“/”上递归操作
+
+      --reference=&lt;参考文件&gt;             使用指定&lt;参考文件&gt;的所有者和所属组信息，而非手工指定 所有者:组 的值
+
+  -R, --recursive                       递归操作文件和目录
+
+
+以下选项是在指定了 -R 选项时被用于设置如何遍历目录结构体系。如果您指定了多于一个选项，那么只有最后一个会生效。
+
+
+  -H                                    如果命令行参数是一个指向目录的符号链接，则对其进行遍历
+
+  -L                                    遍历每一个遇到的指向目录的符号链接
+
+  -P                                    不遍历任何符号链接（默认）
+
+      --help		                    显示此帮助信息并退出
+
+      --version		                    显示版本信息并退出
+
+
+如果没有指定所有者，则不会更改所有者信息。若所属组若没有指定也不会对其更改，但当加上 ':' 时 GROUP 会更改为指定所有者的主要组。所有者和所属组可以是数字或名称。
+</code></pre>
+<h3 id="实例-2">实例：</h3>
+<p>设置 文件/目录 的所有者（文件 rat 的所有者 root→jianrry）</p>
+<pre><code>chown jianrry rat
+</code></pre>
+<p>设置 文件/目录 的所属群组（文件 rat 的所属群组 root→jianrry）</p>
+<pre><code>chown :jianrry rat
+</code></pre>
+<p>设置 文件/目录 的所有者和所属群组（文件 rat 的所有者 jianrry→root，所属群组 jianrry→root）</p>
+<pre><code>chown root:root rat
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-user-manage/">
+                  <h3 class="post-title">
+                    Linux 入门指南（六）：Linux 用户管理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

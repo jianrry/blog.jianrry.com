@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（九）：运算符 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第九篇文章，介绍了 Java 的运算符。
+
+
+
+
+算术运算符
+
+描述：
+实例：
+
+
+赋值运算符
+
+描述：
+实例：
+
+
+关系运算符
+
+描述：
+实例：
+
+
+逻辑运算符
+
+描述：
+实例：
+
+
+位运算符
+
+描述：
+实例..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（九）：运算符</h2>
+            <div class="post-date">2019-03-16</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第九篇文章，介绍了 Java 的运算符。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6">算术运算符</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6">赋值运算符</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6">关系运算符</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6">逻辑运算符</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-4">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-4">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6">位运算符</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-5">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-5">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E8%BF%90%E7%AE%97%E7%AC%A6%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6">条件运算符（三元运算符）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-6">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-6">实例：</a></li>
+</ul>
+</li>
+<li><a href="#instanceof">instanceof</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-7">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-7">实例：</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7">运算符优先级</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="算术运算符">算术运算符</h2>
+<h3 id="描述">描述：</h3>
+<p>Java 中的算术运算符，相当于数学中的算术运算符，有着同样的作用。</p>
+<p>以下列举了全部的算术运算符（假设 a=10 b=20）：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>加法</td>
+<td><code>(a+b)=30</code></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>减法</td>
+<td><code>(a-b)=-10</code></td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>乘法</td>
+<td><code>(a*b)=200</code></td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>除法（两数相除，向下取整）</td>
+<td><code>(a/b)=0</code></td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>取余（模运算）</td>
+<td><code>(a%b)=10</code></td>
+</tr>
+<tr>
+<td><code>++</code></td>
+<td>自增</td>
+<td><code>(++a)=11</code></td>
+</tr>
+<tr>
+<td><code>--</code></td>
+<td>自减</td>
+<td><code>(--b)=19</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例">实例：</h3>
+<p>示例代码（普通运算符）：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        int a=10;
+
+        int b=20;
+
+        System.out.println(&quot;(a+b)=&quot;+(a+b));
+
+        System.out.println(&quot;(a-b)=&quot;+(a-b));
+
+        System.out.println(&quot;(a*b)=&quot;+(a*b));
+
+        System.out.println(&quot;(a/b)=&quot;+(a/b));
+
+        System.out.println(&quot;(a%b)=&quot;+(a%b));
+
+        System.out.println(&quot;(++a)=&quot;+(++a));
+
+        System.out.println(&quot;(--b)=&quot;+(--b));
+
+
+    }
+
+}
+</code></pre>
+<p>运行结果（普通运算符）：</p>
+<pre><code>(a+b)=30
+(a-b)=-10
+(a*b)=200
+(a/b)=0
+(a%b)=10
+(++a)=11
+(--b)=19
+</code></pre>
+<p>示例代码（自增自减运算符）：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        //定义一个变量 a， 类型为 int， 值为10。
+        int a=10;
+
+        //将 a 的值赋值给 b，此时 b 的值为10。然后 a 的值增加1，a 的值为11.
+        int b=a++;
+
+        //a 的值增加1，此时 a 的值为12。然后将 a 的值赋值给 c，c 的值为12。
+        int c=++a;
+
+        System.out.println(&quot;a=&quot;+a);
+
+        System.out.println(&quot;b=&quot;+b);
+
+        System.out.println(&quot;c=&quot;+c);
+
+        //以此类推，定义一个变量 d， 类型为 int， 值为10。
+        int d=10;
+
+        //将 d 的值赋值给 e，此时 e 的值为10。然后 d 的值减少1，d 的值为9.
+        int e=d--;
+
+        //d 的值减少1，此时 d 的值为8。然后将 d 的值赋值给 f，f 的值为8。
+        int f=--d;
+
+        System.out.println(&quot;d=&quot;+d);
+
+        System.out.println(&quot;e=&quot;+e);
+
+        System.out.println(&quot;f=&quot;+f);
+        
+    }
+
+}
+</code></pre>
+<p>运算结果（自增自减运算符）：</p>
+<pre><code>a=12
+b=10
+c=12
+d=8
+e=10
+f=8
+</code></pre>
+<h2 id="赋值运算符">赋值运算符</h2>
+<h3 id="描述-2">描述：</h3>
+<p>以下列举了全部的赋值运算符：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=</code></td>
+<td>赋值</td>
+<td><code>c=(a+b)</code></td>
+</tr>
+<tr>
+<td><code>+=</code></td>
+<td>加和赋值</td>
+<td><code>c+=a</code> 等价于 <code>c=(c+a)</code></td>
+</tr>
+<tr>
+<td><code>-=</code></td>
+<td>减和赋值</td>
+<td><code>c-=a</code> 等价于 <code>c=(c-a)</code></td>
+</tr>
+<tr>
+<td><code>*=</code></td>
+<td>乘和赋值</td>
+<td><code>c*=a</code> 等价于 <code>c=(c*a)</code></td>
+</tr>
+<tr>
+<td><code>/=</code></td>
+<td>除和赋值</td>
+<td><code>c/=a</code> 等价于 <code>c=(c/a)</code></td>
+</tr>
+<tr>
+<td><code>%=</code></td>
+<td>取模和赋值</td>
+<td><code>c%=a</code> 等价于 <code>c=(c%a)</code></td>
+</tr>
+<tr>
+<td><code>&lt;&lt;=</code></td>
+<td>左移位赋值</td>
+<td><code>c&lt;&lt;=2</code> 等价于 <code>c=(c&lt;&lt;2)</code></td>
+</tr>
+<tr>
+<td><code>&gt;&gt;=</code></td>
+<td>右移位赋值</td>
+<td><code>c&gt;&gt;=2</code> 等价于 <code>c=(c&gt;&gt;2)</code></td>
+</tr>
+<tr>
+<td><code>&amp;=</code></td>
+<td>按位与赋值</td>
+<td><code>c&amp;=2</code> 等价于 <code>c=(c&amp;2)</code></td>
+</tr>
+<tr>
+<td><code>^=</code></td>
+<td>按位异或赋值</td>
+<td><code>c^=2</code> 等价于 <code>c=(c^2)</code></td>
+</tr>
+<tr>
+<td>`</td>
+<td>=`</td>
+<td>按位或赋值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-2">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        int a=10;
+
+        int b=20;
+
+        int c=0;
+
+        System.out.println(&quot;c=a+b 等于 &quot;+(c=a+b));
+        c=0;
+
+        System.out.println(&quot;c+=a 等于 &quot;+(c+=a));
+        c=0;
+
+        System.out.println(&quot;c-=a 等于 &quot;+(c-=a));
+        c=0;
+
+        System.out.println(&quot;c*=a 等于 &quot;+(c*=a));
+        c=0;
+
+        System.out.println(&quot;c/=a 等于 &quot;+(c/=a));
+        c=0;
+
+        System.out.println(&quot;c%=a 等于 &quot;+(c%=a));
+        c=0;
+
+        System.out.println(&quot;c&lt;&lt;=2 等于 &quot;+(c&lt;&lt;=2));
+        c=0;
+
+        System.out.println(&quot;c&gt;&gt;=2 等于 &quot;+(c&gt;&gt;=2));
+        c=0;
+
+        System.out.println(&quot;c&amp;=2 等于 &quot;+(c&amp;=2));
+        c=0;
+
+        System.out.println(&quot;c^=2 等于 &quot;+(c^=2));
+        c=0;
+
+        System.out.println(&quot;c|=2 等于 &quot;+(c|=2));
+        c=0;
+
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code>c-=a 等于 -10
+c*=a 等于 0
+c/=a 等于 0
+c%=a 等于 0
+c&lt;&lt;=2 等于 0
+c&gt;&gt;=2 等于 0
+c&amp;=2 等于 0
+c^=2 等于 2
+c|=2 等于 2
+</code></pre>
+<h2 id="关系运算符">关系运算符</h2>
+<h3 id="描述-3">描述：</h3>
+<p>以下列举了全部的关系运算符（假设 a=10 b=20）：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt;</code></td>
+<td>大于</td>
+<td><code>(a&gt;b)=false</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>大于等于</td>
+<td><code>(a&gt;=b)=false</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>小于</td>
+<td><code>(a&lt;b)=true</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>小于等于</td>
+<td><code>(a&lt;=b)=true</code></td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>等于</td>
+<td><code>(a==b)=false</code></td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>不等于</td>
+<td><code>(a!=b)=true</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-3">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        int a=10;
+
+        int b=20;
+
+        System.out.println(&quot;(a&gt;b)=&quot;+(a&gt;b));
+
+        System.out.println(&quot;(a&gt;=b)=&quot;+(a&gt;=b));
+
+        System.out.println(&quot;(a&lt;b)=&quot;+(a&lt;b));
+
+        System.out.println(&quot;(a&lt;=b)=&quot;+(a&lt;=b));
+
+        System.out.println(&quot;(a==b)=&quot;+(a==b));
+
+        System.out.println(&quot;(a!=b)=&quot;+(a!=b));
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code>(a&gt;b)=false
+(a&gt;=b)=false
+(a&lt;b)=true
+(a&lt;=b)=true
+(a==b)=false
+(a!=b)=true
+</code></pre>
+<h2 id="逻辑运算符">逻辑运算符</h2>
+<h3 id="描述-4">描述：</h3>
+<p>以下列举了全部的逻辑运算符（假设 a=true b=false）：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>与</td>
+<td><code>(a &amp;&amp; b)=false</code></td>
+</tr>
+<tr>
+<td>`</td>
+<td></td>
+<td>`</td>
+</tr>
+<tr>
+<td><code>!</code></td>
+<td>非</td>
+<td>`!(a</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-4">实例：</h3>
+<p>示例代码（普通运算符）：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        boolean a=true;
+
+        boolean b=false;
+
+        System.out.println(&quot;(a &amp;&amp; b)=&quot;+(a &amp;&amp; b));
+
+        System.out.println(&quot;(a || b)=&quot;+(a || b));
+
+        System.out.println(&quot;!(a || b)=&quot;+!(a || b));
+
+    }
+
+}
+</code></pre>
+<p>运行结果（普通运算符）：</p>
+<pre><code>(a &amp;&amp; b)=false
+(a || b)=true
+!(a || b)=false
+</code></pre>
+<p>示例代码（短路运算符）：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        //定义一个变量 a， 类型为 int， 值为10。
+        int a=10;
+
+        //(a&lt;9)=false，则 b=false。此时 (a++&gt;10) 不会执行，所以 a=10。
+        boolean b=(a&lt;9) &amp;&amp; (a++&gt;10);
+
+        System.out.println(&quot;a=&quot;+a);
+
+        System.out.println(&quot;b=&quot;+b);
+
+    }
+
+}
+</code></pre>
+<p>运行结果（短路运算符）：</p>
+<pre><code>a=10
+b=false
+</code></pre>
+<h2 id="位运算符">位运算符</h2>
+<h3 id="描述-5">描述：</h3>
+<p>位运算符，适用于 byte（字节型）、short（短整型）、int（整数型）、long（长整型）、char（字符型）等类型。</p>
+<p>假设 a=60，b=13。</p>
+<pre><code>a=0011 1100
+b=0000 1101
+
+---------------
+
+(a &amp; b)=0000 1100
+
+(a | b)=0011 1101
+
+(a ^ b)=0011 0001
+
+(~a)=1100 0011
+
+(a &lt;&lt; 2)=1111 0000
+
+(a &gt;&gt; 2)=1111
+
+(a &gt;&gt;&gt; 2)=0000 1111
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;</code></td>
+<td>如果相对应位都是1，则结果为1，否则为0。</td>
+<td><code>(a &amp; b)=0000 1100</code> 即 12</td>
+</tr>
+<tr>
+<td>`</td>
+<td>`</td>
+<td>如果相对应位都是 0，则结果为 0，否则为1。</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>如果相对应位值相同，则结果为0，否则为1。</td>
+<td><code>(a ^ b)=0011 0001</code> 即 49</td>
+</tr>
+<tr>
+<td><code>〜</code></td>
+<td>按位取反运算符翻转操作数的每一位，即0变成1，1变成0。</td>
+<td><code>(~a)=1100 0011</code> 即 -61</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;</code></td>
+<td>按位左移运算符。左操作数按位左移右操作数指定的位数。</td>
+<td><code>(a &lt;&lt; 2)=1111 0000</code> 即 240</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>按位右移运算符。左操作数按位右移右操作数指定的位数。</td>
+<td><code>(a &gt;&gt; 2)=1111</code> 即 15</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;&gt;</code></td>
+<td>按位右移补零操作符。左操作数的值按右操作数指定的位数右移，移动得到的空位以零填充。</td>
+<td>(a &gt;&gt;&gt; 2)=0000 1111 即 15</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-5">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        //a=0011 1100
+        int a=60; 
+
+         //b=0000 1101
+        int b=13;
+
+        //(a &amp; b)=0000 1100
+        System.out.println(&quot;(a &amp; b)=&quot;+(a &amp; b)); 
+
+        //(a | b)=0011 1101
+        System.out.println(&quot;(a | b)=&quot;+(a | b)); 
+
+        //(a ^ b)=0011 0001
+        System.out.println(&quot;(a ^ b)=&quot;+(a ^ b)); 
+
+         //(~a)=1100 0011
+        System.out.println(&quot;(~a)=&quot;+(~a));
+
+        //(a &lt;&lt; 2)=1111 0000
+        System.out.println(&quot;(a &lt;&lt; 2)=&quot;+(a &lt;&lt; 2)); 
+
+        //(a &gt;&gt; 2)=1111
+        System.out.println(&quot;(a &gt;&gt; 2)=&quot;+(a &gt;&gt; 2)); 
+
+         //(a &gt;&gt;&gt; 2)=0000 1111
+        System.out.println(&quot;(a &gt;&gt;&gt; 2)=&quot;+(a &gt;&gt;&gt; 2));
+
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code>(a &amp; b)=12
+(a | b)=61
+(a ^ b)=49
+(~a)=-61
+(a &lt;&lt; 2)=240
+(a &gt;&gt; 2)=15
+(a &gt;&gt;&gt; 2)=15
+</code></pre>
+<p>示例代码：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        // 二进制数   十进制数
+        // 0000 0000 0
+        // 0000 0001 1
+        // 0000 0010 2
+        // 0000 0011 3
+        // 0000 0100 4
+        // 0000 0101 5
+        // 0000 0110 6
+        // 0000 0111 7
+        // 0000 1000 8
+
+        //由此可见，向左移动 1 位，值乘以 2。反之，值除以 2。
+        //以此类推，8=2*2*2 等价于 2 向左移动 2 位。
+        //虽然这两种方式得出的结果相同，但是 2 向左移动 2 位的方式效率更高。
+
+        System.out.println(2*2*2);
+
+        System.out.println(2 &lt;&lt; 2);
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code>8
+8
+</code></pre>
+<h2 id="条件运算符三元运算符">条件运算符（三元运算符）</h2>
+<h3 id="描述-6">描述：</h3>
+<p>条件运算符，又被称为三元运算符。</p>
+<pre><code>variable x = (expression) ? value if true : value if false
+</code></pre>
+<h3 id="实例-6">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+
+        int a=10;
+
+        int b=20;
+        
+        int c=0;
+
+        // 如果 (a&gt;b)=true，则将 a 赋值给 c。否则，则将 b 赋值给 c。
+        c=(a&gt;b) ? a : b;
+
+        System.out.println(&quot;c=&quot;+c);
+
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code>c=20
+</code></pre>
+<h2 id="instanceof">instanceof</h2>
+<h3 id="描述-7">描述：</h3>
+<p><code>instanceof</code> 是一个二元运算符，判断一个对象是否是一个类的实例，返回一个 <code>boolean</code> 类型的数据。</p>
+<pre><code class="language-java">object instanceof Class
+</code></pre>
+<p>左边的 <code>object</code> 是一个对象，右边的 <code>Class</code> 是一个类或接口。</p>
+<p>如果左边的 <code>object</code> 无法转换为右边的 <code>Class</code> 类型，则会直接报错。</p>
+<p>当 <code>object</code> 是 <code>Class</code> 或 <code>Class</code> 的子类 或 <code>Class</code> 的接口实现类的对象时，返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<h3 id="实例-7">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Animal {
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Cat extends Animal {
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        Cat cat=new Cat();
+
+        System.out.println(cat instanceof Cat);
+
+        System.out.println(cat instanceof Animal);
+
+        System.out.println(cat instanceof Object);
+
+        System.out.print(&quot;\n&quot;);
+
+        Animal animal=new Animal();
+
+        System.out.println(animal instanceof Cat);
+
+        System.out.println(animal instanceof Animal);
+
+        System.out.println(animal instanceof Object);
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">true
+true
+true
+
+false
+true
+true
+</code></pre>
+<h3 id="注意事项">注意事项：</h3>
+<ol>
+<li><code>object</code> 是引用数据类型，不能是基本数据类型。</li>
+<li>如果 <code>object</code> 为 <code>null</code>，则返回 <code>false</code>。</li>
+</ol>
+<h2 id="运算符优先级">运算符优先级</h2>
+<p>运算符优先级分为 14 级，其中 1 最高，14 最低。</p>
+<p>在同一个表达式中，先执行优先级高的，然后再执行优先级低的。</p>
+<p>以下列举了全部运算符的优先级和结合性：</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>运算符</th>
+<th>结合性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>()、[]、{}</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>!、+、-、~、++、--</code></td>
+<td>从右向左</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>*、/、%</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>	+、-</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>	«、»、&gt;&gt;&gt;</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>	&lt;、&lt;=、&gt;、&gt;=、instanceof</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>	==、!=</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>&amp;</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>^</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>10</td>
+<td>`</td>
+<td>`</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>&amp;&amp;</code></td>
+<td>从左向右</td>
+</tr>
+<tr>
+<td>12</td>
+<td>`</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>? :</code></td>
+<td>从右向左</td>
+</tr>
+<tr>
+<td>14</td>
+<td>`=、+=、-=、*=、/=、&amp;=、</td>
+<td>=、^=、~=、«=、»=、&gt;&gt;&gt;=`</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-variable/">
+                  <h3 class="post-title">
+                    Java 入门指南（八）：变量和常量
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

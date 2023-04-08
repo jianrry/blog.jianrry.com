@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（九）：Linux 常用软件 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第九篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 常用软件。
+
+
+
+
+Chrome（网页浏览器）
+Koodo Reader（电子书阅读器）
+Visual Studio Code （文本编辑器..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（九）：Linux 常用软件</h2>
+            <div class="post-date">2019-02-25</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第九篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 常用软件。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#chrome%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8">Chrome（网页浏览器）</a></li>
+<li><a href="#koodo-reader%E7%94%B5%E5%AD%90%E4%B9%A6%E9%98%85%E8%AF%BB%E5%99%A8">Koodo Reader（电子书阅读器）</a></li>
+<li><a href="#visual-studio-code-%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8">Visual Studio Code （文本编辑器）</a></li>
+<li><a href="#shutter-%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6">Shutter （截图软件）</a></li>
+<li><a href="#vlc%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8">VLC（视频播放器）</a></li>
+<li><a href="#steam-%E6%B8%B8%E6%88%8F%E5%B9%B3%E5%8F%B0">Steam （游戏平台）</a></li>
+<li><a href="#motrix-%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6">Motrix （下载软件）</a></li>
+<li><a href="#qbittorrent-bt-%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6">qBittorrent （BT 下载软件）</a></li>
+<li><a href="#keepassxc-%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86%E5%99%A8">KeepassXC （密码管理器）</a></li>
+<li><a href="#electermterminalsshsftp-%E8%BD%AF%E4%BB%B6">electerm（Terminal/SSH/SFTP 软件）</a></li>
+<li><a href="#remmina%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%AE%A2%E6%88%B7%E7%AB%AF">Remmina（远程桌面客户端）</a></li>
+<li><a href="#virtulbox%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BD%AF%E4%BB%B6">VirtulBox（虚拟机软件）</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="chrome网页浏览器">Chrome（网页浏览器）</h2>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/chrome.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的网页浏览器，可以使用各种插件。</p>
+<p>官网：<a href="https://www.google.cn/chrome/index.html">https://www.google.com/chrome/index.html</a></p>
+<p>安装：</p>
+<pre><code># 下载 google-chrome-stable_current_amd64.deb
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+# 安装 google-chrome-stable_current_amd64.deb
+sudo dpkg -i https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+</code></pre>
+<h2 id="koodo-reader电子书阅读器">Koodo Reader（电子书阅读器）</h2>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/koodo-reader.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的电子书阅读器，支持 txt、pdf、epub、azw3、mobi 等格式</p>
+<p>官网：<a href="https://koodo.960960.xyz/zh">https://koodo.960960.xyz/zh</a></p>
+<p>GitHub：<a href="https://github.com/troyeguo/koodo-reader">https://github.com/troyeguo/koodo-reader</a></p>
+<p>安装：</p>
+<pre><code># 下载 Koodo.Reader-1.3.4.deb
+wget https://github.com/troyeguo/koodo-reader/releases/download/v1.3.4/Koodo.Reader-1.3.4.deb
+
+# 安装 Koodo.Reader-1.3.4.deb
+sudo dpkg -i Koodo.Reader-1.3.4.deb
+</code></pre>
+<h2 id="visual-studio-code-文本编辑器">Visual Studio Code （文本编辑器）</h2>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/vscode.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的文本编辑器，支持各种插件。</p>
+<p>官网：<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<p>GitHub：<a href="https://github.com/microsoft/vscode">https://github.com/microsoft/vscode</a></p>
+<p>安装：</p>
+<pre><code># 下载 code_1.62.3-1637137107_amd64.deb
+wget https://az764295.vo.msecnd.net/stable/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247/code_1.62.3-1637137107_amd64.deb
+
+# 安装 code_1.62.3-1637137107_amd64.deb
+sudo dpkg -i code_1.62.3-1637137107_amd64.deb
+</code></pre>
+<h2 id="shutter-截图软件">Shutter （截图软件）</h2>
+<figure data-type="image" tabindex="4"><img src="https://netdisk.jianrry.com/image/shutter.jpg" alt="" loading="lazy"></figure>
+<p>介绍：Linux 平台的截图软件，还支持图片编辑等功能。</p>
+<p>官网：<a href="https://shutter-project.org/">https://shutter-project.org/</a></p>
+<p>GitHub：<a href="https://github.com/shutter-project/shutter">https://github.com/shutter-project/shutter</a></p>
+<p>安装：</p>
+<pre><code># 添加 PPA 软件源
+sudo add-apt-repository ppa:linuxuprising/shutter
+
+# 更新可用软件包列表
+sudo apt update 
+
+# 安装 shutter
+sudo apt install shutter -y
+</code></pre>
+<p>注意事项：</p>
+<p>如果提示 &quot;shutter can't take screenshots without x11 server&quot;，则</p>
+<p>① 打开文件 &quot;/etc/gdm3/custom.conf&quot;，取消 &quot;WaylandEnable=false&quot; 这一行的注释，保存并退出。</p>
+<p>② 重新启动 gdm3 。</p>
+<pre><code>sudo systemctl restart gdm3
+</code></pre>
+<h2 id="vlc视频播放器">VLC（视频播放器）</h2>
+<figure data-type="image" tabindex="5"><img src="https://netdisk.jianrry.com/image/vlc.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的视频播放器，支持绝大多数的视频编码，还支持外挂字幕。</p>
+<p>官网：<a href="https://www.videolan.org/vlc/">https://www.videolan.org/vlc/</a></p>
+<p>GitHub：<a href="https://github.com/videolan/vlc">https://github.com/videolan/vlc</a></p>
+<p>安装：</p>
+<pre><code># 下载并安装 vlc
+sudo apt install vlc -y
+</code></pre>
+<h2 id="steam-游戏平台">Steam （游戏平台）</h2>
+<figure data-type="image" tabindex="6"><img src="https://netdisk.jianrry.com/image/steam.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的游戏平台客户端，对用户友好，经常推出促销活动。</p>
+<p>官网：<a href="https://store.steampowered.com/">https://store.steampowered.com/</a></p>
+<p>GitHub：<a href="https://github.com/ValveSoftware/steam-for-linux">https://github.com/ValveSoftware/steam-for-linux</a></p>
+<pre><code># 下载并安装 steam
+sudo apt install steam -y
+</code></pre>
+<h2 id="motrix-下载软件">Motrix （下载软件）</h2>
+<figure data-type="image" tabindex="7"><img src="https://netdisk.jianrry.com/image/motrix.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的下载软件，支持 HTTP、FTP、BT、磁力链接。</p>
+<p>官网：<a href="https://motrix.app/">https://motrix.app/</a></p>
+<p>GitHub：<a href="https://github.com/agalwood/Motrix">https://github.com/agalwood/Motrix</a></p>
+<p>安装：</p>
+<pre><code># 安装 Motrix
+sudo snap install motrix
+</code></pre>
+<h2 id="qbittorrent-bt-下载软件">qBittorrent （BT 下载软件）</h2>
+<figure data-type="image" tabindex="8"><img src="https://netdisk.jianrry.com/image/qbittorrent.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的 BT 下载软件，被绝大多数的 BT/PT 站点认可。</p>
+<p>官网：<a href="https://www.qbittorrent.org/">https://www.qbittorrent.org/</a></p>
+<p>GitHub：<a href="https://github.com/qbittorrent/qBittorrent">https://github.com/qbittorrent/qBittorrent</a></p>
+<p>安装：</p>
+<pre><code># 下载并安装 qbittorrent
+sudo apt install qbittorrent -y
+</code></pre>
+<h2 id="keepassxc-密码管理器">KeepassXC （密码管理器）</h2>
+<figure data-type="image" tabindex="9"><img src="https://netdisk.jianrry.com/image/keepassxc.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的密码管理器，可以离线使用。</p>
+<p>官网：<a href="https://keepassxc.org/">https://keepassxc.org/</a></p>
+<p>GitHub：<a href="https://github.com/keepassxreboot/keepassxc">https://github.com/keepassxreboot/keepassxc</a></p>
+<p>安装：</p>
+<pre><code># 下载并安装 KeepassXC
+sudo apt install keepassxc -y
+</code></pre>
+<h2 id="electermterminalsshsftp-软件">electerm（Terminal/SSH/SFTP 软件）</h2>
+<figure data-type="image" tabindex="10"><img src="https://netdisk.jianrry.com/image/electerm.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的 Terminal/SSH/SFTP 软件，支持 SSH、SFTP、Zmodem 等协议。</p>
+<p>官网：<a href="https://electerm.github.io/electerm/">https://electerm.github.io/electerm/</a></p>
+<p>GitHub：<a href="https://github.com/electerm/electerm">https://github.com/electerm/electerm</a></p>
+<p>安装：</p>
+<pre><code># 下载 electerm-1.17.16-linux-amd64.deb
+wget https://github.com/electerm/electerm/releases/download/v1.17.16/electerm-1.17.16-linux-amd64.deb
+
+# 安装 electerm-1.17.16-linux-amd64.deb
+sudo dpkg -i electerm-1.17.16-linux-amd64.deb
+</code></pre>
+<h2 id="remmina远程桌面客户端">Remmina（远程桌面客户端）</h2>
+<figure data-type="image" tabindex="11"><img src="https://netdisk.jianrry.com/image/remmina.jpg" alt="" loading="lazy"></figure>
+<p>介绍：Linux 平台的远程桌面客户端，支持 RDP、VNC、SSH、SFTP 协议。</p>
+<p>官网：<a href="https://remmina.org/">https://remmina.org/</a></p>
+<p>GitHub：<a href="https://github.com/FreeRDP/Remmina">https://github.com/FreeRDP/Remmina</a></p>
+<p>安装：</p>
+<pre><code># 安装 Remmina
+sudo apt install remmina -y
+</code></pre>
+<h2 id="virtulbox虚拟机软件">VirtulBox（虚拟机软件）</h2>
+<figure data-type="image" tabindex="12"><img src="https://netdisk.jianrry.com/image/virtualbox.jpg" alt="" loading="lazy"></figure>
+<p>介绍：跨平台的虚拟机，可以安装 Windows、Linux、MacOS。</p>
+<p>官网：<a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a></p>
+<p>安装：</p>
+<pre><code># 安装 VirtulBox
+sudo apt install virtualbox -y
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-software-manage/">
+                  <h3 class="post-title">
+                    Linux 入门指南（八）：Linux 软件管理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

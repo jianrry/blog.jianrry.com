@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>域名从 NameSilo 转入 Cloudflare | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="NameSilo 的 .com 域名续费价格是 9.95 $/year，而 Cloudflare 是 8.03 $/year ，所以我将域名从 NameSilo 转入 Cloudflare。
+
+
+
+
+Step 1：获取转移码
+Step 2：..." />
+    <meta name="keywords" content="cloudflare,namesilo,domain" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">域名从 NameSilo 转入 Cloudflare</h2>
+            <div class="post-date">2019-02-07</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/namesilo-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>NameSilo 的 .com 域名续费价格是 9.95 $/year，而 Cloudflare 是 8.03 $/year ，所以我将域名从 NameSilo 转入 Cloudflare。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#step-1%E8%8E%B7%E5%8F%96%E8%BD%AC%E7%A7%BB%E7%A0%81">Step 1：获取转移码</a></li>
+<li><a href="#step-2%E5%A1%AB%E5%86%99%E4%BB%98%E6%AC%BE%E4%BF%A1%E6%81%AF">Step 2：填写付款信息</a></li>
+<li><a href="#step-3%E8%BD%AC%E7%A7%BB%E5%9F%9F%E5%90%8D">Step 3：转移域名</a></li>
+<li><a href="#step-4%E6%89%B9%E5%87%86%E8%BD%AC%E7%A7%BB%E5%9F%9F%E5%90%8D%E5%8F%AF%E9%80%89">Step 4：批准转移域名（可选）</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="step-1获取转移码">Step 1：获取转移码</h2>
+<p>打开<a href="https://www.namesilo.com/?rid=8d76430jj">官网</a>，登录你的 NameSilo 账号。</p>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/namesilo-sign-in.jpg" alt="" loading="lazy"></figure>
+<p>打开<a href="https://www.namesilo.com/account_domains.php?rid=8d76430jj">域名管理页面</a>，点击想要转移的域名。</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/namesilo-domain-manager.jpg" alt="" loading="lazy"></figure>
+<p>进入域名控制台页面，解锁已锁定的域名，然后点击 &quot;Send Email&quot; 按钮。</p>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/namesilo-domain-console.jpg" alt="" loading="lazy"></figure>
+<p>最后点击下面的 &quot;Submit（提交）&quot; 按钮。</p>
+<figure data-type="image" tabindex="4"><img src="https://netdisk.jianrry.com/image/namesilo-domain-auth-code.jpg" alt="" loading="lazy"></figure>
+<p>很快你就会接收到一封来自 NameSilo 的邮件，里面记录了你的转移码。</p>
+<figure data-type="image" tabindex="5"><img src="https://netdisk.jianrry.com/image/namesilo-domain-auth-code2.jpg" alt="" loading="lazy"></figure>
+<h2 id="step-2填写付款信息">Step 2：填写付款信息</h2>
+<p>因为域名转入时需要缴纳一年的续费费用，所以需要填写付款信息。</p>
+<p>打开<a href="https://dash.cloudflare.com/login">官网</a>，登录你的 Cloudflare 账号。</p>
+<figure data-type="image" tabindex="6"><img src="https://netdisk.jianrry.com/image/cloudflare-sign-in.jpg" alt="" loading="lazy"></figure>
+<p>打开账单页面，填写付款信息。建议添加 PayPal 作为付款方式（PayPal可以随时解绑），如实填写账单邮寄地址。</p>
+<figure data-type="image" tabindex="7"><img src="https://netdisk.jianrry.com/image/cloudflare-payment-info.jpg" alt="" loading="lazy"></figure>
+<h2 id="step-3转移域名">Step 3：转移域名</h2>
+<p>打开注册机构页面，选择要转移的域名，然后点击 &quot;确认域&quot; 按钮。</p>
+<figure data-type="image" tabindex="8"><img src="https://netdisk.jianrry.com/image/cloudflare-transfer-domains1.jpg" alt="" loading="lazy"></figure>
+<p>输入邮件中的转移码，然后点击 &quot;确认授权代码&quot; 按钮。</p>
+<figure data-type="image" tabindex="9"><img src="https://netdisk.jianrry.com/image/cloudflare-transfer-domains2.jpg" alt="" loading="lazy"></figure>
+<p>填写联系人信息，建议如实填写，最后点击 &quot;确认并完成转移&quot; 按钮。</p>
+<figure data-type="image" tabindex="10"><img src="https://netdisk.jianrry.com/image/cloudflare-transfer-domains3.jpg" alt="" loading="lazy"></figure>
+<p>如果你收到下面的提示，则最多5天就可以自动完成转移。</p>
+<figure data-type="image" tabindex="11"><img src="https://netdisk.jianrry.com/image/cloudflare-transfer-domains4.jpg" alt="" loading="lazy"></figure>
+<h2 id="step-4批准转移域名可选">Step 4：批准转移域名（可选）</h2>
+<p>如果你想尽快完成转移，你可以手动批准转移域名，10分钟左右就可以完成转移了。</p>
+<p>打开<a href="https://www.namesilo.com/?rid=8d76430jj">官网</a>，登录你的 NameSilo 账号。</p>
+<figure data-type="image" tabindex="12"><img src="https://netdisk.jianrry.com/image/namesilo-sign-in.jpg" alt="" loading="lazy"></figure>
+<p>进入<a href="https://www.namesilo.com/account_transfers.php?rid=8d76430jj">域名转移页面</a>，选择你想要转移的域名，然后点击 &quot;APPROVE&quot; 按钮。</p>
+<figure data-type="image" tabindex="13"><img src="https://netdisk.jianrry.com/image/namesilo-transfer-manager.jpg" alt="" loading="lazy"></figure>
+<p>最后点击 &quot;Submit&quot; 按钮。</p>
+<figure data-type="image" tabindex="14"><img src="https://netdisk.jianrry.com/image/namesilo-approve-transfer.jpg" alt="" loading="lazy"></figure>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>域名新购或转入的60天内，禁止转移域名。</li>
+<li>如果你的域名达到了最大时长，域名转入后会正常扣费，但时长不会增加。</li>
+<li>域名转入后，默认自动续订，可以手动关闭。</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/cloudflare/" class="tag">
+                    cloudflare
+                  </a>
+                
+                  <a href="https://blog.jianrry.com/tag/namesilo/" class="tag">
+                    namesilo
+                  </a>
+                
+                  <a href="https://blog.jianrry.com/tag/domain/" class="tag">
+                    domain
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/cloudflare/">
+                  <h3 class="post-title">
+                    Cloudflare 添加域名、域名解析、CDN 加速
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

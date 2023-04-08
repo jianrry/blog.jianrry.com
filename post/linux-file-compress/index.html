@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十五）：Linux 文件压缩 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十五篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 文件压缩。
+
+
+
+
+zip（压缩 文件/目录 为 .zip 文件）
+
+描述：
+用法：
+选项：
+实例：
+
+
+unzip（将 .zip 文件解..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十五）：Linux 文件压缩</h2>
+            <div class="post-date">2019-03-03</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十五篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 文件压缩。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#zip%E5%8E%8B%E7%BC%A9-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95-%E4%B8%BA-zip-%E6%96%87%E4%BB%B6">zip（压缩 文件/目录 为 .zip 文件）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#unzip%E5%B0%86-zip-%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B%E7%BC%A9%E4%B8%BA-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95">unzip（将 .zip 文件解压缩为 文件/目录）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#tar%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9-tar-%E6%96%87%E4%BB%B6">tar（压缩/解压缩 tar 文件）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-3">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-3">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="zip压缩-文件目录-为-zip-文件">zip（压缩 文件/目录 为 .zip 文件）</h2>
+<h3 id="描述">描述：</h3>
+<p>zip 是一款文件压缩软件，可以压缩 文件/目录 为 .zip 文件。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      zip [选项] [文件名] [文件名]/[目录名]
+</code></pre>
+<h3 id="选项">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-P</td>
+<td>使用密码加密 .zip 文件</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>更新现有的文件</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>与 -f 参数类似，但是除了更新现有的文件外，也会将压缩文件中的其他文件解压缩到目录中</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>从压缩文件内删除指定的文件</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>将文件压缩并加入压缩文件后，删除原始文件，即把文件移到压缩文件中</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>递归处理，将指定目录下的所有文件和子目录一并处理</td>
+</tr>
+<tr>
+<td>-j</td>
+<td>只保存文件名称及其内容，而不存放任何目录名称</td>
+</tr>
+<tr>
+<td>-0</td>
+<td>仅存储</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>压缩文件时，把LF字符置换成LF+CR字符</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>压缩得更快</td>
+</tr>
+<tr>
+<td>-9</td>
+<td>压缩得更好</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>不显示指令执行过程</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>显示指令执行过程或显示版本信息</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>替每个被压缩的文件加上注释</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>替压缩文件加上注释</td>
+</tr>
+<tr>
+<td>-@</td>
+<td>从标准输入读取名称</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>以压缩文件内拥有最新更改时间的文件为准，将压缩文件的更改时间设成和该文件相同</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>压缩时排除符合条件的文件</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>只压缩符合条件的文件</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>尝试修复已损坏的压缩文件</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>压缩文件内不建立目录名称</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>调整可执行的自动解压缩文件</td>
+</tr>
+<tr>
+<td>-J</td>
+<td>删除压缩文件前面不必要的数据</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>检查备份文件内的每个文件是否正确无误</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>不保存额外的文件属性</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>直接保存符号连接，而非该连接所指向的文件，本参数仅在UNIX之类的系统下有效</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>加密</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>不压缩具有特定字尾字符串的文件</td>
+</tr>
+<tr>
+<td>-h2</td>
+<td>显示更多帮助</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例">实例：</h3>
+<p>压缩目录（将目录 /home/jianrry 压缩为文件 jianrry.zip，保存在当前目录）</p>
+<pre><code>zip -r jianrry.zip /home/jianrry
+</code></pre>
+<h2 id="unzip将-zip-文件解压缩为-文件目录">unzip（将 .zip 文件解压缩为 文件/目录）</h2>
+<h3 id="描述-2">描述：</h3>
+<p>unzip 是一款文件解压缩软件，可以将 .zip 文件解压缩为 文件/目录。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      unzip [选项] [文件名]
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-P</td>
+<td>使用密码解密加密的 .zip 文件</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>与-c参数类似，会将解压缩的结果显示到屏幕上，但不会执行任何的转换</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>显示压缩文件内所包含的文件</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>更新现有的文件</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>检查压缩文件是否正确</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>与-f参数类似，但是除了更新现有的文件外，也会将压缩文件中的其他文件解压缩到目录中</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>仅显示压缩文件的备注文字</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>执行时显示详细的信息</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>时间戳存档到最新</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>指定不要处理.zip压缩文件中的哪些文件</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>指定文件解压缩后所要存储的目录</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>解压缩时不要覆盖原有的文件</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>执行时不显示任何信息</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>不必先询问用户，unzip执行后覆盖原有文件</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>对文本文件进行必要的字符转换</td>
+</tr>
+<tr>
+<td>-j</td>
+<td>不处理压缩文件中原有的目录路径</td>
+</tr>
+<tr>
+<td>-aa</td>
+<td>将所有文件视为文本</td>
+</tr>
+<tr>
+<td>-U</td>
+<td>对所有非 ASCII Unicode 使用转义符</td>
+</tr>
+<tr>
+<td>-UU</td>
+<td>忽略任何 Unicode 字段</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>压缩文件中的文件名称区分大小写</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>将压缩文件中的全部文件名改为小写</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>解压缩时同时回存文件原来的UID/GID</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>保留VMS的文件版本信息</td>
+</tr>
+<tr>
+<td>-K</td>
+<td>保持 setuid/setgid/tacky 权限</td>
+</tr>
+<tr>
+<td>-M</td>
+<td>将输出结果送到 more 程序处理</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>CHARSET 指定 DOS、Windows 和 OS/2 档案的字符编码</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>CHARSET 指定 UNIX 和其他档案的字符编码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-2">实例：</h3>
+<p>解压缩目录（将文件 jianrry.zip 解压缩，解压到当前目录）</p>
+<pre><code>unzip jianrry.zip
+</code></pre>
+<h2 id="tar压缩解压缩-tar-文件">tar（压缩/解压缩 tar 文件）</h2>
+<h3 id="描述-3">描述：</h3>
+<p>tar 是一款文件 压缩/解压缩 软件，可以压缩/解压缩 tar 文件。</p>
+<h3 id="用法-3">用法：</h3>
+<pre><code>      tar [选项] [文件名] [文件名]/[目录名]
+</code></pre>
+<h3 id="选项-3">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A</td>
+<td>--catenate, --concatenate</td>
+<td>追加 tar 文件至归档</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>--create</td>
+<td>创建一个新归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--delete</td>
+<td>从归档(非磁带！)中删除</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>--diff, --compare</td>
+<td>找出归档和文件系统的差异</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>--append</td>
+<td>追加文件至归档结尾</td>
+</tr>
+<tr>
+<td></td>
+<td>--test-label</td>
+<td>测试归档卷标并退出</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--list</td>
+<td>列出归档内容</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>--update</td>
+<td>仅追加比归档中副本更新的文件</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>--extract, --get</td>
+<td>从归档中解出文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--check-device</td>
+<td>当创建增量归档时检查设备号(默认)</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>--listed-incremental=FILE</td>
+<td>处理新式的 GNU 格式的增量备份</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>--incremental</td>
+<td>处理老式的 GNU 格式的增量备份</td>
+</tr>
+<tr>
+<td></td>
+<td>--hole-detection=TYPE</td>
+<td>用于探测holes 的技术</td>
+</tr>
+<tr>
+<td></td>
+<td>--ignore-failed-read</td>
+<td>当遇上不可读文件时不要以非零值退出</td>
+</tr>
+<tr>
+<td></td>
+<td>--level=NUMBER</td>
+<td>所创建的增量列表归档的输出级别</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-check-device</td>
+<td>当创建增量归档时不要检查设备号</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-seek</td>
+<td>归档不可检索</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>--seek</td>
+<td>归档可检索</td>
+</tr>
+<tr>
+<td></td>
+<td>--occurrence[=NUMBER]</td>
+<td>仅处理归档中每个文件的第 NUMBER个事件；仅当与以下子命令 --delete,--diff, --extract 或是 --list中的一个联合使用时，此选项才有效。而且不管文件列表是以命令行形式给出或是通过-T 选项指定的；NUMBER 值默认为 1</td>
+</tr>
+<tr>
+<td></td>
+<td>--sparse-version=MAJOR[.MINOR]</td>
+<td>设置所用的离散格式版本(隐含--sparse)</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>--sparse</td>
+<td>高效处理离散文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--add-file=FILE</td>
+<td>添加指定的 FILE 至归档(如果名字以 -开始会很有用的)</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>--directory=DIR</td>
+<td>改变至目录 DIR</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude=PATTERN</td>
+<td>排除以 PATTERN 指定的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-backups</td>
+<td>排除备份和锁文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-caches</td>
+<td>除标识文件本身外，排除包含 CACHEDIR.TAG 的目录中的内容</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-caches-all</td>
+<td>排除包含 CACHEDIR.TAG 的目录</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-caches-under</td>
+<td>排除包含 CACHEDIR.TAG 的目录中所有内容</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-ignore=FILE</td>
+<td>若存在FILE, 则从其中读取每个目录的例外匹配项</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-ignore-recursive=FILE</td>
+<td>若存在FILE, 则从其中为每个目录及其子目录读取需要排除的例外匹配项</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-tag=FILE</td>
+<td>除 FILE 自身外，排除包含 FILE 的目录中的内容</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-tag-all=FILE</td>
+<td>排除包含 FILE 的目录</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-tag-under=FILE</td>
+<td>排除包含 FILE 的目录中的所有内容</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-vcs</td>
+<td>排除版本控制系统目录</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude-vcs-ignores</td>
+<td>从VCS 忽略文件中读取排除匹配项</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-null</td>
+<td>禁用上一次的效果 --null 选项</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-recursion</td>
+<td>避免目录中的自动降级</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-unquote</td>
+<td>不要unquote 输入文件或成员名称</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-verbatim-files-from</td>
+<td>把以‘-’开始的文件作为选项(默认)</td>
+</tr>
+<tr>
+<td></td>
+<td>--null</td>
+<td>读取以空终止的名字; 隐含 --verbatim-files-from</td>
+</tr>
+<tr>
+<td></td>
+<td>--recursion</td>
+<td>目录递归（默认）</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>--files-from=FILE</td>
+<td>从 FILE 中获取文件名来解压或创建文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--unquote</td>
+<td>unquote 输入文件或成员名称(默认)</td>
+</tr>
+<tr>
+<td></td>
+<td>--verbatim-files-from</td>
+<td>逐字读取文件名（不处理选项或进行转义）</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>--exclude-from=FILE</td>
+<td>排除 FILE 中列出的模式串</td>
+</tr>
+<tr>
+<td></td>
+<td>--anchored</td>
+<td>模式串匹配文件名头部</td>
+</tr>
+<tr>
+<td></td>
+<td>--ignore-case</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-anchored</td>
+<td>模式串匹配任意‘/’后字符（对 exclusion 为默认值）</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-ignore-case</td>
+<td>匹配大小写(默认)</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-wildcards</td>
+<td>逐字匹配字符串</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-wildcards-match-slash</td>
+<td>通配符不匹配‘/’</td>
+</tr>
+<tr>
+<td></td>
+<td>--wildcards</td>
+<td>使用通配符（对 exclusion 为默认值）</td>
+</tr>
+<tr>
+<td></td>
+<td>--wildcards-match-slash</td>
+<td>通配符匹配‘/’（对 exclusion 为默认值）</td>
+</tr>
+<tr>
+<td></td>
+<td>--keep-directory-symlink</td>
+<td>解压时保留已存在的目录符号链接</td>
+</tr>
+<tr>
+<td></td>
+<td>--keep-newer-files</td>
+<td>不要替换比归档中副本更新的已存在的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>-k, --keep-old-files</td>
+<td>解压时不替换存在的文件, 而将其认为是错误</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-overwrite-dir</td>
+<td>保留已存在目录的元数据</td>
+</tr>
+<tr>
+<td></td>
+<td>--one-top-level[=DIR]</td>
+<td>创建子目录以避免解压松散文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--overwrite</td>
+<td>解压时重写存在的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--overwrite-dir</td>
+<td>解压时重写已存在目录的元数据(默认)</td>
+</tr>
+<tr>
+<td></td>
+<td>--recursive-unlink</td>
+<td>解压目录之前先清除目录层次</td>
+</tr>
+<tr>
+<td></td>
+<td>--remove-files</td>
+<td>在添加文件至归档后删除它们</td>
+</tr>
+<tr>
+<td></td>
+<td>--skip-old-files</td>
+<td>解压时不替换存在的文件，而是自动忽略</td>
+</tr>
+<tr>
+<td>-U</td>
+<td>--unlink-first</td>
+<td>在解压要重写的文件之前先删除它们</td>
+</tr>
+<tr>
+<td>-W</td>
+<td>--verify</td>
+<td>在写入以后尝试校验归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--ignore-command-error</td>
+<td>忽略子进程的退出代码</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-ignore-command-error</td>
+<td>将子进程的非零退出代码认为发生错误</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>--to-stdout</td>
+<td>解压文件至标准输出</td>
+</tr>
+<tr>
+<td></td>
+<td>--to-command=COMMAND</td>
+<td>将解压的文件通过管道传送至另一个程序</td>
+</tr>
+<tr>
+<td></td>
+<td>--atime-preserve[=METHOD]</td>
+<td>在输出的文件上保留访问时间，要么通过在读取(默认 METHOD=‘replace’)后还原时间，要不就不要在第一次(METHOD=‘system’)设置时间</td>
+</tr>
+<tr>
+<td></td>
+<td>--clamp-mtime</td>
+<td>当文件比 --mtime 指定的文件更新时仅更新时间</td>
+</tr>
+<tr>
+<td></td>
+<td>--delay-directory-restore</td>
+<td>直到解压结束才设置修改时间和所解目录的权限</td>
+</tr>
+<tr>
+<td></td>
+<td>--group=名称</td>
+<td>强制将 NAME 作为所添加的文件的组所有者</td>
+</tr>
+<tr>
+<td></td>
+<td>--group-map=FILE</td>
+<td>用FILE 映射文件所有者GIDs 和名字</td>
+</tr>
+<tr>
+<td></td>
+<td>--mode=CHANGES</td>
+<td>强制将所添加的文件(符号)更改为权限 CHANGES</td>
+</tr>
+<tr>
+<td></td>
+<td>--mtime=DATE-OR-FILE</td>
+<td>从 DATE-OR-FILE 中为添加的文件设置 mtime</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>--touch</td>
+<td>不要解压文件的修改时间</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-delay-directory-restore</td>
+<td>取消 --delay-directory-restore 选项的效果</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-same-owner</td>
+<td>将文件解压为您所有(普通用户默认此项)</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-same-permissions</td>
+<td>从归档中解压权限时使用用户的掩码位(默认为普通用户服务)</td>
+</tr>
+<tr>
+<td></td>
+<td>--numeric-owner</td>
+<td>总是以数字代表用户/组的名称</td>
+</tr>
+<tr>
+<td></td>
+<td>--owner=名称</td>
+<td>强制将 NAME 作为所添加的文件的所有者</td>
+</tr>
+<tr>
+<td></td>
+<td>--owner-map=FILE</td>
+<td>用FILE 映射文件所有者UIDs 和名字</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>--preserve-permissions, --same-permissions</td>
+<td>解压文件权限信息(默认只为超级用户服务)</td>
+</tr>
+<tr>
+<td></td>
+<td>--same-owner</td>
+<td>尝试解压时保持所有者关系一致(超级用户默认此项)</td>
+</tr>
+<tr>
+<td></td>
+<td>--sort=ORDER</td>
+<td>目录排序顺序: none(默认), name 或inode</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--preserve-order, --same-order</td>
+<td>成员参数按归档中的文件顺序列出</td>
+</tr>
+<tr>
+<td></td>
+<td>--acls</td>
+<td>开启 POSIX ACLs 支持</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-acls</td>
+<td>关闭 POSIX ACLs 支持</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-selinux</td>
+<td>关闭 SELinux 上下文支持</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-xattrs</td>
+<td>关闭extended 属性支持</td>
+</tr>
+<tr>
+<td></td>
+<td>--selinux</td>
+<td>开启 SELinux 上下文支持</td>
+</tr>
+<tr>
+<td></td>
+<td>--xattrs</td>
+<td>开启extended 属性支持</td>
+</tr>
+<tr>
+<td></td>
+<td>--xattrs-exclude=MASK</td>
+<td>为xattr 关键字指定排除匹配项</td>
+</tr>
+<tr>
+<td></td>
+<td>--xattrs-include=MASK</td>
+<td>为xattr 关键字指定包含匹配项</td>
+</tr>
+<tr>
+<td></td>
+<td>--force-local</td>
+<td>即使归档文件存在副本还是把它认为是本地归档</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>--file=ARCHIVE</td>
+<td>使用归档文件或 ARCHIVE 设备</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>--info-script=名称, --new-volume-script=名称</td>
+<td>在每卷磁带最后运行脚本(隐含 -M)</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>--tape-length=NUMBER</td>
+<td>写入 NUMBER × 1024 字节后更换磁带</td>
+</tr>
+<tr>
+<td>-M</td>
+<td>--multi-volume</td>
+<td>创建/列出/解压多卷归档文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--rmt-command=COMMAND</td>
+<td>使用指定的 rmt COMMAND 代替 rmt</td>
+</tr>
+<tr>
+<td></td>
+<td>--rsh-command=COMMAND</td>
+<td>使用远程 COMMAND 代替 rsh</td>
+</tr>
+<tr>
+<td></td>
+<td>--volno-file=FILE</td>
+<td>使用/更新 FILE 中的卷数</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>--blocking-factor=BLOCKS</td>
+<td>每个记录 BLOCKS x 512 字节</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>--read-full-records</td>
+<td>读取时重新分块(只对 4.2BSD 管道有效)</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--ignore-zeros</td>
+<td>忽略归档中的零字节块(即文件结尾)</td>
+</tr>
+<tr>
+<td></td>
+<td>--record-size=NUMBER</td>
+<td>每个记录的字节数 NUMBER，乘以 512</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>--format=FORMAT</td>
+<td>创建指定格式的归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--old-archive, --portability</td>
+<td>等同于 --format=v7</td>
+</tr>
+<tr>
+<td></td>
+<td>--pax-option=关键字[[:]=值][,关键字[[:]=值]]...</td>
+<td>控制 pax 关键字</td>
+</tr>
+<tr>
+<td></td>
+<td>--posix</td>
+<td>等同于 --format=posix</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>--label=TEXT</td>
+<td>创建带有卷名 TEXT 的归档；在列出/解压时，使用 TEXT 作为卷名的模式串</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>--auto-compress</td>
+<td>使用归档后缀名来决定压缩程序</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>--use-compress-program=PROG</td>
+<td>通过 PROG 过滤(必须是能接受 -d 选项的程序)</td>
+</tr>
+<tr>
+<td>-j</td>
+<td>--bzip2</td>
+<td>通过 bzip2 过滤归档</td>
+</tr>
+<tr>
+<td>-J</td>
+<td>--xz</td>
+<td>通过 xz 过滤归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--lzip</td>
+<td>通过 lzip 过滤归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--lzma</td>
+<td>通过 xz 过滤归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--lzop</td>
+<td>通过 lzop 过滤归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-auto-compress</td>
+<td>不使用归档后缀名来决定压缩程序</td>
+</tr>
+<tr>
+<td></td>
+<td>--zstd</td>
+<td>通过 zstd 过滤归档</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>--gzip, --gunzip, --ungzip</td>
+<td>通过 gzip 过滤归档</td>
+</tr>
+<tr>
+<td>-Z</td>
+<td>--compress, --uncompress</td>
+<td>通过 compress 过滤归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--backup[=CONTROL]</td>
+<td>在删除前备份，选择 CONTROL 版本</td>
+</tr>
+<tr>
+<td></td>
+<td>--hard-dereference</td>
+<td>跟踪硬链接；将它们所指向的文件归档并输出</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--dereference</td>
+<td>跟踪符号链接；将它们所指向的文件归档并输出</td>
+</tr>
+<tr>
+<td>-K</td>
+<td>--starting-file=MEMBER-NAME</td>
+<td>从归档中的 MEMBER-NAME 成员处开始读取归档</td>
+</tr>
+<tr>
+<td></td>
+<td>--newer-mtime=DATE</td>
+<td>当只有数据改变时比较数据和时间</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>--newer=DATE-OR-FILE, --after-date=DATE-OR-FILE</td>
+<td>只保存比 DATE-OR-FILE 更新的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--one-file-system</td>
+<td>创建归档时保存在本地文件系统中</td>
+</tr>
+<tr>
+<td>-P</td>
+<td>--absolute-names</td>
+<td>不要从文件名中清除引导符‘/’</td>
+</tr>
+<tr>
+<td></td>
+<td>--suffix=STRING</td>
+<td>在删除前备份，除非被环境变量 SIMPLE_BACKUP_SUFFIX 覆盖，否则覆盖常用后缀</td>
+</tr>
+<tr>
+<td></td>
+<td>--strip-components=NUMBER</td>
+<td>解压时从文件名中清除 NUMBER 个引导部分</td>
+</tr>
+<tr>
+<td></td>
+<td>--transform=EXPRESSION, --xform=EXPRESSION</td>
+<td>使用 sed 代替 EXPRESSION 来进行文件名变换</td>
+</tr>
+<tr>
+<td></td>
+<td>--checkpoint[=NUMBER]</td>
+<td>每隔 NUMBER 个记录显示进度信息(默认为 10 个)</td>
+</tr>
+<tr>
+<td></td>
+<td>--checkpoint-action=ACTION</td>
+<td>在每个检查点上执行 ACTION</td>
+</tr>
+<tr>
+<td></td>
+<td>--full-time</td>
+<td>按文件原本时间格式打印</td>
+</tr>
+<tr>
+<td></td>
+<td>--index-file=FILE</td>
+<td>将详细输出发送至 FILE</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--check-links</td>
+<td>只要不是所有链接都被输出就打印信息</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-quote-chars=STRING</td>
+<td>禁用来自 STRING 的字符引用</td>
+</tr>
+<tr>
+<td></td>
+<td>--quote-chars=STRING</td>
+<td>来自 STRING 的额外的引用字符</td>
+</tr>
+<tr>
+<td></td>
+<td>--quoting-style=STYLE</td>
+<td>设置名称引用风格；有效的 STYLE 值请参阅以下说明</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>--block-number</td>
+<td>每个信息都显示归档内的块数</td>
+</tr>
+<tr>
+<td></td>
+<td>--show-defaults</td>
+<td>显示 tar 默认选项</td>
+</tr>
+<tr>
+<td></td>
+<td>--show-omitted-dirs</td>
+<td>列表或解压时，列出每个不匹配查找标准的目录</td>
+</tr>
+<tr>
+<td></td>
+<td>--show-snapshot-field-ranges</td>
+<td>显示快照文件区的有效范围</td>
+</tr>
+<tr>
+<td></td>
+<td>--show-transformed-names, --show-stored-names</td>
+<td>显示变换后的文件名或归档名</td>
+</tr>
+<tr>
+<td></td>
+<td>--totals[=SIGNAL]</td>
+<td>处理归档后打印出总字节数；当此SIGNAL 被触发时带参数 -打印总字节数；允许的信号为: SIGHUP，SIGQUIT，SIGINT，SIGUSR1 和 SIGUSR2；同时也接受不带 SIG 前缀的信号名称</td>
+</tr>
+<tr>
+<td></td>
+<td>--utc</td>
+<td>以 UTC 格式打印文件修改时间</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--verbose</td>
+<td>详细地列出处理的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--warning=KEYWORD</td>
+<td>警告控制</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>--interactive, --confirmation</td>
+<td>每次操作都要求确认</td>
+</tr>
+<tr>
+<td>-o</td>
+<td></td>
+<td>创建归档时，相当于 --old-archive；展开归档时，相当于 --no-same-owner</td>
+</tr>
+<tr>
+<td>-?</td>
+<td>--help</td>
+<td>显示此帮助列表</td>
+</tr>
+<tr>
+<td></td>
+<td>--restrict</td>
+<td>禁用某些潜在的有危险的选项</td>
+</tr>
+<tr>
+<td></td>
+<td>--usage</td>
+<td>显示简短的用法说明</td>
+</tr>
+<tr>
+<td></td>
+<td>--version</td>
+<td>打印程序版本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-3">实例：</h3>
+<p>压缩目录（将目录 /home/jianrry 压缩为文件 jianrry.tar.gz，保存在当前目录）</p>
+<pre><code>tar czvf jianrry.tar.gz /home/jianrry
+</code></pre>
+<p>解压缩目录（将文件 jianrry.tar.gz 解压缩，解压到当前目录）</p>
+<pre><code>tar xzvf jianrry.tar.gz
+</code></pre>
+<p>,</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-file-transfer/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十四）：Linux 文件传输
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

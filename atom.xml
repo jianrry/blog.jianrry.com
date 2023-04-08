@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.jianrry.com</id>
+    <title>Jianrry</title>
+    <updated>2023-04-08T04:24:39.879Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.jianrry.com"/>
+    <link rel="self" href="https://blog.jianrry.com/atom.xml"/>
+    <logo>https://blog.jianrry.com/images/avatar.png</logo>
+    <icon>https://blog.jianrry.com/favicon.ico</icon>
+    <rights>All rights reserved 2023, Jianrry</rights>
+    <entry>
+        <title type="html"><![CDATA[博客文章目录]]></title>
+        <id>https://blog.jianrry.com/post/index-catalog/</id>
+        <link href="https://blog.jianrry.com/post/index-catalog/">
+        </link>
+        <updated>2077-12-31T03:29:10.000Z</updated>
+        <summary type="html"><![CDATA[<p>对文章进行了重新排序，修改了文章的发布时间，以本页面为准。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>对文章进行了重新排序，修改了文章的发布时间，以本页面为准。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#life">Life</a></li>
+<li><a href="#game">Game</a></li>
+<li><a href="#domain">Domain</a></li>
+<li><a href="#windows">Windows</a></li>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#other">Other</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="life">Life</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>文章</th>
+<th>发表时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://blog.jianrry.com/post/luotianyi-debit-card/">申请 中国银行洛天依借记卡</a></td>
+<td>2021/05/11 16:48</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://blog.jianrry.com/post/driver-license-renewal-online/">网上办理驾驶证期满换证</a></td>
+<td>2022/05/14 11:41</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://blog.jianrry.com/post/covid-19-vaccination/">记录 COVID-19 疫苗接种</a></td>
+<td>2021/05/02 11:53</td>
+</tr>
+</tbody>
+</table>
+<h2 id="game">Game</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>文章</th>
+<th>发表时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://blog.jianrry.com/post/dst-server/">部署 Don't Starve Together（饥荒联机版）专用服务器</a></td>
+<td>2021/06/02 22:41</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://blog.jianrry.com/post/multi-level-dst-server/">部署 Don't Starve Together（饥荒联机版）专用服务器多层世界</a></td>
+<td>2021/06/06 13:27</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://blog.jianrry.com/post/dst-server-configuration/">Don't Starve Together（饥荒联机版）配置文件</a></td>
+<td>2021/06/03 12:06</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://blog.jianrry.com/post/do-not-starve-funko-pops/">开箱晒物 Don't Starve Funko POPs</a></td>
+<td>2019/04/09 12:17</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://blog.jianrry.com/post/dummy-9parchments/">Nine Parchments（九张羊皮纸）多人联机脚本</a></td>
+<td>2021/05/23 12:20</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://blog.jianrry.com/post/buy-games-on-steam/">Steam 游戏购买指南</a></td>
+<td>2021/05/28 15:42</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://blog.jianrry.com/post/humble-bundle-refund-guide/">Humble Bundle 慈善包退款指南</a></td>
+<td>2017/05/24 23:54</td>
+</tr>
+</tbody>
+</table>
+<h2 id="domain">Domain</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>文章</th>
+<th>发表时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://blog.jianrry.com/post/tk-ml-ga-cf-gq/">免费注册 .tk .ml .ga .cf .gq 域名</a></td>
+<td>2021/06/08 16:45</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://blog.jianrry.com/post/pp-ua/">免费注册 pp.ua 域名</a></td>
+<td>2021/05/10 16:46</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://blog.jianrry.com/post/namesilo/">NameSilo 域名注册、域名解析、域名续费（附1美元优惠码）</a></td>
+<td>2021/04/27 15:59</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://blog.jianrry.com/post/namesilo-change-ns-server/">NameSilo 修改 NS 服务器</a></td>
+<td>2021/04/30 15:52</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://blog.jianrry.com/post/transfer-domain-from-namesilo-to-cloudflare/">域名从 NameSilo 转入 Cloudflare</a></td>
+<td>2021/08/09 14:26</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://blog.jianrry.com/post/cloudflare/">Cloudflare 添加域名、域名解析、CDN 加速</a></td>
+<td>2021/05/03 16:56</td>
+</tr>
+</tbody>
+</table>
+<h2 id="windows">Windows</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>文章</th>
+<th>发表时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://blog.jianrry.com/post/windows-keyboard-shortcuts/">Windows 快捷键汇总</a></td>
+<td>2021/05/29 13:32</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://blog.jianrry.com/post/windows-commands/">Windows 命令汇总</a></td>
+<td>2021/05/30 13:48</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://blog.jianrry.com/post/windows-battery-report/">Windows 查看电池使用时间报告</a></td>
+<td>2021/12/27 22:49</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linux">Linux</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>文章</th>
+<th>发表时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://blog.jianrry.com/post/what-is-linux/">Linux 入门指南（一）：Linux 是什么？</a></td>
+<td>2021/10/28 22:52</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://blog.jianrry.com/post/linux-distribution/">Linux 入门指南（二）：Linux 发行版</a></td>
+<td>2021/10/29 18:35</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://blog.jianrry.com/post/install-linux/">Linux 入门指南（三）：Linux 的下载 &amp; 安装</a></td>
+<td>2021/10/30 17:58</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://blog.jianrry.com/post/linux-forget-password/">Linux 入门指南（四）：Linux 忘记密码</a></td>
+<td>2021/11/01 22:37</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://blog.jianrry.com/post/linux-remote-login/">Linux 入门指南（五）：Linux 远程登陆</a></td>
+<td>2021/11/03 10:50</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://blog.jianrry.com/post/linux-user-manage/">Linux 入门指南（六）：Linux 用户管理</a></td>
+<td>2021/11/04 16:01</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://blog.jianrry.com/post/linux-permission-manage/">Linux 入门指南（七）：Linux 权限管理</a></td>
+<td>2021/11/06 17:04</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="https://blog.jianrry.com/post/linux-software-manage/">Linux 入门指南（八）：Linux 软件管理</a></td>
+<td>2021/11/07 16:07</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://blog.jianrry.com/post/linux-daily-software/">Linux 入门指南（九）：Linux 常用软件</a></td>
+<td>2021/11/18 16:23</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="https://blog.jianrry.com/post/linux-background-command/">Linux 入门指南（十）：Linux 后台命令</a></td>
+<td>2021/11/27 11:41</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="https://blog.jianrry.com/post/linux-process-manage/">Linux 入门指南（十一）：Linux 进程管理</a></td>
+<td>2021/11/22 21:18</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="https://blog.jianrry.com/post/linux-file-manage/">Linux 入门指南（十二）：Linux 文件管理</a></td>
+<td>2021/11/08 10:49</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="https://blog.jianrry.com/post/linux-text-editor/">Linux 入门指南（十三）：Linux 文本编辑</a></td>
+<td>2021/11/12 15:34</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="https://blog.jianrry.com/post/linux-file-transfer/">Linux 入门指南（十四）：Linux 文件传输</a></td>
+<td>2021/11/12 15:43</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="https://blog.jianrry.com/post/linux-file-compress/">Linux 入门指南（十五）：Linux 文件压缩</a></td>
+<td>2021/11/13 22:10</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="https://blog.jianrry.com/post/linux-disk-manager/">Linux 入门指南（十六）：Linux 磁盘管理</a></td>
+<td>2021/11/15 10:30</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="https://blog.jianrry.com/post/linux-crontab/">Linux 入门指南（十七）：Linux 计划任务</a></td>
+<td>2021/12/27 15:01</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="https://blog.jianrry.com/post/linux-docker/">Linux 入门指南（十八）：Linux 安装 Docker</a></td>
+<td>2021/11/27 11:31</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="https://blog.jianrry.com/post/linux-docker-compose/">Linux 入门指南（十九）：Linux 安装 Docker Compose</a></td>
+<td>2021/11/27 11:37</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="https://blog.jianrry.com/post/linux-shell-scripts-collection/">Linux Shell 脚本合集</a></td>
+<td>2022/03/29 17:32</td>
+</tr>
+</tbody>
+</table>
+<h2 id="java">Java</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>文章</th>
+<th>发表时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://blog.jianrry.com/post/install-jdk/">Java 入门指南（一）：JDK 的下载 &amp; 安装</a></td>
+<td>2021/12/06 16:21</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://blog.jianrry.com/post/java-hello-world/">Java 入门指南（二）：Hello World</a></td>
+<td>2021/12/06 17:12</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://blog.jianrry.com/post/java-intellij-idea/">Java 入门指南（三）：IntelliJ IDEA 的下载 &amp; 安装 &amp; 使用</a></td>
+<td>2021/12/07 13:27</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://blog.jianrry.com/post/java-annotation/">Java 入门指南（四）：注释</a></td>
+<td>2021/12/08 12:33</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://blog.jianrry.com/post/java-Identifier-and-keyword/">Java 入门指南（五）：标识符和关键字</a></td>
+<td>2021/12/10 18:26</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://blog.jianrry.com/post/java-data-type/">Java 入门指南（六）：数据类型</a></td>
+<td>2021/12/10 22:37</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://blog.jianrry.com/post/java-type-conversion/">Java 入门指南（七）：类型转换</a></td>
+<td>2021/12/30 17:35</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="https://blog.jianrry.com/post/java-variable/">Java 入门指南（八）：变量和常量</a></td>
+<td>2021/12/31 12:05</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://blog.jianrry.com/post/java-operator/">Java 入门指南（九）：运算符</a></td>
+<td>2022/01/01 23:07</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="https://blog.jianrry.com/post/java-package/">Java 入门指南（十）：包</a></td>
+<td>2022/01/04 11:26</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="https://blog.jianrry.com/post/java-scanner-class/">Java 入门指南（十一）：Scanner 类</a></td>
+<td>2022/01/05 18:20</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="https://blog.jianrry.com/post/java-if-else/">Java 入门指南（十二）：if else 语句</a></td>
+<td>2022/01/07 12:46</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="https://blog.jianrry.com/post/java-switch-case/">Java 入门指南（十三）：switch case 语句</a></td>
+<td>2022/01/07 22:19</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="https://blog.jianrry.com/post/java-while/">Java 入门指南（十四）：while 循环</a></td>
+<td>2022/01/08 17:57</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="https://blog.jianrry.com/post/java-do-while/">Java 入门指南（十五）：do while 循环</a></td>
+<td>2022/01/08 18:53</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="https://blog.jianrry.com/post/java-for/">Java 入门指南（十六）：for 循环</a></td>
+<td>2022/01/09 18:55</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="https://blog.jianrry.com/post/java-break-and-continue/">Java 入门指南（十七）：break 和 continue</a></td>
+<td>2022/01/10 17:48</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="https://blog.jianrry.com/post/java-method/">Java 入门指南（十八）：方法</a></td>
+<td>2022/01/16 12:06</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="https://blog.jianrry.com/post/java-array/">Java 入门指南（十九）：数组</a></td>
+<td>2022/01/18 13:41</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="https://blog.jianrry.com/post/java-oop/">Java 入门指南（二十）：面对对象</a></td>
+<td>2022/01/23 21:57</td>
+</tr>
+<tr>
+<td>21</td>
+<td><a href="https://blog.jianrry.com/post/java-encapsulation/">Java 入门指南（二十一）：封装</a></td>
+<td>2022/01/28 12:54</td>
+</tr>
+<tr>
+<td>22</td>
+<td><a href="https://blog.jianrry.com/post/java-inheritance/">Java 入门指南（二十二）：继承</a></td>
+<td>2022/01/29 00:12</td>
+</tr>
+<tr>
+<td>23</td>
+<td><a href="https://blog.jianrry.com/post/java-this-and-super/">Java 入门指南（二十三）：this 和 super</a></td>
+<td>2022/02/01 16:19</td>
+</tr>
+<tr>
+<td>24</td>
+<td><a href="https://blog.jianrry.com/post/java-polymorphism/">Java 入门指南（二十四）：多态</a></td>
+<td>2022/02/02 15:04</td>
+</tr>
+<tr>
+<td>25</td>
+<td><a href="https://blog.jianrry.com/post/java-abstraction/">Java 入门指南（二十五）：抽象类</a></td>
+<td>2022/02/03 16:07</td>
+</tr>
+<tr>
+<td>26</td>
+<td><a href="https://blog.jianrry.com/post/intellij-idea-annotation/">IntelliJ IDEA 设置类注释和方法注释</a></td>
+<td>2021/12/08 16:05</td>
+</tr>
+</tbody>
+</table>
+<h2 id="other">Other</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>文章</th>
+<th>发表时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://blog.jianrry.com/post/markdown-guide/">Markdown 入门指南</a></td>
+<td>2021/05/26 16:50</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://blog.jianrry.com/post/pt-guide/">PT 入门指南</a></td>
+<td>2019/03/13 17:56</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://blog.jianrry.com/post/microsoft-365-e5/">免费申请 Microsoft 365 E5 开发者订阅</a></td>
+<td>2021/05/13 16:47</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://blog.jianrry.com/post/rclone-mount-onedrive/">Rclone 挂载 OneDrive</a></td>
+<td>2022/02/05 15:08</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://blog.jianrry.com/post/gridea/">Gridea+GitHub+Cloudflare Page 免费搭建个人博客</a></td>
+<td>2021/05/04 21:17</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[网上办理驾驶证期满换证]]></title>
+        <id>https://blog.jianrry.com/post/driver-license-renewal-online/</id>
+        <link href="https://blog.jianrry.com/post/driver-license-renewal-online/">
+        </link>
+        <updated>2022-05-14T03:29:25.000Z</updated>
+        <summary type="html"><![CDATA[<p>几个月前，我的驾驶证已经到期，必须在一年内办理驾驶证期满换证。而我正在外地，无法回到驾驶证核发地，最终选择了网上办理驾驶证期满换证。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>几个月前，我的驾驶证已经到期，必须在一年内办理驾驶证期满换证。而我正在外地，无法回到驾驶证核发地，最终选择了网上办理驾驶证期满换证。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">准备工作</a></li>
+<li><a href="#step1-%E4%BA%A4%E7%AE%A112123">Step1: 交管12123</a></li>
+<li><a href="#step2-%E9%A9%BE%E9%A9%B6%E4%BA%BA%E4%BD%93%E6%A3%80">Step2: 驾驶人体检</a></li>
+<li><a href="#step3-%E6%9C%BA%E5%8A%A8%E8%BD%A6%E9%A9%BE%E9%A9%B6%E8%AF%81%E6%95%B0%E5%AD%97%E7%9B%B8%E7%89%87">Step3: 机动车驾驶证数字相片</a></li>
+<li><a href="#step4-%E9%A9%BE%E9%A9%B6%E8%AF%81%E6%9C%9F%E6%BB%A1%E6%8D%A2%E8%AF%81">Step4: 驾驶证期满换证</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="准备工作">准备工作</h2>
+<ol>
+<li>交管12123 App（网上办理期满换证）</li>
+<li>口罩（进出医院）</li>
+<li>健康码（进出医院）</li>
+<li>行程卡（进出医院）</li>
+<li>身份证（驾驶人体检、上传 机动车驾驶证数字相片）</li>
+<li>100 ￥（驾驶人体检费用、拍摄 机动车驾驶证数字相片、驾驶证工本费、驾驶证邮费）</li>
+</ol>
+<h2 id="step1-交管12123">Step1: 交管12123</h2>
+<p>在手机的各大应用市场，搜索“交管12123”App，然后下载并安装 交管12123 App。</p>
+<p>打开“交管12123”App，登录你的 交管12123 账号（如果没有，就注册一个 交管12123 账号）。</p>
+<h2 id="step2-驾驶人体检">Step2: 驾驶人体检</h2>
+<p>打开“交管12123”App，切换到当前省市，搜索“体检”。依次选择“驾驶人体检—可办理期满换证”，最后点击“确定”。选择一个最近的医院，参加驾驶人体检。</p>
+<p>以我为例，我到医院参加了驾驶人体检。进入医院前，需要佩戴口罩，出示健康码、行程卡，办理健康申报卡。</p>
+<p>驾驶人体检的结果会上传到网上，医生会要求你提供身份证（如果没有，就提供身份证号码）。</p>
+<p>体检的内容很少（视力、辨色力、躯干、颈部），整个过程花费不到半个小时，驾驶人体检的费用是31￥。</p>
+<p>驾驶人体检之后，医生会交给你1张 机动车驾驶人身体条件证明。并告知你到哪一家照相馆，拍摄 机动车驾驶证数字相片。</p>
+<h2 id="step3-机动车驾驶证数字相片">Step3: 机动车驾驶证数字相片</h2>
+<p>以我为例，我到医生告知的照相馆，拍摄了 机动车驾驶证数字相片。</p>
+<p>机动车驾驶证数字相片 会上传到网上，摄影师会要求你提供身份证和 机动车驾驶人身体条件证明。</p>
+<p>整个过程花费不到半个小时，拍摄 机动车驾驶证数字相片 的费用是30￥。</p>
+<p>拍摄 机动车驾驶证数字相片 之后，摄影师会交给你一个文件袋（里面包含了5张1寸白底登记照和1张 机动车驾驶证数字相片采集回执）。</p>
+<h2 id="step4-驾驶证期满换证">Step4: 驾驶证期满换证</h2>
+<p>打开“交管12123”App，切换到当前省市，搜索“期满换证”。选择 “期满换证”，点击“点击下一步”，然后支付驾驶证工本费。最后选择邮寄，等待快递员送货上门。</p>
+<p>以我为例，因为我在外地参加了驾驶人体检，驾驶证核发地无法获取驾驶人体检的结果，所以我办理了“转入换证（转入 + 期满换证）”。</p>
+<p>整个过程花费不到2天，驾驶证工本费是10￥，驾驶证邮费是23￥（中国邮政到付，邮费由快递员收取，不到2天送达）。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux Shell 脚本合集]]></title>
+        <id>https://blog.jianrry.com/post/linux-shell-scripts-collection/</id>
+        <link href="https://blog.jianrry.com/post/linux-shell-scripts-collection/">
+        </link>
+        <updated>2022-03-29T08:56:06.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文介绍了我收集的 Linux Shell 脚本。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文介绍了我收集的 Linux Shell 脚本。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#docker">Docker</a>
+<ul>
+<li><a href="#%E6%B5%B7%E5%A4%96%E5%9C%B0%E5%8C%BA">海外地区</a></li>
+<li><a href="#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%9C%B0%E5%8C%BA">中国大陆地区</a></li>
+</ul>
+</li>
+<li><a href="#docker-compose">Docker Compose</a>
+<ul>
+<li><a href="#%E6%B5%B7%E5%A4%96%E5%9C%B0%E5%8C%BA-2">海外地区</a></li>
+<li><a href="#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%9C%B0%E5%8C%BA-2">中国大陆地区：</a></li>
+</ul>
+</li>
+<li><a href="#nodestatus-client">NodeStatus Client</a>
+<ul>
+<li><a href="#%E6%B5%B7%E5%A4%96%E5%9C%B0%E5%8C%BA-3">海外地区</a></li>
+</ul>
+</li>
+<li><a href="#dd">DD</a>
+<ul>
+<li><a href="#debian">Debian</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="docker">Docker</h2>
+<h3 id="海外地区">海外地区</h3>
+<pre><code>curl -fsSL https://get.docker.com -o get-docker.sh &amp;&amp; sudo sh get-docker.sh
+</code></pre>
+<h3 id="中国大陆地区">中国大陆地区</h3>
+<pre><code>sudo curl -sSL https://get.daocloud.io/docker | sh
+</code></pre>
+<h2 id="docker-compose">Docker Compose</h2>
+<h3 id="海外地区-2">海外地区</h3>
+<pre><code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose &amp;&amp; sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<h3 id="中国大陆地区-2">中国大陆地区：</h3>
+<pre><code>sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose &amp;&amp; sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<h2 id="nodestatus-client">NodeStatus Client</h2>
+<h3 id="海外地区-3">海外地区</h3>
+<pre><code>wget https://raw.githubusercontent.com/cokemine/nodestatus-client-go/master/install.sh &amp;&amp; sudo bash install.sh install --dsn &quot;wss://username:password@status.mydomain.com&quot;
+</code></pre>
+<h2 id="dd">DD</h2>
+<h3 id="debian">Debian</h3>
+<pre><code># Debian 10 x64 (用户名: root 密码: MoeClub.org 端口: 22):
+bash &lt;(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/MoeClub/Note/master/InstallNET.sh') -d 10 -v 64 -p &quot;MoeClub.org&quot; -port &quot;22&quot;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[IntelliJ IDEA 设置类注释和方法注释]]></title>
+        <id>https://blog.jianrry.com/post/intellij-idea-annotation/</id>
+        <link href="https://blog.jianrry.com/post/intellij-idea-annotation/">
+        </link>
+        <updated>2019-12-31T07:56:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文介绍了 IntelliJ IDEA 设置类注释和方法注释，为 Java 中的类和方法生成注释。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文介绍了 IntelliJ IDEA 设置类注释和方法注释，为 Java 中的类和方法生成注释。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%B1%BB%E6%B3%A8%E9%87%8A">类注释</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E6%B3%A8%E9%87%8A">方法注释</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="类注释">类注释</h2>
+<p>① 打开 &quot;文件→设置&quot;</p>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation.jpg" alt="" loading="lazy"></figure>
+<p>② 依次打开 &quot;编辑器→文件和代码模板→Class&quot;</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation2.jpg" alt="" loading="lazy"></figure>
+<p>③ 如上图所示，输入下面的代码，并点击 &quot;应用（A）&quot; 按钮</p>
+<pre><code class="language-java">/**
+ * @ClassName ${NAME}
+ * @Description TODO
+ * @Author ${USER}
+ * @CreateTime ${DATE} ${TIME}
+ * @Version 1.0.0
+ */
+</code></pre>
+<p>新建一个 Java 类，会自动出现注释</p>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation3.jpg" alt="" loading="lazy"></figure>
+<h2 id="方法注释">方法注释</h2>
+<p>① 打开 &quot;文件→设置&quot;</p>
+<figure data-type="image" tabindex="4"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation.jpg" alt="" loading="lazy"></figure>
+<p>② 依次打开 &quot;编辑器→实时模板→模板组&quot;</p>
+<figure data-type="image" tabindex="5"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation4.jpg" alt="" loading="lazy"></figure>
+<p>③ 创建一个名为 &quot;Custom&quot; 的模板组</p>
+<figure data-type="image" tabindex="6"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation5.jpg" alt="" loading="lazy"></figure>
+<p>④ 在 &quot;Custom&quot; 模板组下，创建一个名为 &quot;*&quot; 的实时模板</p>
+<figure data-type="image" tabindex="7"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation6.jpg" alt="" loading="lazy"></figure>
+<p>⑤ 如上图所示，输入下面的代码</p>
+<pre><code class="language-java">*
+ * @Description TODO
+ * @Author $user$
+ * @CreateTime $date$ $time$
+ * @Param: $param$
+ * @Return: $return$
+ */
+</code></pre>
+<p>⑥ 点击 &quot;编辑变量（E）&quot; 按钮</p>
+<figure data-type="image" tabindex="8"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation7.jpg" alt="" loading="lazy"></figure>
+<p>⑦ 点击 &quot;定义&quot; 按钮，并勾选 &quot;Java&quot;</p>
+<figure data-type="image" tabindex="9"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation8.jpg" alt="" loading="lazy"></figure>
+<p>⑧ 将展开方式修改为 &quot;Enter&quot;，并点击 &quot;应用（A）&quot; 按钮</p>
+<figure data-type="image" tabindex="10"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation9.jpg" alt="" loading="lazy"></figure>
+<p>新建一个 Java 方法，按下 <code>/**</code> 并回车，会自动出现注释。</p>
+<figure data-type="image" tabindex="11"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation3.jpg" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java 入门指南（二十五）：抽象类]]></title>
+        <id>https://blog.jianrry.com/post/java-abstraction/</id>
+        <link href="https://blog.jianrry.com/post/java-abstraction/">
+        </link>
+        <updated>2019-03-31T08:05:09.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十五篇文章，介绍了 Java 的 抽象类。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十五篇文章，介绍了 Java 的 抽象类。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB">抽象类</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="抽象类">抽象类</h2>
+<h3 id="描述">描述：</h3>
+<p>抽象类本质上是一个概念，只有定义（抽象方法），没有实体（不能实例化）。</p>
+<p>用 <code>abstract</code> 关键词修饰的类就是 抽象类，用 <code>abstract</code> 关键词修饰的方法就是抽象方法。</p>
+<p>抽象类除了不能实例化，其他的功能（构造方法、成员变量、成员方法）和普通类没有区别。</p>
+<p>因为抽象类不能实例化，所以抽象类只有被继承之后，才能被使用。</p>
+<p>如果一个子类（普通类）继承了父类（抽象类），则必须实现父类（抽象类）的全部抽象方法。抽象方法只有对方法的定义，方法的实现则由抽象类的子类（普通类）完成。</p>
+<h3 id="实例">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public abstract class Animal {
+
+    public abstract void eat();
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Cat extends Animal {
+
+    public void eat() {
+
+        System.out.println(&quot;正在吃东西。&quot;);
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        Cat cat=new Cat();
+
+        cat.eat();
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">正在吃东西。
+</code></pre>
+<h3 id="注意事项">注意事项：</h3>
+<ol>
+<li><strong>抽象类中不一定有抽象方法，有抽象方法的一定是抽象类。</strong></li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java 入门指南（二十四）：多态]]></title>
+        <id>https://blog.jianrry.com/post/java-polymorphism/</id>
+        <link href="https://blog.jianrry.com/post/java-polymorphism/">
+        </link>
+        <updated>2019-03-30T06:55:15.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十四篇文章，介绍了 Java 的 多态。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十四篇文章，介绍了 Java 的 多态。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%A4%9A%E6%80%81">多态</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="多态">多态</h2>
+<h3 id="描述">描述：</h3>
+<p>多态是面对对象的特性之一，建立在继承的基础上。</p>
+<p>同一个事物有多种表现形态，这种情况被称为多态。</p>
+<p>多态存在必须满足以下的条件：</p>
+<ol>
+<li><strong>子类继承父类。</strong></li>
+<li><strong>子类重写父类的方法。</strong></li>
+<li><strong>父类的引用指向子类的对象。比如说 <code>Father f1=new Children();</code>。</strong></li>
+</ol>
+<p>多态有以下的实现方式：</p>
+<ol>
+<li><strong>重写。</strong></li>
+<li><strong>接口。</strong></li>
+<li><strong>抽象类和抽象方法。</strong></li>
+</ol>
+<h3 id="实例">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Animal {
+
+    public void say(){
+
+        System.out.println(&quot;Animal 在说悄悄话。&quot;);
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Cat extends Animal {
+
+    public void say(){
+
+        System.out.println(&quot;Cat 在说悄悄话。&quot;);
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        Animal animal=new Cat();
+
+        animal.say();
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">Cat 在说悄悄话。
+</code></pre>
+<h3 id="注意事项">注意事项：</h3>
+<ol>
+<li>多态性的表现形式只与方法有关，和属性无关。</li>
+<li><strong>当父类的引用指向子类的对象时，默认调用父类的方法。如果父类的方法被子类重写了，则调用子类的方法。</strong></li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java 入门指南（二十三）：this 和 super]]></title>
+        <id>https://blog.jianrry.com/post/java-this-and-super/</id>
+        <link href="https://blog.jianrry.com/post/java-this-and-super/">
+        </link>
+        <updated>2019-03-29T08:15:29.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十三篇文章，介绍了 Java 的 this 和 super。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十三篇文章，介绍了 Java 的 this 和 super。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#this-%E5%85%B3%E9%94%AE%E5%AD%97">this 关键字</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#super-%E5%85%B3%E9%94%AE%E5%AD%97">super 关键字</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项：</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="this-关键字">this 关键字</h2>
+<h3 id="描述">描述：</h3>
+<p><code>this</code> 表示本类，可以调用本类的属性和方法，没有使用限制。</p>
+<p><code>this.propertyName</code> 调用本类的属性，<code>this.methodName()</code> 调用本类的方法（<code>this()</code> 调用本类的构造方法）。</p>
+<h3 id="实例">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Cat {
+
+    String name=&quot;Cat&quot;;
+
+    public void intro(){
+
+        System.out.println(this.name+&quot; 是我的名字。&quot;);
+
+    }
+
+    public void say(){
+
+        System.out.println(this.name+&quot; 在说悄悄话。&quot;);
+
+    }
+
+    public void action(){
+
+        this.say();
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        Cat cat=new Cat();
+
+        cat.intro();
+
+        cat.action();
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">Cat 是我的名字。
+Cat 在说悄悄话。
+</code></pre>
+<h2 id="super-关键字">super 关键字</h2>
+<h3 id="描述-2">描述：</h3>
+<p><code>super</code> 表示父类，可以调用父类的非私有的属性和方法，只能在子类中使用。</p>
+<p><code>super.propertyName</code> 调用父类的非私有的属性，<code>super.methodName()</code> 父类的非私有的方法（<code>super()</code> 调用父类的构造方法）。</p>
+<h3 id="实例-2">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Animal {
+
+    String name=&quot;Animal&quot;;
+
+    public void say(){
+
+        System.out.println(this.name+&quot; 在说悄悄话。&quot;);
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Cat extends Animal {
+
+    String name=&quot;Cat&quot;;
+
+    public void intro(){
+
+        System.out.println(super.name+&quot; 是我的名字。&quot;);
+
+    }
+
+    public void action(){
+
+        super.say();
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        Cat cat=new Cat();
+
+        cat.intro();
+
+        cat.action();
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">Animal 是我的名字。
+Animal 在说悄悄话。
+</code></pre>
+<h2 id="注意事项">注意事项：</h2>
+<ol>
+<li>类在初始化时，会自动调用本类的构造方法（即 <code>this()</code>）。如果该类是某个类的子类时，就会先调用父类的构造方法（即 <code>super()</code>），然后调用本类的构造方法（即 <code>this()</code>）。</li>
+<li>因为 <code>this()</code> 或 <code>super()</code> 必须是构造方法中的第一条语句，所以同一个构造方法中只能存在一个 <code>this()</code> 或 <code>super()</code> ，不能同时调用 <code>this()</code> 和 <code>super()</code>。</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java 入门指南（二十二）：继承]]></title>
+        <id>https://blog.jianrry.com/post/java-inheritance/</id>
+        <link href="https://blog.jianrry.com/post/java-inheritance/">
+        </link>
+        <updated>2019-03-27T16:08:57.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十二篇文章，介绍了 Java 的 继承。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十二篇文章，介绍了 Java 的 继承。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%BB%A7%E6%89%BF">继承</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4">步骤：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="继承">继承</h2>
+<h3 id="描述">描述：</h3>
+<p>继承是面对对象的特性之一，是类与类之间的一种关系（<code>is-a</code>）的抽象，比如说父子关系。</p>
+<p>通过 <code>extends</code> 关键词修饰，子类（派生类）可以继承父类（基类）的属性和方法。比如说小猫可以继承母猫的外貌特征和生活习性等。</p>
+<p>继承有以下的特性：</p>
+<ol>
+<li>复用性。子类继承父类的属性和方法，减少了大量重复的代码。</li>
+<li>耦合性。子类继承父类，代码的联系越紧密，代码的独立性越差。</li>
+</ol>
+<p><strong>Java 中的继承是单继承，子类只能继承一个父类的属性和方法，比如说一个儿子只有一个父亲。</strong></p>
+<p><strong>Java 中的继承也可以是多层继承，子类继承父类的属性和方法，父类继承父类的父类的属性和方法，比如说儿子继承父亲的财产，父亲继承祖父的财产，从而实现多层继承。</strong></p>
+<p><code>Object</code> 类是所有类的超类，所有的类都直接或间接地继承 <code>Object</code> 类的属性和方法，比如说 <code>Object</code> 类相当于亚当，所有的人类都是他的后代。</p>
+<h3 id="步骤">步骤：</h3>
+<p>Step1：创建父类和子类。</p>
+<p>先创建一个父类，然后创建一个子类。</p>
+<p>Step2：子类继承父类。</p>
+<p>通过 <code>extends</code> 关键词修饰子类，从而实现子类继承父类。</p>
+<h3 id="实例">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Animal {
+
+    String name;
+
+    String age;
+
+    String sex;
+
+    public void eat(){
+
+        System.out.println(&quot;正在吃东西&quot;);
+
+    }
+
+    public void sport(){
+
+        System.out.println(&quot;正在活动&quot;);
+
+    }
+
+    public void sleep(){
+
+        System.out.println(&quot;正在睡觉&quot;);
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Cat extends Animal {
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        Cat cat=new Cat();
+
+        System.out.println(cat.name);
+
+        cat.eat();
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">null
+正在吃东西
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java 入门指南（二十一）：封装]]></title>
+        <id>https://blog.jianrry.com/post/java-encapsulation/</id>
+        <link href="https://blog.jianrry.com/post/java-encapsulation/">
+        </link>
+        <updated>2019-03-27T04:50:25.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十一篇文章，介绍了 Java 的 封装。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十一篇文章，介绍了 Java 的 封装。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%B0%81%E8%A3%85">封装</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4">步骤：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="封装">封装</h2>
+<h3 id="描述">描述：</h3>
+<p>封装是面对对象的特性之一，隐藏属性，暴露少量方法。</p>
+<p>封装需要满足以下的条件：</p>
+<ol>
+<li>隐藏属性（全局变量）。</li>
+<li>暴露少量方法（<code>Getter</code> 和 <code>Setter</code> 方法）。</li>
+</ol>
+<p>封装有以下的优点：</p>
+<ol>
+<li>隐私性。可以隐藏属性，不对外公开。</li>
+<li>安全性。只能通过 <code>Getter</code> 方法获取属性，通过 <code>Setter</code> 方法设置属性。其中，<code>Setter</code> 方法还可以拦截非法的参数。</li>
+<li>可维护性。遵循一个统一的规范，可以方便后期维护。</li>
+</ol>
+<h3 id="步骤">步骤：</h3>
+<p>Step1：将属性设为私有。</p>
+<p>通过 <code>private</code> 关键词修饰属性，将属性设为私有。</p>
+<p>Step2：生成 <code>Getter</code> 和 <code>Setter</code> 方法。</p>
+<p>如果你使用的是 IntelliJ IDEA，可以通过 <code>Alt</code> + <code>Insert</code> 快捷键生成。</p>
+<h3 id="实例">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Student {
+
+    private String name;
+
+    private char sex;
+
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public char getSex() {
+        return sex;
+    }
+
+    public void setSex(char sex) {
+        this.sex = sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void student(){
+
+        System.out.println(this.name+&quot;正在学习！&quot;);
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        Student student=new Student();
+
+        student.setName(&quot;Jianrry&quot;);
+
+        System.out.println(student.getName());
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">Jianrry
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java 入门指南（二十）：面对对象]]></title>
+        <id>https://blog.jianrry.com/post/java-oop/</id>
+        <link href="https://blog.jianrry.com/post/java-oop/">
+        </link>
+        <updated>2019-03-26T13:54:05.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十篇文章，介绍了 Java 的 面对对象。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文是《Java 入门指南》的第二十篇文章，介绍了 Java 的 面对对象。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a>
+<ul>
+<li><a href="#%E9%9D%A2%E5%AF%B9%E8%BF%87%E7%A8%8B">面对过程：</a></li>
+<li><a href="#%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1">面对对象：</a></li>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93">个人总结：</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B">面对对象编程</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%89%B9%E6%80%A7">特性：</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="基本概念">基本概念</h2>
+<h3 id="面对过程">面对过程：</h3>
+<p>面对过程是一种编程思想。</p>
+<p>面对过程将解决方案拆分为一个个步骤，然后一步步地去解决。</p>
+<p>比如说建造一个房屋，将房屋拆分为一块块砖头，然后一块块地堆砌，最后建成一个房屋。</p>
+<p>面对过程适合解决简单的、不需要多人协作的问题。</p>
+<h3 id="面对对象">面对对象：</h3>
+<p>面对对象同样是一种编程思想。</p>
+<p>面对对象将问题看成一个整体，然后得出一个解决方案，然后一步步地去解决。</p>
+<p>比如说建造一个房屋，将房屋看成一个整体。然后得出一个设计图，将房屋划分为地基、墙体、屋顶等模块，然后逐一完成各个模块，最后建成一个房屋。</p>
+<p>面对对象适合解决复杂的、需要多人协作的问题。</p>
+<h3 id="个人总结">个人总结：</h3>
+<p>面对对象是从宏观的角度去看待问题，将问题看成一个整体，从而得出解决方案。</p>
+<p>而面对过程是从微观的角度去解决问题，将解决方案拆分为一个个步骤，然后一步步地去解决。</p>
+<p>我们要学会从宏观的角度去看待问题，最后从微观的角度去解决问题。</p>
+<h2 id="面对对象编程">面对对象编程</h2>
+<h3 id="描述">描述：</h3>
+<p>面向对象编程（Object Oriented Programming），简称 OOP，是一种编程开发思想。</p>
+<p>面对对象编程的本质是：<strong>以类的方式组织代码，以对象的方式组织（封装）数据</strong>。</p>
+<h3 id="特性">特性：</h3>
+<p>有以下的特性：</p>
+<ul>
+<li>封装。</li>
+<li>继承。</li>
+<li>多态。</li>
+</ul>
+<p><strong>封装：</strong></p>
+<p>隐藏对象的属性和行为，仅提供对外访问的方式。</p>
+<p>比如说将现金存入保险柜，仅通过钥匙才能打开。</p>
+<p><strong>继承：</strong></p>
+<p>子类继承父类的属性和行为。</p>
+<p>比如说子女继承父母的财产。</p>
+<p><strong>多态：</strong></p>
+<p>同一个事物有不同的表现形态。</p>
+<p>比如说人都是同一个物种，却有不同的肤色。</p>
+<h3 id="总结">总结：</h3>
+<p>从逻辑的角度上看，先有对象，再有类。对象是具体的事物，而类是抽象的概念。比如说有一个个人（事物），根据职业的不同，可以分为不同的群体，比如说教师（类）。</p>
+<p>从代码的角度上看，先有类，再有对象。类是对象的模板。比如说打印机（类）打印出一张张白纸（对象）。</p>
+]]></content>
+    </entry>
+</feed>

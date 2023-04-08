@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（六）：Linux 用户管理 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第六篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 用户管理。
+
+
+
+
+useradd（创建用户）
+
+描述：
+用法：
+选项：
+实例：
+
+
+usermod（修改用户）
+
+描述：
+用法：
+选项：
+..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（六）：Linux 用户管理</h2>
+            <div class="post-date">2019-02-22</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第六篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 用户管理。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#useradd%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7">useradd（创建用户）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#usermod%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7">usermod（修改用户）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#userdel%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7">userdel（删除用户）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-3">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-3">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+<li><a href="#passwd%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81">passwd（设置用户密码）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-4">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-4">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-4">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-4">实例：</a></li>
+</ul>
+</li>
+<li><a href="#su%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7">su（切换用户）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-5">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-5">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-5">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-5">实例：</a></li>
+</ul>
+</li>
+<li><a href="#sudo%E4%BB%A5%E5%85%B6%E4%BB%96%E8%BA%AB%E4%BB%BD%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4">sudo（以其他身份执行命令）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-6">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-6">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-6">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-6">实例：</a></li>
+</ul>
+</li>
+<li><a href="#groupadd%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%BB%84">groupadd（创建用户组）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-7">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-7">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-7">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-7">实例：</a></li>
+</ul>
+</li>
+<li><a href="#groupmod%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E7%BB%84">groupmod（修改用户组）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-8">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-8">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-8">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-8">实例：</a></li>
+</ul>
+</li>
+<li><a href="#groupdel%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7%E7%BB%84">groupdel（删除用户组）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-9">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-9">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-9">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="useradd创建用户">useradd（创建用户）</h2>
+<h3 id="描述">描述：</h3>
+<p>&quot;user add（增加用户）&quot; 的缩写，创建用户。</p>
+<p>普通用户无法创建用户，只有 root 用户才能创建用户。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      useradd [选项] [用户名]
+</code></pre>
+<h3 id="选项">选项：</h3>
+<pre><code>      --badnames                不检查用户名
+
+  -b, --base-dir BASE_DIR       新账户的主目录的基目录
+
+      --btrfs-subvolume-home    使用 BTRFS 子卷作为家目录
+
+  -c, --comment COMMENT         新账户的 GECOS 字段
+
+  -d, --home-dir HOME_DIR       新账户的主目录
+
+  -D, --defaults                显示或更改默认的 useradd 配置
+
+  -e, --expiredate EXPIRE_DATE  新账户的过期日期
+
+  -f, --inactive INACTIVE       新账户的密码不活动期
+
+  -g, --gid GROUP               新账户主组的名称或 ID
+
+  -G, --groups GROUPS           新账户的附加组列表
+
+  -h, --help                    显示此帮助信息并退出
+
+  -k, --skel SKEL_DIR           使用此目录作为骨架目录
+
+  -K, --key KEY=VALUE           不使用 /etc/login.defs 中的默认值
+
+  -l, --no-log-init             不要将此用户添加到最近登录和登录失败数据库
+
+  -m, --create-home             创建用户的主目录
+
+  -M, --no-create-home          不创建用户的主目录
+
+  -N, --no-user-group           不创建同名的组
+
+  -o, --non-unique              允许使用重复的 UID 创建用户
+
+  -p, --password PASSWORD       加密后的新账户密码
+
+  -r, --system                  创建一个系统账户
+
+  -R, --root CHROOT_DIR         chroot 到的目录
+
+  -P, --prefix PREFIX_DIR       /etc/* 文件所在的 prefix 目录
+
+  -s, --shell SHELL             新账户的登录 shell
+
+  -u, --uid UID                 新账户的用户 ID
+
+  -U, --user-group              创建与用户同名的组
+
+  -Z, --selinux-user SEUSER     为 SELinux 用户映射使用指定 SEUSER
+
+      --extrausers              使用额外的用户数据库
+</code></pre>
+<h3 id="实例">实例：</h3>
+<p>创建用户（创建用户 rat）</p>
+<pre><code>useradd rat
+</code></pre>
+<p>创建用户（创建用户 ox，并创建家目录）</p>
+<pre><code>useradd -m ox
+</code></pre>
+<h2 id="usermod修改用户">usermod（修改用户）</h2>
+<h3 id="描述-2">描述：</h3>
+<p>&quot;user modify（修改用户）&quot; 的缩写，修改用户。</p>
+<p>普通用户无法修改用户，只有 root 用户才能修改用户。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      usermod [选项] [用户名]
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<pre><code>  -b, --badnames                不检查用户名
+
+  -c, --comment COMMENT         GECOS 字段的新值
+
+  -d, --home HOME_DIR           用户的新主目录
+
+  -e, --expiredate EXPIRE_DATE  设定帐户过期的日期为 EXPIRE_DATE
+
+  -f, --inactive INACTIVE       过期 INACTIVE 天数后，设定密码为失效状态
+
+  -g, --gid GROUP               强制使用 GROUP 为新主组
+
+  -G, --groups GROUPS           新的附加组列表 GROUPS
+
+  -a, --append GROUP            将用户追加至上边 -G 中提到的附加组中，并不从其它组中删除此用户
+
+  -h, --help                    显示此帮助信息并退出
+
+  -l, --login NEW_LOGIN         新的登录名称
+
+  -L, --lock                    锁定用户帐号
+
+  -m, --move-home               将家目录内容移至新位置 (仅于 -d 一起使用)
+
+  -o, --non-unique              允许使用重复的(非唯一的) UID
+
+  -p, --password PASSWORD       将加密过的密码 (PASSWORD) 设为新密码
+
+  -R, --root CHROOT_DIR         chroot 到的目录
+
+  -P, --prefix PREFIX_DIR       /etc/* 文件所在的 prefix 目录
+
+  -s, --shell SHELL             该用户帐号的新登录 shell
+
+  -u, --uid UID                 用户帐号的新 UID
+
+  -U, --unlock                  解锁用户帐号
+
+  -v, --add-subuids FIRST-LAST  添加子 UID 范围
+
+  -V, --del-subuids FIRST-LAST  移除子 UID 范围
+
+  -w, --add-subgids FIRST-LAST  添加子 GID 范围
+
+  -W, --del-subgids FIRST-LAST  移除子 GID 范围
+
+  -Z, --selinux-user SEUSER     用户的新的 SELinux 用户映射
+</code></pre>
+<h3 id="实例-2">实例：</h3>
+<p>修改用户名（修改用户名 rat→tiger）</p>
+<pre><code>usermod -l tiger rat
+</code></pre>
+<p>修改用户的家目录（修改用户 tiger 的家目录为 /home/tiger）</p>
+<pre><code>usermod -d /home/tiger tiger
+</code></pre>
+<p>修改用户的用户组（将当前用户加入到 用户组 vboxsf）</p>
+<pre><code>sudo usermod -aG vboxsf $(whoami)
+</code></pre>
+<h2 id="userdel删除用户">userdel（删除用户）</h2>
+<h3 id="描述-3">描述：</h3>
+<p>&quot;user delete（删除用户）&quot; 的缩写，删除用户。</p>
+<p>普通用户无法删除用户，只有 root 用户才能删除用户。</p>
+<h3 id="用法-3">用法：</h3>
+<pre><code>      userdel [选项] [用户名]
+</code></pre>
+<h3 id="选项-3">选项：</h3>
+<pre><code>  -f, --force                   即使不属于此用户，也强制删除文件
+
+  -h, --help                    显示此帮助信息并退出
+
+  -r, --remove                  删除主目录和信件池
+
+  -R, --root CHROOT_DIR         chroot 到的目录
+
+  -P, --prefix PREFIX_DIR       /etc/* 文件所在的 prefix 目录
+
+      --extrausers              使用额外的用户数据库
+
+  -Z, --selinux-user            为用户删除所有的 SELinux 用户映射
+</code></pre>
+<h3 id="实例-3">实例：</h3>
+<p>删除用户（删除用户 tiger）</p>
+<pre><code>userdel tiger
+</code></pre>
+<p>删除用户（删除用户 ox，并删除家目录）</p>
+<pre><code>userdel -r ox
+</code></pre>
+<h2 id="passwd设置用户密码">passwd（设置用户密码）</h2>
+<h3 id="描述-4">描述：</h3>
+<p>&quot;passwd（用户密码）&quot; 的缩写，设置用户密码。</p>
+<p>新用户默认无密码，只有设置了密码之后，才能正常使用。</p>
+<p>普通用户只能设置自己的密码，root 用户可以设置全部用户的密码。</p>
+<h3 id="用法-4">用法：</h3>
+<pre><code>      passwd [选项] [用户名]
+</code></pre>
+<h3 id="选项-4">选项：</h3>
+<pre><code>  -a, --all                     报告所有帐户的密码状态
+
+  -d, --delete                  删除指定帐户的密码
+
+  -e, --expire                  强制使指定帐户的密码过期
+
+  -h, --help                    显示此帮助信息并退出
+
+  -k, --keep-tokens             仅在过期后修改密码
+
+  -i, --inactive INACTIVE       密码过期后设置密码不活动为 INACTIVE
+
+  -l, --lock                    锁定指定的帐户
+
+  -n, --mindays MIN_DAYS        设置到下次修改密码所须等待的最短天数为 MIN_DAYS
+
+  -q, --quiet                   安静模式
+
+  -r, --repository REPOSITORY   在 REPOSITORY 库中改变密码
+
+  -R, --root CHROOT_DIR         chroot 到的目录
+
+  -S, --status                  报告指定帐户密码的状态
+
+  -u, --unlock                  解锁被指定帐户
+
+  -w, --warndays WARN_DAYS      设置过期警告天数为 WARN_DAYS
+
+  -x, --maxdays MAX_DAYS        设置到下次修改密码所须等待的最多天数为 MAX_DAYS
+</code></pre>
+<h3 id="实例-4">实例：</h3>
+<p>设置用户密码（设置当前用户的密码）</p>
+<pre><code>passwd
+</code></pre>
+<p>设置用户密码（设置用户 jianrry 的密码）</p>
+<pre><code>passwd jianrry
+</code></pre>
+<p>锁定用户（锁定用户 jianrry）</p>
+<pre><code>passwd -l jianrry
+</code></pre>
+<p>解锁用户（解锁用户 jianrry）</p>
+<pre><code>passwd -u jianrry
+</code></pre>
+<h2 id="su切换用户">su（切换用户）</h2>
+<h3 id="描述-5">描述：</h3>
+<p>&quot;switch user（切换用户）&quot; 的缩写，切换用户。</p>
+<h3 id="用法-5">用法：</h3>
+<pre><code>      su [选项] [用户名]
+</code></pre>
+<h3 id="选项-5">选项：</h3>
+<pre><code> -m, -p, --preserve-environment      不重置环境变量
+
+ -w, --whitelist-environment &lt;list&gt;  不重置指定的变量
+
+ -g, --group &lt;组&gt;                指定主组
+
+ -G, --supp-group &lt;group&gt;        指定一个 supplemental group
+
+ -, -l, --login                  使 shell 成为登录 shell
+
+ -c, --command &lt;命令&gt;            使用 -c 向 shell 传递一条命令
+
+ --session-command &lt;命令&gt;        使用 -c 向 shell 传递一条命令，而不创建新会话
+
+ -f, --fast                      向shell 传递 -f 选项(csh 或 tcsh)
+
+ -s, --shell &lt;shell&gt;             若 /etc/shells 允许，运行&lt;shell&gt;
+
+ -P, --pty                       创建一个新的 pseudo-terminal
+
+ -h, --help                      显示此帮助信息并退出
+
+ -V, --version                   显示此版本信息并退出
+</code></pre>
+<h3 id="实例-5">实例：</h3>
+<p>切换用户（切换到 root 用户）</p>
+<pre><code>su
+</code></pre>
+<p>切换用户（切换到用户 jianrry）</p>
+<pre><code>su jianrry
+</code></pre>
+<p>切换用户（切换到用户 jianrry，并进入用户 jianrry 的家目录）</p>
+<pre><code>su - jianrry
+</code></pre>
+<h2 id="sudo以其他身份执行命令">sudo（以其他身份执行命令）</h2>
+<h3 id="描述-6">描述：</h3>
+<p>以其他身份执行命令，默认的身份是 root。</p>
+<p>sudo 的配置文件是 /etc/sudoers 。</p>
+<h3 id="用法-6">用法：</h3>
+<pre><code>      su [选项] [命令]
+</code></pre>
+<h3 id="选项-6">选项：</h3>
+<pre><code>  -A, --askpass                 使用助手程序进行密码提示
+
+  -b, --background              在后台运行命令
+
+  -B, --bell                    提示时响铃
+
+  -C, --close-from=num          关闭所有 &gt;= num 的文件描述符
+
+  -D, --chdir=directory         执行命令前更改工作目录
+
+  -E, --preserve-env            在执行命令时保留用户环境
+
+      --preserve-env=list       保留特定的环境变量
+
+  -e, --edit                    编辑文件而非执行命令
+
+  -g, --group=group             以指定的用户组或 ID 执行命令
+
+  -H, --set-home                将 HOME 变量设为目标用户的主目录。
+
+  -h, --help                    显示帮助消息并退出
+
+  -h, --host=host               在主机上运行命令(如果插件支持)
+
+  -i, --login                   以目标用户身份运行一个登录shell；可同时指定一条命令
+
+  -K, --remove-timestamp        完全移除时间戳文件
+
+  -k, --reset-timestamp         无效的时间戳文件
+
+  -l, --list                    列出用户权限或检查某个特定命令；对于长格式，使用两次
+
+  -n, --non-interactive         非交互模式，不提示
+
+  -P, --preserve-groups         保留组向量，而非设置为目标的组向量
+
+  -p, --prompt=prompt           使用指定的密码提示
+
+  -R, --chroot=directory        执行命令前更改 root 目录
+
+  -r, --role=role               以指定的角色创建 SELinux 安全环境
+
+  -S, --stdin                   从标准输入读取密码
+
+  -s, --shell                   以目标用户运行 shell；可同时指定一条命令
+
+  -t, --type=type               以指定的类型创建 SELinux 安全环境
+
+  -T, --command-timeout=timeout 在指定的时间限制后终止命令
+
+  -U, --other-user=user         在列表模式中显示用户的权限
+
+  -u, --user=user               以指定用户或 ID 运行命令(或编辑文件)
+
+  -V, --version                 显示版本信息并退出
+
+  -v, --validate                更新用户的时间戳而不执行命令
+
+  --                            停止处理命令行参数
+</code></pre>
+<h3 id="实例-6">实例：</h3>
+<p>以其他身份执行命令（以 root 身份执行 <code>ls</code>）</p>
+<pre><code>sudo ls
+</code></pre>
+<h2 id="groupadd创建用户组">groupadd（创建用户组）</h2>
+<h3 id="描述-7">描述：</h3>
+<p>&quot;group add（增加用户组）&quot; 的缩写，创建用户组。</p>
+<p>普通用户无法创建用户组，只有 root 用户才能创建用户组。</p>
+<h3 id="用法-7">用法：</h3>
+<pre><code>      groupadd [选项] [用户组名]
+</code></pre>
+<h3 id="选项-7">选项：</h3>
+<pre><code>  -f, --force                   如果组已经存在则成功退出，并且如果 GID 已被使用则取消
+
+  -g, --gid GID                 为新组使用 GID
+
+  -h, --help                    显示此帮助信息并退出
+
+  -K, --key KEY=VALUE           不使用 /etc/login.defs 中的默认值
+
+  -o, --non-unique              允许创建有重复 GID 的组
+
+  -p, --password PASSWORD       为新组使用此加密过的密码
+
+  -r, --system                  创建一个系统账户
+
+  -R, --root CHROOT_DIR         chroot 到的目录
+
+  -P, --prefix PREFIX_DIR       prefix 目录
+
+      --extrausers              使用额外的用户数据库
+</code></pre>
+<h3 id="实例-7">实例：</h3>
+<p>创建用户组（创建用户组 rat）</p>
+<pre><code>groupadd rat
+</code></pre>
+<h2 id="groupmod修改用户组">groupmod（修改用户组）</h2>
+<h3 id="描述-8">描述：</h3>
+<p>&quot;group modify（修改用户组）&quot; 的缩写，修改用户组。</p>
+<p>普通用户无法修改用户组，只有 root 用户才能修改用户组。</p>
+<h3 id="用法-8">用法：</h3>
+<pre><code>      groupmod [选项] [用户组名]
+</code></pre>
+<h3 id="选项-8">选项：</h3>
+<pre><code>  -g, --gid GID                 将组 ID 改为 GID
+
+  -h, --help                    显示此帮助信息并退出
+
+  -n, --new-name NEW_GROUP      改名为 NEW_GROUP
+
+  -o, --non-unique              允许使用重复的 GID
+
+  -p, --password PASSWORD       将密码更改为(加密过的) PASSWORD
+
+  -R, --root CHROOT_DIR         chroot 到的目录
+
+  -P, --prefix PREFIX_DIR       /etc/* 文件所在的 prefix 目录
+</code></pre>
+<h3 id="实例-8">实例：</h3>
+<p>修改用户组名（用户组名 rat→ox）</p>
+<pre><code>groupmod -n ox rat
+</code></pre>
+<h2 id="groupdel删除用户组">groupdel（删除用户组）</h2>
+<h3 id="描述-9">描述：</h3>
+<p>&quot;group delete（删除用户组）&quot; 的缩写，删除用户组。</p>
+<p>普通用户无法删除用户组，只有 root 用户才能删除用户组。</p>
+<p>如果用户组中存在用户，只有删除全部用户后，才能删除用户组。</p>
+<h3 id="用法-9">用法：</h3>
+<pre><code>      groupdel [选项] [用户组名]
+</code></pre>
+<h3 id="选项-9">选项：</h3>
+<pre><code>  -h, --help                    显示此帮助信息并退出
+
+  -R, --root CHROOT_DIR         chroot 到的目录
+
+  -P, --prefix PREFIX_DIR        /etc/* 文件所在的 prefix 目录
+
+  -f, --force                   即便是用户的主组也继续删除
+
+      --extrausers              使用额外的用户数据库
+</code></pre>
+<h3 id="实例-9">实例：</h3>
+<p>删除用户组（删除用户组 ox）</p>
+<pre><code>groupdel ox
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-remote-login/">
+                  <h3 class="post-title">
+                    Linux 入门指南（五）：Linux 远程登陆
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

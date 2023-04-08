@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（三）：Linux 的下载 &amp; 安装 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第三篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 的下载 &amp; 安装。
+
+
+
+
+Step1：下载镜像
+Step2：制作 U 盘启动盘
+Step3：进入启动菜单
+Step4：开始安装
+
+..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（三）：Linux 的下载 &amp; 安装</h2>
+            <div class="post-date">2019-02-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第三篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 的下载 &amp; 安装。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#step1%E4%B8%8B%E8%BD%BD%E9%95%9C%E5%83%8F">Step1：下载镜像</a></li>
+<li><a href="#step2%E5%88%B6%E4%BD%9C-u-%E7%9B%98%E5%90%AF%E5%8A%A8%E7%9B%98">Step2：制作 U 盘启动盘</a></li>
+<li><a href="#step3%E8%BF%9B%E5%85%A5%E5%90%AF%E5%8A%A8%E8%8F%9C%E5%8D%95">Step3：进入启动菜单</a></li>
+<li><a href="#step4%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85">Step4：开始安装</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="step1下载镜像">Step1：下载镜像</h2>
+<p>Ubuntu 官网：<a href="https://ubuntu.com/">https://ubuntu.com/</a></p>
+<p>Ubuntu 21.10 桌面版（64位）torrent：<a href="https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso.torrent">https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso.torrent</a></p>
+<p>建议使用 qBittorrent 下载镜像。</p>
+<h2 id="step2制作-u-盘启动盘">Step2：制作 U 盘启动盘</h2>
+<p>Ventoy 下载地址：<a href="https://www.ventoy.net/cn/download.html">https://www.ventoy.net/cn/download.html</a></p>
+<p>Ventoy 使用说明：<a href="https://www.ventoy.net/cn/doc_start.html">https://www.ventoy.net/cn/doc_start.html</a></p>
+<p>推荐使用 Ventory 制作 U 盘启动盘，并将镜像移动到 U 盘。</p>
+<h2 id="step3进入启动菜单">Step3：进入启动菜单</h2>
+<p>以联想笔记本为例，开机时快速按下 F12 键，就可以进入启动菜单。</p>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/lenovo-boot-menu.jpg" alt="" loading="lazy"></figure>
+<p>选中 U 盘对应的启动项，进入 U 盘启动盘。选中对应的镜像，开始安装 Ubuntu 21.10。</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/ventoy.jpg" alt="" loading="lazy"></figure>
+<h2 id="step4开始安装">Step4：开始安装</h2>
+<p>进入 &quot;GUN GRUB&quot; 页面，选择第一项，并按下 Enter 键。</p>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/ubuntu-gnu-grub.jpg" alt="" loading="lazy"></figure>
+<p>进入 &quot;欢迎&quot; 页面，选择你的语言，比如说 &quot;中文（简体）&quot;，点击 &quot;安装 Ubuntu&quot; 按钮。</p>
+<figure data-type="image" tabindex="4"><img src="https://netdisk.jianrry.com/image/ubuntu-choose-language.jpg" alt="" loading="lazy"></figure>
+<p>进入 &quot;键盘布局&quot; 页面，选择你的键盘布局，比如说 &quot;English(US)-English(US)&quot;，并按下 Enter 键。</p>
+<figure data-type="image" tabindex="5"><img src="https://netdisk.jianrry.com/image/ubuntu-keyboard-layout.jpg" alt="" loading="lazy"></figure>
+<p>进入 &quot;更新和其他软件&quot; 页面，建议选择 &quot;最小安装&quot;，建议不勾选 &quot;安装 Ubuntu 时下载更新&quot;，并点击 &quot;继续&quot; 按钮。</p>
+<figure data-type="image" tabindex="6"><img src="https://netdisk.jianrry.com/image/ubuntu-software.jpg" alt="" loading="lazy"></figure>
+<p>进入 &quot;安装类型&quot; 页面，建议选择 &quot;清除整个硬盘并安装 Ubuntu&quot;，并点击 &quot;现在安装&quot; 按钮。</p>
+<figure data-type="image" tabindex="7"><img src="https://netdisk.jianrry.com/image/ubuntu-install-type.jpg" alt="" loading="lazy"></figure>
+<p>点击 &quot;继续&quot; 按钮。</p>
+<figure data-type="image" tabindex="8"><img src="https://netdisk.jianrry.com/image/ubuntu-install-type2.jpg" alt="" loading="lazy"></figure>
+<p>进入 &quot;您在什么地方&quot; 页面，输入你的位置，比如说 &quot;Shanghai - 上海&quot;，并点击 &quot;继续&quot; 按钮。</p>
+<figure data-type="image" tabindex="9"><img src="https://netdisk.jianrry.com/image/ubuntu-where-are-you.jpg" alt="" loading="lazy"></figure>
+<p>进入 &quot;您是谁&quot; 页面，输入你的姓名、计算机名、用户名、密码、确认密码，并点击 &quot;继续&quot; 按钮。</p>
+<figure data-type="image" tabindex="10"><img src="https://netdisk.jianrry.com/image/ubuntu-who-are-you.jpg" alt="" loading="lazy"></figure>
+<p>进入 &quot;安装&quot; 页面，等待安装完成。</p>
+<figure data-type="image" tabindex="11"><img src="https://netdisk.jianrry.com/image/ubuntu-get-started.jpg" alt="" loading="lazy"></figure>
+<p>安装完成后，点击 &quot;现在重启&quot; 按钮。</p>
+<figure data-type="image" tabindex="12"><img src="https://netdisk.jianrry.com/image/ubuntu-restart.jpg" alt="" loading="lazy"></figure>
+<p>进入 &quot;在线账号&quot; 页面，连接你的账户，可以点击 &quot;跳过(S)&quot; 按钮跳过这一步。</p>
+<figure data-type="image" tabindex="13"><img src="https://netdisk.jianrry.com/image/ubuntu-account.jpg" alt="" loading="lazy"></figure>
+<p>进入到 &quot;帮助改进 Ubuntu&quot; 页面，选择是否发送系统信息，并点击 &quot;前进(N)&quot; 按钮。</p>
+<figure data-type="image" tabindex="14"><img src="https://netdisk.jianrry.com/image/ubuntu-feedback.jpg" alt="" loading="lazy"></figure>
+<p>进入到 &quot;隐私&quot; 页面，选择是否开启位置服务，并点击 &quot;前进(N)&quot; 按钮。</p>
+<figure data-type="image" tabindex="15"><img src="https://netdisk.jianrry.com/image/ubuntu-privacy.jpg" alt="" loading="lazy"></figure>
+<p>进入到 &quot;准备就绪&quot; 页面，并点击 &quot;完成(D)&quot; 按钮。</p>
+<figure data-type="image" tabindex="16"><img src="https://netdisk.jianrry.com/image/ubuntu-installation-complete.jpg" alt="" loading="lazy"></figure>
+<p>进行到这一步，Ubuntu 12.10 已经安装成功。</p>
+<figure data-type="image" tabindex="17"><img src="https://netdisk.jianrry.com/image/ubuntu-start-page.jpg" alt="" loading="lazy"></figure>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-distribution/">
+                  <h3 class="post-title">
+                    Linux 入门指南（二）：Linux 发行版
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

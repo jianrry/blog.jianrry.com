@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Windows 查看电池使用时间报告 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文以 Windows 10 为例，介绍了如何查看电池使用时间报告，判断电池的健康状况。
+
+
+
+
+Step1：打开命令提示符
+Step2：生成电池使用时间报告
+Step3：查看电池使用时间报告
+
+
+
+
+Step1：打开命令提示符
+按下 &q..." />
+    <meta name="keywords" content="windows" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Windows 查看电池使用时间报告</h2>
+            <div class="post-date">2019-01-28</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/windows-battery-report.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文以 Windows 10 为例，介绍了如何查看电池使用时间报告，判断电池的健康状况。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#step1%E6%89%93%E5%BC%80%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6">Step1：打开命令提示符</a></li>
+<li><a href="#step2%E7%94%9F%E6%88%90%E7%94%B5%E6%B1%A0%E4%BD%BF%E7%94%A8%E6%97%B6%E9%97%B4%E6%8A%A5%E5%91%8A">Step2：生成电池使用时间报告</a></li>
+<li><a href="#step3%E6%9F%A5%E7%9C%8B%E7%94%B5%E6%B1%A0%E4%BD%BF%E7%94%A8%E6%97%B6%E9%97%B4%E6%8A%A5%E5%91%8A">Step3：查看电池使用时间报告</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="step1打开命令提示符">Step1：打开命令提示符</h2>
+<p>按下 &quot;Windows + R&quot; 键，打开 &quot;运行&quot; 。然后输入 &quot;cmd&quot; ，并按下回车键。</p>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/windows-run-cmd.jpg" alt="" loading="lazy"></figure>
+<h2 id="step2生成电池使用时间报告">Step2：生成电池使用时间报告</h2>
+<p>打开命令提示符，输入下面的代码，并按下回车键。</p>
+<pre><code>powercfg /batteryreport
+</code></pre>
+<p>将会生成一份电池使用时间报告，并保存在 <code>C:\Users\用户名\battery-report.html</code> 目录下。</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/windows-cmd-powercfg-batteryreport.jpg" alt="" loading="lazy"></figure>
+<h2 id="step3查看电池使用时间报告">Step3：查看电池使用时间报告</h2>
+<p>进入报告所在的目录下，选择用浏览器打开 <code>battery-report.html</code>，就可以查看电池使用时间报告了。</p>
+<p>如果 FULL CHARGE CAPACITY（满电容量）远小于 DESIGN CAPACITY（设计容量），则说明电池衰减可能很严重了，可能需要更换电池了。</p>
+<p>至于剩下的参数，我就不作介绍了，建议自行搜索。</p>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/windows-battery-report.jpg" alt="" loading="lazy"></figure>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/windows/" class="tag">
+                    windows
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/windows-commands/">
+                  <h3 class="post-title">
+                    Windows 命令汇总
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

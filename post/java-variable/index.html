@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（八）：变量和常量 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第八篇文章，介绍了 Java 的变量和常量。
+
+
+
+
+变量
+
+什么是变量？
+
+描述：
+定义：
+实例：
+注意事项：
+
+
+局部变量
+
+描述：
+实例：
+
+
+实例变量
+
+描述：
+实例：
+
+
+类变量（静态变量）
+
+描述：..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（八）：变量和常量</h2>
+            <div class="post-date">2019-03-15</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第八篇文章，介绍了 Java 的变量和常量。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%8F%98%E9%87%8F">变量</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%98%E9%87%8F">什么是变量？</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F">局部变量</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F">实例变量</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B1%BB%E5%8F%98%E9%87%8F%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F">类变量（静态变量）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-4">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-4">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%B8%B8%E9%87%8F">常量</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%B8%B8%E9%87%8F">什么是常量？</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-5">描述：</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89-2">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-5">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83">命名规范</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="变量">变量</h2>
+<h3 id="什么是变量">什么是变量？</h3>
+<h4 id="描述">描述：</h4>
+<p>变量是可以改变的量，类似于一元二次方程中的未知数（x，y，z），值随时都可能发生变化。</p>
+<p>变量是最基础的存储单元，其要素包含数据类型、变量名、作用域。</p>
+<p>按照作用域进行划分，变量分为 局部变量 和 全局变量。全局变量，又被称为成员变量，包含了 实例变量 和 类变量（静态变量）。</p>
+<p>在 Java 语言中，变量必须声明之后，才能使用。</p>
+<h4 id="定义">定义：</h4>
+<pre><code class="language-java">//变量类型 变量名 值 变量名 值
+type varname [ = value][, varname [= value] ...] ;
+</code></pre>
+<h4 id="实例">实例：</h4>
+<pre><code class="language-java">//格式一（格式一、二、三是等价的，但是为了代码的可读性，建议使用格式一）。
+int a=10;
+
+int b=20;
+
+int c=30;
+
+//格式二
+int a=10,b=20,c=30;
+
+//格式三
+int a,b,c;
+
+a=10;
+
+b=20;
+
+c=30;
+</code></pre>
+<h4 id="注意事项">注意事项：</h4>
+<ol>
+<li>每个变量都有对应的类型，无论是基本类型，还是引用类型。</li>
+<li>变量名必须是合法的标识符。</li>
+<li>变量声明是一条完整的语句，以分号（;）结尾。</li>
+</ol>
+<h3 id="局部变量">局部变量</h3>
+<h4 id="描述-2">描述：</h4>
+<p>局部变量声明在方法、构造方法或者语句块中。</p>
+<p>局部变量被声明后，必须经过初始化，才能使用（局部变量没有默认值）。</p>
+<p>局部变量只在声明它的方法、构造方法或者语句块中可见。</p>
+<h4 id="实例-2">实例：</h4>
+<p>实例代码：</p>
+<pre><code class="language-java">public class Test {
+
+    public static void main(String[] args) {
+        
+        String word=&quot;Hello World!&quot;; //定义了一个变量（局部变量），变量类型为 String，变量名为 word。
+        System.out.println(word); //它的作用域限制在这个方法（main 方法）中，仅在这个方法（main 方法）中可见。
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">Hello World!
+</code></pre>
+<h3 id="实例变量">实例变量</h3>
+<h4 id="描述-3">描述：</h4>
+<p>实例变量声明在类中，而不在 方法、构造方法或语句块中。</p>
+<p>实例变量不需要初始化，就可以使用（实例变量有默认值，数值型变量的默认值是0，布尔型变量的默认值是 false，引用类型变量的默认值是 false）。</p>
+<p>实例变量在类中的方法、构造方法或者语句块中可见。</p>
+<h4 id="实例-3">实例：</h4>
+<p>实例代码：</p>
+<pre><code class="language-java">public class Test {
+
+    String word;//定义了一个变量（实例变量），变量类型为 String，变量名为 word。
+
+    public static void main(String[] args) {
+
+        Test test=new Test();
+        System.out.println(test.word);//它的作用域限制在这个类中，在类中的方法、构造方法或者语句块中可见。
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">null
+</code></pre>
+<h3 id="类变量静态变量">类变量（静态变量）</h3>
+<h4 id="描述-4">描述：</h4>
+<p>类变量（静态变量）以 <code>static</code> 关键词修饰，声明在类中，而不在方法中。</p>
+<p>类变量（静态变量）的默认值和实例变量相似。</p>
+<p>类变量（静态变量）的可见性和实例变量相似。</p>
+<h4 id="实例-4">实例：</h4>
+<p>示例代码：</p>
+<pre><code class="language-java">public class Test {
+
+    static String word;//定义了一个变量（类变量，即静态变量），变量类型为 String，变量名为 word。
+
+    public static void main(String[] args) {
+
+        System.out.println(word);//类变量（静态变量）的可见性和实例变量相似。
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">null
+</code></pre>
+<h2 id="常量">常量</h2>
+<h3 id="什么是常量">什么是常量？</h3>
+<h4 id="描述-5">描述：</h4>
+<p>常量是不可以改变的量，类似于圆周率（PI），值不能发生变化。</p>
+<p>常量可以视为一种特殊的变量，一旦初始化，值就不能发生改变。</p>
+<h4 id="定义-2">定义：</h4>
+<pre><code class="language-java">//关键字 常量类型 常量名 值
+final type varname=value;
+</code></pre>
+<h4 id="实例-5">实例：</h4>
+<pre><code class="language-java">//和变量的格式相似，相比变量，多了一个 final 关键词进行修饰。
+final double PI=3.1415926;
+</code></pre>
+<h2 id="命名规范">命名规范</h2>
+<p>在 Java 语言中，变量和常量的命名遵循以下的规范：</p>
+<ol>
+<li>建议使用英文单词命名，不推荐使用汉语拼音或者中文汉字。</li>
+<li>类名首字母大写，遵循驼峰命名原则，比如说 <code>People</code>。</li>
+<li>方法名首字母小写，遵循驼峰命名原则，比如说 <code>drinkWater</code>。</li>
+<li>局部变量首字母小写，遵循驼峰命名原则。</li>
+<li>实例变量和类变量首字母小写，遵循驼峰命名原则。</li>
+<li>常量的所有字母大写，用下划线（_）分割多个单词，比如说 <code>MAX_VALUE</code>。</li>
+</ol>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-type-conversion/">
+                  <h3 class="post-title">
+                    Java 入门指南（七）：类型转换
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

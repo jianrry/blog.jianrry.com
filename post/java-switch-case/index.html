@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（十三）：switch case 语句 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第十三篇文章，介绍了 Java 的 switch case 语句。
+
+
+
+
+switch case 语句
+
+定义：
+实例：
+
+
+
+
+
+
+switch case 语句
+定义：
+switch(varname){
+ ..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（十三）：switch case 语句</h2>
+            <div class="post-date">2019-03-20</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第十三篇文章，介绍了 Java 的 switch case 语句。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#switch-case-%E8%AF%AD%E5%8F%A5">switch case 语句</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="switch-case-语句">switch case 语句</h2>
+<h3 id="定义">定义：</h3>
+<pre><code class="language-java">switch(varname){
+    case value: 
+        //语句
+        break; //可选
+    case value: 
+        //语句
+        break; //可选
+    case value: 
+        //语句
+        break; //可选
+    default: //可选                    
+}
+</code></pre>
+<p>switch 语句中的变量类型可以是 byte、short、int、char、String。</p>
+<p>switch 语句支持 String 类型的变量，同时 case 标签必须是字符串常量或字面量，这是 Java 7 的新特性。</p>
+<p>switch 语句有若干个 case 语句，每一个 case 语句后有一个值和 <code>:</code>，而 case 语句后面的 break 是可选的。</p>
+<p>switch 语句最多有1个 default 语句，一般是 switch 语句的最后一个分支，default 语句不需要 break。</p>
+<p><strong>switch 语句依次向下执行，switch 语句中的变量值会依次匹配 case 语句中的常量值，直到第一次匹配成功为止。</strong></p>
+<p><strong>第一次匹配成功后，如果 case 语句后有 break，会跳出这个循环。如果 case 语句后没有 break，会继续执行下一个 case 语句（无论是否相互匹配），直到跳出或结束这个循环为止，这种现象被称为 &quot;case 穿透&quot;。</strong></p>
+<p><strong>为了避免出现 &quot;case 穿透&quot; 现象，建议每个 case 语句后加上 break。</strong></p>
+<h3 id="实例">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+//导入 java.util.Scanner 类。
+import java.util.Scanner;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        System.out.println(&quot;请输入你的评级（A-F）：&quot;);
+
+        //创建一个 Scanner 对象，用于接收用户的输入。
+        Scanner scanner=new Scanner(System.in);
+
+        //定义一个 String 类型的变量 grade，用于接收用户输入的字符串。
+        String grade=scanner.nextLine();
+
+        switch (grade){
+
+            case &quot;A&quot;:
+                System.out.println(&quot;你的成绩优秀！&quot;);
+                break;
+
+            case &quot;B&quot;:
+                System.out.println(&quot;你的成绩良好！&quot;);
+                break;
+
+            case &quot;C&quot;:
+                System.out.println(&quot;你的成绩及格！&quot;);
+                break;
+
+            default:
+                System.out.println(&quot;你的成绩未知！&quot;);
+
+        }
+
+        //关闭 Scanner 对象，避免资源的浪费。
+        scanner.close();
+
+    }
+
+}
+</code></pre>
+<p>测试数据：</p>
+<pre><code class="language-java">//测试数据1
+A
+
+//测试数据2
+B
+
+//测试数据3
+F
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">//运行结果1
+请输入你的评级（A-F）：
+A
+你的成绩优秀！
+
+//运行结果2
+请输入你的评级（A-F）：
+B
+你的成绩良好！
+
+//运行结果3
+请输入你的评级（A-F）：
+F
+你的成绩未知！
+</code></pre>
+<p>示例代码（case 穿透）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+//导入 java.util.Scanner 类。
+import java.util.Scanner;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        System.out.println(&quot;请输入你的评级（A-F）：&quot;);
+
+        //创建一个 Scanner 对象，用于接收用户的输入。
+        Scanner scanner=new Scanner(System.in);
+
+        //定义一个 String 类型的变量 grade，用于接收用户输入的字符串。
+        String grade=scanner.nextLine();
+
+        switch (grade){
+
+            case &quot;A&quot;:
+                System.out.println(&quot;你的成绩优秀！&quot;);
+                break;
+
+            case &quot;B&quot;:
+                System.out.println(&quot;你的成绩良好！&quot;);
+
+            case &quot;C&quot;:
+                System.out.println(&quot;你的成绩及格！&quot;);
+
+            default:
+                System.out.println(&quot;你的成绩未知！&quot;);
+
+        }
+
+        //关闭 Scanner 对象，避免资源的浪费。
+        scanner.close();
+
+    }
+
+}
+</code></pre>
+<p>测试数据：</p>
+<pre><code class="language-java">//测试数据1
+A
+
+//测试数据2
+B
+
+//测试数据3
+F
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">//运行结果1
+请输入你的评级（A-F）：
+A
+你的成绩优秀！
+
+//运行结果2
+请输入你的评级（A-F）：
+B
+你的成绩良好！
+你的成绩及格！
+你的成绩未知！
+
+//运行结果3
+请输入你的评级（A-F）：
+F
+你的成绩未知！
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-if-else/">
+                  <h3 class="post-title">
+                    Java 入门指南（十二）：if else 语句
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

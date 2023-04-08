@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（十八）：方法 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第十八篇文章，介绍了 Java 的 方法。
+
+
+
+
+方法
+
+描述：
+定义：
+实例：
+
+
+构造方法
+
+描述：
+定义：
+实例：
+注意事项：
+
+
+方法的调用
+
+描述：
+实例：
+
+
+方法的重载
+
+定义：
+实例：
+注意事..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（十八）：方法</h2>
+            <div class="post-date">2019-03-24</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第十八篇文章，介绍了 Java 的 方法。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95">方法</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95">构造方法</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89-2">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8">方法的调用</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E8%BD%BD">方法的重载</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89-3">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-4">实例：</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2">注意事项：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99">方法的重写</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89-4">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-5">实例：</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-3">注意事项：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92">值传递和引用传递</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89-5">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-6">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0">可变参数</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89-6">定义：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-7">实例：</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%92%E5%BD%92">递归</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-4">描述：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-8">实例：</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-4">注意事项：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="方法">方法</h2>
+<h3 id="描述">描述：</h3>
+<p>方法的本质是功能块，用于完成某个功能的语句块。</p>
+<p>类可以视为一个整体，相当于一个人，而类中的方法就相当于人的行为。一个人拿出水杯，然后接水，最后喝掉。这一系列的动作，构成了喝水的这一个行为，相当于完成了喝水的这一个方法。</p>
+<p><strong>建议一个方法只完成一个功能，这样有利于进行扩展。</strong></p>
+<h3 id="定义">定义：</h3>
+<pre><code class="language-java">
+修饰符 返回值类型 方法名 (参数类型 参数名){
+
+    方法体
+
+    return 返回值;
+
+}
+</code></pre>
+<p>以下是方法的组成部分：</p>
+<ul>
+<li>修饰符（可选）：定义了方法的访问类型。</li>
+<li>返回值类型：定义了方法返回的参数类型。无返回值时，返回值类型是 <code>void</code>。有返回值时，返回值类型是返回的参数类型。</li>
+<li>方法名：定义了方法的名字。方法名首字母小写，遵循驼峰命名原则，比如说 <code>drinkWater</code>。</li>
+<li>参数类型（可选）：定义了传递给方法的参数的类型。当方法被调用时，可以向方法传递参数，可以通过不同的参数类型调用不同的方法。</li>
+<li>参数名（可选）：定义了传递给方法的参数的名字。参数名改变，不会对方法有影响。</li>
+<li>方法体：完成某个功能的语句块。</li>
+<li>返回值：如果返回值类型不是 <code>void</code>，则返回值不能为空，并且返回值的类型和返回值类型相同。</li>
+</ul>
+<p>其中，参数类型可分为两种：</p>
+<ul>
+<li>实参（实际参数）：调用方法时，传递给方法的数据。</li>
+<li>形参（形式参数）：调用方法时，传递给方法的参数。</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/java-method.jpg" alt="" loading="lazy"></figure>
+<h3 id="实例">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+   public static void main(String[] args) {
+
+       // 1 和 2 是实参（实际参数），实参的值发生变化，对结果会有影响。
+       int maxValue=max(1,2);
+
+       System.out.println(maxValue);
+
+   }
+
+   // num1 和 num2 是形参（形式参数），形参的名字发生变化，对结果无影响。
+   public static int max(int num1,int num2){
+
+       int result;
+
+       if(num1&gt;num2){
+
+           result=num1;
+
+       } else {
+
+           result=num2;
+
+       }
+
+       return result;
+
+   }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">2
+</code></pre>
+<h2 id="构造方法">构造方法</h2>
+<h3 id="描述-2">描述：</h3>
+<p>构造方法是一个特殊的方法，方法名和类名相同，并且没有返回值。</p>
+<p>当使用 <code>new</code> 关键字创建一个对象时，会调用一个构造方法，并给该对象赋值（初始值）。</p>
+<h3 id="定义-2">定义：</h3>
+<p>构造方法需要满足以下的条件：</p>
+<ol>
+<li>方法名和类名相同。</li>
+<li>没有返回值。</li>
+</ol>
+<h3 id="实例-2">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Person {
+
+    String name;
+
+    int age;
+
+    //无参构造方法
+    public Person() {
+
+    }
+
+    //有参构造方法
+    public Person(String name,int age) {
+
+        this.name = name;
+
+        this.age=age;
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        //调用无参构造方法。
+        Person p1=new Person();
+
+        System.out.println(&quot;p1.name=&quot;+p1.name+&quot;, p1.age=&quot;+p1.age);
+
+        //调用有参构造方法。
+        Person p2=new Person(&quot;Jianrry&quot;,21);
+
+        System.out.println(&quot;p2.name=&quot;+p2.name+&quot;, p2.age=&quot;+p2.age);
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">p1.name=null, p1.age=0
+p2.name=Jianrry, p2.age=21
+</code></pre>
+<h3 id="注意事项">注意事项：</h3>
+<ol>
+<li>无论构造方法是否存在，在编译的过程中都会自动生成一个无参构造方法。</li>
+<li>如果存在有参构造方法，则必须在类中定义一个无参构造方法。</li>
+</ol>
+<h2 id="方法的调用">方法的调用</h2>
+<h3 id="描述-3">描述：</h3>
+<p>调用方法：<code>对象名.方法名(参数类型 参数名); </code>。</p>
+<p>如果方法前有 <code>static</code> 修饰词，则可以通过 <code>方法名(参数类型 参数名); </code> 进行调用。</p>
+<p>根据方法是否有返回值，有两种调用方法。</p>
+<p>有返回值时，方法调用通常被当作一个值。</p>
+<pre><code class="language-java">   int maxValue=max(1,2);
+</code></pre>
+<p>无返回值时，方法调用通常被当作一条语句（println 方法的返回值类型是 <code>void</code>，println 方法无返回值）。</p>
+<pre><code class="language-java">   System.out.println(maxValue);
+</code></pre>
+<h3 id="实例-3">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+   public static void main(String[] args) {
+
+       // 1 和 2 是实参（实际参数），实参的值发生变化，对结果会有影响。
+       int maxValue=max(1,2);
+
+       System.out.println(maxValue);
+
+   }
+
+   // num1 和 num2 是形参（形式参数），形参的名字发生变化，对结果无影响。
+   public static int max(int num1,int num2){
+
+       int result;
+
+       if(num1&gt;num2){
+
+           result=num1;
+
+       } else {
+
+           result=num2;
+
+       }
+
+       return result;
+
+   }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">2
+</code></pre>
+<h2 id="方法的重载">方法的重载</h2>
+<h3 id="定义-3">定义：</h3>
+<p>在一个类中，存在多个方法名相同、而参数列表不同的方法，这种情况被称为方法的重载。</p>
+<p>方法的重载满足以下的条件：</p>
+<ol>
+<li><strong>方法名相同。</strong></li>
+<li><strong>参数列表不同（参数个数不同、参数类型不同、参数顺序不同）。</strong></li>
+</ol>
+<p>其中返回值类型可以相同，也可以不相同，返回值类型不是判断方法的重载的条件。如果一个类中有2个方法，方法名相同，参数列表相同，而返回值类型不同，这2个方法不构成方法的重载。</p>
+<h3 id="实例-4">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        int sum1=add(1,2);
+
+        System.out.println(&quot;sum1=&quot;+sum1);
+
+
+        int sum2=add(1,2,3);
+
+        System.out.println(&quot;sum2=&quot;+sum2);
+
+
+        double sum3=add(1,2.0);
+
+        System.out.println(&quot;sum3=&quot;+sum3);
+
+
+        double sum4=add(1.0,2);
+
+        System.out.println(&quot;sum4=&quot;+sum4);
+
+    }
+
+    public static int add(int a,int b){
+
+        return a+b;
+
+    }
+
+    //参数个数不同
+    public static int add(int a,int b,int c){
+
+        return a+b+c;
+
+    }
+
+    //参数类型不同
+    public static double add(int a,double b){
+
+        return a+b;
+
+    }
+
+    //参数顺序不同
+    public static double add(double b,int a){
+
+        return a+b;
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">sum1=3
+sum2=6
+sum3=3.0
+sum4=3.0
+</code></pre>
+<h3 id="注意事项-2">注意事项：</h3>
+<pre><code class="language-java">//方法1
+public static int add(int a,int b){...}
+
+//方法2
+public static int add(int b,int a){...}
+</code></pre>
+<p><code>a</code> 和 <code>b</code> 是形参（形式参数），参数名改变，也不会对方法有影响。</p>
+<p>虽然参数顺序不同，但是这2个方法是等价的。</p>
+<p>这2个方法可以视为同一个方法，不构成方法的重载。</p>
+<h2 id="方法的重写">方法的重写</h2>
+<h3 id="定义-4">定义：</h3>
+<p>子类重写父类的非私有的方法，这种情况被称为方法的重写。</p>
+<p>方法的重写满足以下的条件：</p>
+<ol>
+<li><strong>方法名相同。</strong></li>
+<li><strong>参数列表相同。</strong></li>
+<li><strong>子类的方法访问权限更高。</strong></li>
+<li><strong>子类的方法抛出的异常范围更小。</strong></li>
+</ol>
+<p>其中返回值类型可以相同，也可以不同，返回值类型不是判断方法的重写的条件。<strong>如果返回值类型不同，则子类的返回值类型必须是父类的返回值类型的派生类。</strong></p>
+<h3 id="实例-5">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Animal {
+
+    public void say(){
+
+        System.out.println(&quot;Animal 在说悄悄话。&quot;);
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Cat extends Animal {
+
+    public void say(){
+
+        System.out.println(&quot;Cat 在说悄悄话。&quot;);
+
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package com.jianrry.oop;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        Cat cat=new Cat();
+
+        cat.say();
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">Cat 在说悄悄话。
+</code></pre>
+<h3 id="注意事项-3">注意事项：</h3>
+<ol>
+<li>构造方法不能被重写。</li>
+<li>用 <code>static</code> 关键词修饰的方法不能被重写，但是能够被再次声明。</li>
+<li>用 <code>final</code> 关键词修饰的方法不能被重写。</li>
+</ol>
+<h2 id="值传递和引用传递">值传递和引用传递</h2>
+<h3 id="定义-5">定义：</h3>
+<p><strong>值传递：</strong></p>
+<p>在调用方法时，将实参（实际参数）复制一份，传递到方法中。</p>
+<p>即使实参的副本发生了改变，也不会对实参有任何影响。</p>
+<p>相当于将文本文档复制了一份，编辑了副本的内容，源文件的内容也不会改变。</p>
+<p><strong>引用传递：</strong></p>
+<p>在调用方法时，将实参（实际参数）的内存地址复制一份，传递到方法中。</p>
+<p>实参的内容地址的副本 和 实参的内容地址 指向同一个实参，方法中的参数发生了改变，也会对实参有影响。</p>
+<p>相当于为文本文档创建了一个快捷方式，打开快捷方式后，编辑了文件的内容，源文件的内容也会同时改变。</p>
+<p><strong>基本数据类型（byte、short、int、long、float、double、char、boolean）是值传递，而引用数据类型（数组、类、对象等）是引用传递。</strong></p>
+<p><strong>String 是一个特例，String 虽然是引用数据类型，但是它是值传递。因为 String 的值是不可变的，修改 String 的值就相当于重新创建了一个对象，所以它是值传递。</strong></p>
+<h3 id="实例-6">实例：</h3>
+<p>示例代码（int）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        int num1=10;
+
+        int num2=20;
+
+        System.out.println(&quot;num1=&quot;+num1+&quot;, num2=&quot;+num2);
+
+
+        // swap 方法中交换了 num1 和 num2 的值，main 方法中 num1 和 num2 的值并没有发生变化。
+        swap(num1,num2);
+
+        System.out.println(&quot;num1=&quot;+num1+&quot;, num2=&quot;+num2);
+
+    }
+
+    public static void swap(int a,int b){
+
+        int temp=a;
+
+        a=b;
+
+        b=temp;
+
+        System.out.println(&quot;a=&quot;+a+&quot;, b=&quot;+b);
+
+    }
+
+}
+</code></pre>
+<p>运行结果（int）：</p>
+<pre><code class="language-java">num1=10, num2=20
+a=20, b=10
+num1=10, num2=20
+</code></pre>
+<p>示例代码（数组）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        int[] arr={10,20,30};
+
+        System.out.println(&quot;arr[0]=&quot;+arr[0]);
+
+        
+        //change 方法中修改了数组下标为0的元素的值，main 方法中数组下标为0的元素的值也同时改变。
+        change(arr);
+
+        System.out.println(&quot;arr[0]=&quot;+arr[0]);
+
+    }
+
+    public static void change(int[] array){
+
+        array[0]=0;
+
+        System.out.println(&quot;array[0]=&quot;+array[0]);
+
+    }
+
+}
+</code></pre>
+<p>运行结果（数组）：</p>
+<pre><code class="language-java">arr[0]=10
+array[0]=0
+arr[0]=0
+</code></pre>
+<p>示例代码（String）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        String str=&quot;Hello&quot;;
+
+        System.out.println(&quot;str=&quot;+str);
+
+
+        //change 方法中改变了 str 的值，main 方法中 str 的值并没有发生变化。
+        change(str);
+
+        System.out.println(&quot;str=&quot;+str);
+
+    }
+
+    public static void change(String a){
+
+        a=&quot;Hello, World!&quot;;
+
+        System.out.println(&quot;a=&quot;+a);
+
+    }
+
+}
+</code></pre>
+<p>运行结果（String）：</p>
+<pre><code class="language-java">str=Hello
+a=Hello, World!
+str=Hello
+</code></pre>
+<h2 id="可变参数">可变参数</h2>
+<h3 id="定义-6">定义：</h3>
+<pre><code class="language-java">参数类型 ... 参数名;
+</code></pre>
+<p>Java 方法的参数列表可以是可变的（不定项的），这是 Java 5 的新特性。</p>
+<p>可变参数需要满足以下的条件：</p>
+<ol>
+<li>指定的参数类型后加上 <code>...</code>。</li>
+<li>必须是最后一个参数。</li>
+</ol>
+<h3 id="实例-7">实例：</h3>
+<p>示例代码：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        printMax(10,20,30);
+
+        printMax(new double[]{1,2.33,3.14});
+
+    }
+
+    public static void printMax(double ... number){
+
+        if(number.length==0){
+
+            System.out.println(&quot;无参数！&quot;);
+
+            return;
+
+        }
+
+        double result=number[0];
+
+        for(int i=1;i&lt;number.length;i++){
+
+            if(number[i]&gt;result){
+
+                result=number[i];
+
+            }
+
+        }
+
+        System.out.println(&quot;最大值为：&quot;+result);
+
+    }
+
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-java">最大值为：30.0
+最大值为：3.14
+</code></pre>
+<h2 id="递归">递归</h2>
+<h3 id="描述-4">描述：</h3>
+<p>程序不停地调用自己，直到满足一定条件后，不再调用自己，这一种行为被称为递归。</p>
+<p>递归可以将一个复杂的大型问题，拆分为一个个相似的简单的小问题，最后逐一解决。</p>
+<p>递归只需要少量的代码就可以解决问题，提供了代码的复用性，大大地减少了代码量。</p>
+<p>递归需要满足以下的条件：</p>
+<ol>
+<li>边界条件。</li>
+<li>前进阶段。</li>
+<li>返回阶级。</li>
+</ol>
+<p>当方法不满足边界条件，继续前进，直到满足边界条件为止。满足边界条件之后，不再前进，返回运算得到的数据。返回数据之后，不再调用自己，结束递归。</p>
+<h3 id="实例-8">实例：</h3>
+<p>示例数据（5的阶乘）：</p>
+<pre><code class="language-java">package com.jianrry.test;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        //1! = 1
+        //2! = 2*1 = 2*1!
+        //3! = 3*2*1 = 3*2!
+        //4! = 4*3*2*1 = 4*3!
+        //5! = 5*4*3*2*1 = 5*4!
+        //n! = n*(n-1)*...*1 = n*(n-1)!
+
+        System.out.println(f(5));
+
+    }
+
+    public static int f(int n){
+
+        //当 n = 1 时，1! = 1
+        //n = 1 是递归的边界条件。
+        //n = 1 时，不再前进。2! = 2*1! = 2，返回 2! 的值。
+        //以此类推，直到返回 5! 的值为止，最后结束这个递归。
+        if(n==1){
+
+            return 1;
+
+        } else {
+
+            // 当 n != 1 时，n! = n*(n-1)!
+            // 当 n != 1 时，继续前进，直到 n = 1 为止。
+            return n*f(n-1);
+
+        }
+
+    }
+
+}
+</code></pre>
+<p>运行结果（5的阶乘）：</p>
+<pre><code class="language-java">120
+</code></pre>
+<h3 id="注意事项-4">注意事项：</h3>
+<p>递归嵌套的层数多，会占用大量的内存，从而导致栈溢出。</p>
+<p>如果嵌套的层数不多，可以使用递归，可以方便我们理解。</p>
+<p>如果嵌套的层数过多，尽量不要使用递归，建议使用迭代。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-break-and-continue/">
+                  <h3 class="post-title">
+                    Java 入门指南（十七）：break 和 continue
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

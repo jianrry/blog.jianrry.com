@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（二）：Linux 发行版 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第二篇文章，介绍了  Linux 发行版是什么、一些流行的 Linux 发行版、如何选择合适的 Linux 发行版。
+
+
+
+
+Linux 发行版是什么？
+一些流行的 Linux 发行版
+
+Debian 系
+R..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（二）：Linux 发行版</h2>
+            <div class="post-date">2019-02-18</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第二篇文章，介绍了  Linux 发行版是什么、一些流行的 Linux 发行版、如何选择合适的 Linux 发行版。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#linux-%E5%8F%91%E8%A1%8C%E7%89%88%E6%98%AF%E4%BB%80%E4%B9%88">Linux 发行版是什么？</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E6%B5%81%E8%A1%8C%E7%9A%84-linux-%E5%8F%91%E8%A1%8C%E7%89%88">一些流行的 Linux 发行版</a>
+<ul>
+<li><a href="#debian-%E7%B3%BB">Debian 系</a></li>
+<li><a href="#red-hat-%E7%B3%BB">Red Hat 系</a></li>
+<li><a href="#arch-%E7%B3%BB">Arch 系</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84linux%E5%8F%91%E8%A1%8C%E7%89%88">选择合适的Linux发行版</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="linux-发行版是什么">Linux 发行版是什么？</h2>
+<p>Linux 发行版是指由一些组织、团体、公司或者个人制作并发行的 Linux 版本。</p>
+<p>包括了一个Linux 内核，来自GNU的工具和库，和附加的软件、文档，还有一个窗口系统，窗口管理器，和一个桌面环境等。</p>
+<p>目前有超过 300 个 Linux 发行版，其中最流行的 Linux 发行版有十几个，较为知名的有 Debian、Ubuntu、Fedora、CentOS、Arch Linux 和 openSUSE 等。</p>
+<h2 id="一些流行的-linux-发行版">一些流行的 Linux 发行版</h2>
+<p>按打包方式划分，下面列举了一些流行的 Linux 发行版。</p>
+<h3 id="debian-系">Debian 系</h3>
+<p>Debian 及其派生发行版使用 deb 软件包格式，并使用 dpkg 及其前端作为软件包管理器。</p>
+<ul>
+<li>Debian ：以稳定性闻名，很多服务器都使用 Debian 作为其操作系统，是最流行的 Linux 发行版之一。</li>
+<li>Ubuntu：基于 Debian，使用 GNOME 桌面环境，是最流行的 Linux 发行版之一。
+<ul>
+<li>Ubuntu GNOME：基于 Ubuntu，使用 GNOME 桌面环境的 Ubuntu。</li>
+<li>Kubuntu：基于 Ubuntu，使用 KDE 桌面环境的 Ubuntu。</li>
+<li>Lubuntu：基于 Ubuntu，使用 LXDE 桌面环境的 Ubuntu。</li>
+<li>Xubuntu：基于 Ubuntu，使用 Xfce 桌面环境的 Ubuntu。</li>
+<li>Linux Mint：基于Ubuntu，旨在提供开箱即用的用户体验，预装了浏览器、多媒体编解码器、Java 等软件。</li>
+<li>Ubuntu Kylin：基于 Ubuntu，由 Canonical 公司与中国工信部联合开发，添加了少量中国化定制的 Ubuntu 。</li>
+</ul>
+</li>
+<li>Deepin：基于Debian，使用自行开发的Deepin DE桌面环境，预装了大量国产软件，更符合国人的使用习惯。
+<ul>
+<li>统一操作系统（UOS）：基于Deepin，由中国电子集团、武汉深之度科技有限公司、南京诚迈科技、中兴新支点在内的多家中国公司联合开发的商业化发行版。</li>
+</ul>
+</li>
+</ul>
+<h3 id="red-hat-系">Red Hat 系</h3>
+<p>Red Hat Linux 和 openSUSE 是最早使用 RPM 格式软件包的发行版，如今 RPM 格式已广泛运用于众多的发行版。</p>
+<ul>
+<li>Red Hat Enterprise Linux：由 Red Hat 公司开发，是 Red Hat Linux 的企业版，是最流行的 Linux 发行版之一。</li>
+<li>Fedorax：由 Red Hat 公司和其社区共同开发，是 Red Hat Enterprise Linux 发行版的上游，被认为可用的技术最终会加入到 Red Hat Enterprise Linux 中。</li>
+<li>CentOS：由 CentOS 社区开发，旨在与 Red Hat Enterprise Linux 100% 兼容，但不包含 Red Hat 的商业软件。</li>
+<li>openSUSE：虽然采用了 Red Hat 系的RPM软件包，但并未从 Red Hat 继承代码或架构。</li>
+</ul>
+<h3 id="arch-系">Arch 系</h3>
+<p>Arch Linux 使用 .pkg.tar.xz 格式的软件包，并使用 Pacman 作为软件包管理器。</p>
+<ul>
+<li>ArchLinux：针对x86-64的CPU做了优化，采用滚动更新模式，适合动手能力较强的用户。</li>
+<li>Manjaro：基于 Arch Linux，使用 Xfce 、GNOME和 KDE Plasma 作为桌面环境，让强大的 Arch Linux 更方便用户使用。</li>
+<li>SteamOS：基于 Arch Linux，使用 KDE Plasma 作为桌面环境。由 Value 公司开发，是  Steam Machine 与 Steam Deck 所使用的操作系统。</li>
+</ul>
+<h2 id="选择合适的linux发行版">选择合适的Linux发行版</h2>
+<p>Zegenie Studios 提供了<a href="https://distrochooser.de/"> Linux 发行版选择器</a>，通过完成一个不超过十六题的问卷测试，你就可以选择合适的 Linux 发行版了。</p>
+<p>如果你通过上面的问卷测试，仍然没有合适的 Linux 发行版，以下的 Linux 发行版或许适合你。</p>
+<p>如果你刚接触 Linux ，我建议你选择 Debian 系的 Linux 发行版，比如说 Ubuntu 等。</p>
+<p>如果你熟练使用 Linux，你可以尝试 Arch 系的 Linux 发行版，比如说 Manjaro 等。</p>
+<p>如果日常使用国产软件，不想花费时间和精力折腾，我建议你选择 Deepin。</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://zh.wikipedia.org/wiki/Linux%E5%8F%91%E8%A1%8C%E7%89%88%E5%88%97%E8%A1%A8">Linux发行版列表 - 维基百科</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/what-is-linux/">
+                  <h3 class="post-title">
+                    Linux 入门指南（一）：Linux 是什么？
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

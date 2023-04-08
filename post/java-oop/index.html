@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Java 入门指南（二十）：面对对象 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Java 入门指南》的第二十篇文章，介绍了 Java 的 面对对象。
+
+
+
+
+基本概念
+
+面对过程：
+面对对象：
+个人总结：
+
+
+面对对象编程
+
+描述：
+特性：
+总结：
+
+
+
+
+
+
+基本概念
+面对过程：
+面对过程是一种编程思想。
+面..." />
+    <meta name="keywords" content="java" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Java 入门指南（二十）：面对对象</h2>
+            <div class="post-date">2019-03-26</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/java-se-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Java 入门指南》的第二十篇文章，介绍了 Java 的 面对对象。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a>
+<ul>
+<li><a href="#%E9%9D%A2%E5%AF%B9%E8%BF%87%E7%A8%8B">面对过程：</a></li>
+<li><a href="#%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1">面对对象：</a></li>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93">个人总结：</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B">面对对象编程</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%89%B9%E6%80%A7">特性：</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="基本概念">基本概念</h2>
+<h3 id="面对过程">面对过程：</h3>
+<p>面对过程是一种编程思想。</p>
+<p>面对过程将解决方案拆分为一个个步骤，然后一步步地去解决。</p>
+<p>比如说建造一个房屋，将房屋拆分为一块块砖头，然后一块块地堆砌，最后建成一个房屋。</p>
+<p>面对过程适合解决简单的、不需要多人协作的问题。</p>
+<h3 id="面对对象">面对对象：</h3>
+<p>面对对象同样是一种编程思想。</p>
+<p>面对对象将问题看成一个整体，然后得出一个解决方案，然后一步步地去解决。</p>
+<p>比如说建造一个房屋，将房屋看成一个整体。然后得出一个设计图，将房屋划分为地基、墙体、屋顶等模块，然后逐一完成各个模块，最后建成一个房屋。</p>
+<p>面对对象适合解决复杂的、需要多人协作的问题。</p>
+<h3 id="个人总结">个人总结：</h3>
+<p>面对对象是从宏观的角度去看待问题，将问题看成一个整体，从而得出解决方案。</p>
+<p>而面对过程是从微观的角度去解决问题，将解决方案拆分为一个个步骤，然后一步步地去解决。</p>
+<p>我们要学会从宏观的角度去看待问题，最后从微观的角度去解决问题。</p>
+<h2 id="面对对象编程">面对对象编程</h2>
+<h3 id="描述">描述：</h3>
+<p>面向对象编程（Object Oriented Programming），简称 OOP，是一种编程开发思想。</p>
+<p>面对对象编程的本质是：<strong>以类的方式组织代码，以对象的方式组织（封装）数据</strong>。</p>
+<h3 id="特性">特性：</h3>
+<p>有以下的特性：</p>
+<ul>
+<li>封装。</li>
+<li>继承。</li>
+<li>多态。</li>
+</ul>
+<p><strong>封装：</strong></p>
+<p>隐藏对象的属性和行为，仅提供对外访问的方式。</p>
+<p>比如说将现金存入保险柜，仅通过钥匙才能打开。</p>
+<p><strong>继承：</strong></p>
+<p>子类继承父类的属性和行为。</p>
+<p>比如说子女继承父母的财产。</p>
+<p><strong>多态：</strong></p>
+<p>同一个事物有不同的表现形态。</p>
+<p>比如说人都是同一个物种，却有不同的肤色。</p>
+<h3 id="总结">总结：</h3>
+<p>从逻辑的角度上看，先有对象，再有类。对象是具体的事物，而类是抽象的概念。比如说有一个个人（事物），根据职业的不同，可以分为不同的群体，比如说教师（类）。</p>
+<p>从代码的角度上看，先有类，再有对象。类是对象的模板。比如说打印机（类）打印出一张张白纸（对象）。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/java/" class="tag">
+                    java
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-array/">
+                  <h3 class="post-title">
+                    Java 入门指南（十九）：数组
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

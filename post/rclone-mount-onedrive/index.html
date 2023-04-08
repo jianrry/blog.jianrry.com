@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Rclone 挂载 OneDrive | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文介绍了 Rclone 挂载 OneDrive，挂载服务器的本地目录到 OneDrive 的远程目录。
+
+
+
+
+一、获取授权码
+
+Step1：下载并解压 Rclone
+Step2：获取授权码
+
+
+二、安装 Rclone
+
+Step1：安装..." />
+    <meta name="keywords" content="rclone,onedrive,linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Rclone 挂载 OneDrive</h2>
+            <div class="post-date">2019-02-01</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/rclone-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文介绍了 Rclone 挂载 OneDrive，挂载服务器的本地目录到 OneDrive 的远程目录。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%80-%E8%8E%B7%E5%8F%96%E6%8E%88%E6%9D%83%E7%A0%81">一、获取授权码</a>
+<ul>
+<li><a href="#step1%E4%B8%8B%E8%BD%BD%E5%B9%B6%E8%A7%A3%E5%8E%8B-rclone">Step1：下载并解压 Rclone</a></li>
+<li><a href="#step2%E8%8E%B7%E5%8F%96%E6%8E%88%E6%9D%83%E7%A0%81">Step2：获取授权码</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-%E5%AE%89%E8%A3%85-rclone">二、安装 Rclone</a>
+<ul>
+<li><a href="#step1%E5%AE%89%E8%A3%85-rclone">Step1：安装 Rclone</a></li>
+<li><a href="#step2%E9%85%8D%E7%BD%AE-rclone">Step2：配置 Rclone</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-rclone-%E6%8C%82%E8%BD%BD-onedrive">三、Rclone 挂载 OneDrive</a>
+<ul>
+<li><a href="#step1%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%9C%AC%E5%9C%B0%E7%9B%AE%E5%BD%95">Step1：新建一个本地目录</a></li>
+<li><a href="#step2rclone-%E6%8C%82%E8%BD%BD-onedrive">Step2：Rclone 挂载 OneDrive</a></li>
+<li><a href="#step3%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E6%8C%82%E8%BD%BD%E6%88%90%E5%8A%9F">Step3：检查是否挂载成功</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E8%AE%BE%E7%BD%AE-rclone-%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8">四、设置 Rclone 开机启动</a>
+<ul>
+<li><a href="#step1%E5%88%87%E6%8D%A2%E5%88%B0-root-%E7%94%A8%E6%88%B7">Step1：切换到 <code>root</code> 用户。</a></li>
+<li><a href="#step2%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA-systemctl-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Step2：新建一个 systemctl 配置文件</a></li>
+<li><a href="#step3%E8%AE%BE%E7%BD%AE-rclone-%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8">Step3：设置 Rclone 开机启动</a></li>
+<li><a href="#step4%E5%90%AF%E5%8A%A8-rclone">Step4：启动 Rclone</a></li>
+<li><a href="#step5%E6%9B%B4%E5%A4%9A%E5%91%BD%E4%BB%A4">Step5：更多命令</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="一-获取授权码">一、获取授权码</h2>
+<h3 id="step1下载并解压-rclone">Step1：下载并解压 Rclone</h3>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/rclone-download.jpg" alt="" loading="lazy"></figure>
+<p>下载地址：<a href="https://rclone.org/downloads/">https://rclone.org/downloads/</a></p>
+<h3 id="step2获取授权码">Step2：获取授权码</h3>
+<p>请按下 <code>Ctrl+R</code> 键，输入 <code>cmd</code>，然后回车，打开命令提示符。</p>
+<p>请依次输入下面的命令：</p>
+<pre><code>//进入 Rclone 的所在目录
+cd /d C:\Users\Jianrry\Downloads\rclone-v1.57.0-windows-amd64
+
+//获取 OneDrive 授权码
+rclone authorize &quot;onedrive&quot;
+</code></pre>
+<p>命令提示符中会出现以下的提示信息：</p>
+<pre><code>2022/02/05 15:19:06 NOTICE: Config file &quot;C:\\Users\\Jianrry\\AppData\\Roaming\\rclone\\rclone.conf&quot; not found - using defaults
+2022/02/05 15:19:07 NOTICE: If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth?state=KwmAtsj5QMDb3N_yCs_EYw
+2022/02/05 15:19:07 NOTICE: Log in and authorize rclone for access
+2022/02/05 15:19:07 NOTICE: Waiting for code...
+</code></pre>
+<p>请复制 <code>http://127.0.0.1:53682/auth?state=</code> 开头的链接，到浏览器中打开。</p>
+<p>如果这个过程中出现了错误，则重复上一步的操作即可。</p>
+<p>命令提示符中会出现类似的提示信息：</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/rclone-access-token.jpg" alt="" loading="lazy"></figure>
+<p><code>{}</code> 之间的全部内容就是授权码，请保存授权码，下文中会用到。</p>
+<h2 id="二-安装-rclone">二、安装 Rclone</h2>
+<h3 id="step1安装-rclone">Step1：安装 Rclone</h3>
+<p>请输入下面的命令，安装 Rclone，适用于 Linux/macOS/BSD。</p>
+<pre><code>curl https://rclone.org/install.sh | sudo bash
+</code></pre>
+<h3 id="step2配置-rclone">Step2：配置 Rclone</h3>
+<p>请输入下面的命令，配置 Rclone。</p>
+<pre><code>rclone config
+</code></pre>
+<p>① 新建一个远程连接。</p>
+<pre><code>ubuntu@Azure-HK:~$ rclone config
+2022/02/05 09:07:49 NOTICE: Config file &quot;/home/ubuntu/.config/rclone/rclone.conf&quot; not found - using defaults
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&gt; n
+</code></pre>
+<p>请输入 <code>n</code>。</p>
+<p>② 输入该连接的名字。</p>
+<pre><code>name&gt; onedrive
+</code></pre>
+<p>可以随意输入，请保存该连接名，下文中会用到。</p>
+<p>③ 选择该连接的类型。</p>
+<pre><code>Option Storage.
+Type of storage to configure.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+Choose a number from below, or type in your own value.
+ 1 / 1Fichier
+   \ &quot;fichier&quot;
+ 2 / Alias for an existing remote
+   \ &quot;alias&quot;
+ 3 / Amazon Drive
+   \ &quot;amazon cloud drive&quot;
+ 4 / Amazon S3 Compliant Storage Providers including AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, SeaweedFS, and Tencent COS
+   \ &quot;s3&quot;
+ 5 / Backblaze B2
+   \ &quot;b2&quot;
+ 6 / Better checksums for other remotes
+   \ &quot;hasher&quot;
+ 7 / Box
+   \ &quot;box&quot;
+ 8 / Cache a remote
+   \ &quot;cache&quot;
+ 9 / Citrix Sharefile
+   \ &quot;sharefile&quot;
+10 / Compress a remote
+   \ &quot;compress&quot;
+11 / Dropbox
+   \ &quot;dropbox&quot;
+12 / Encrypt/Decrypt a remote
+   \ &quot;crypt&quot;
+13 / Enterprise File Fabric
+   \ &quot;filefabric&quot;
+14 / FTP Connection
+   \ &quot;ftp&quot;
+15 / Google Cloud Storage (this is not Google Drive)
+   \ &quot;google cloud storage&quot;
+16 / Google Drive
+   \ &quot;drive&quot;
+17 / Google Photos
+   \ &quot;google photos&quot;
+18 / Hadoop distributed file system
+   \ &quot;hdfs&quot;
+19 / Hubic
+   \ &quot;hubic&quot;
+20 / In memory object storage system.
+   \ &quot;memory&quot;
+21 / Jottacloud
+   \ &quot;jottacloud&quot;
+22 / Koofr
+   \ &quot;koofr&quot;
+23 / Local Disk
+   \ &quot;local&quot;
+24 / Mail.ru Cloud
+   \ &quot;mailru&quot;
+25 / Mega
+   \ &quot;mega&quot;
+26 / Microsoft Azure Blob Storage
+   \ &quot;azureblob&quot;
+27 / Microsoft OneDrive
+   \ &quot;onedrive&quot;
+28 / OpenDrive
+   \ &quot;opendrive&quot;
+29 / OpenStack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
+   \ &quot;swift&quot;
+30 / Pcloud
+   \ &quot;pcloud&quot;
+31 / Put.io
+   \ &quot;putio&quot;
+32 / QingCloud Object Storage
+   \ &quot;qingstor&quot;
+33 / SSH/SFTP Connection
+   \ &quot;sftp&quot;
+34 / Sia Decentralized Cloud
+   \ &quot;sia&quot;
+35 / Sugarsync
+   \ &quot;sugarsync&quot;
+36 / Tardigrade Decentralized Cloud Storage
+   \ &quot;tardigrade&quot;
+37 / Transparently chunk/split large files
+   \ &quot;chunker&quot;
+38 / Union merges the contents of several upstream fs
+   \ &quot;union&quot;
+39 / Uptobox
+   \ &quot;uptobox&quot;
+40 / Webdav
+   \ &quot;webdav&quot;
+41 / Yandex Disk
+   \ &quot;yandex&quot;
+42 / Zoho
+   \ &quot;zoho&quot;
+43 / http Connection
+   \ &quot;http&quot;
+44 / premiumize.me
+   \ &quot;premiumizeme&quot;
+45 / seafile
+   \ &quot;seafile&quot;
+Storage&gt; 27
+</code></pre>
+<p><strong>请输入前面的序号，序号随时可能发生变化，请确认无误之后再输入。</strong></p>
+<p>我选择的是 OneDrive，输入的是 27。</p>
+<p>④ 输入客户端 ID。</p>
+<pre><code>Option client_id.
+OAuth Client Id.
+Leave blank normally.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_id&gt;
+</code></pre>
+<p>不需要填写，请直接按下回车键。</p>
+<p>⑤ 输入客户端密钥。</p>
+<pre><code>Option client_secret.
+OAuth Client Secret.
+Leave blank normally.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_secret&gt;
+Option region.
+</code></pre>
+<p>不需要填写，请直接按下回车键。</p>
+<p>⑥ 选择 OneDrive 区域。</p>
+<pre><code>Choose national cloud region for OneDrive.
+Enter a string value. Press Enter for the default (&quot;global&quot;).
+Choose a number from below, or type in your own value.
+ 1 / Microsoft Cloud Global
+   \ &quot;global&quot;
+ 2 / Microsoft Cloud for US Government
+   \ &quot;us&quot;
+ 3 / Microsoft Cloud Germany
+   \ &quot;de&quot;
+ 4 / Azure and Office 365 operated by 21Vianet in China
+   \ &quot;cn&quot;
+region&gt; 1
+</code></pre>
+<p>请输入前面的序号，选择 OneDrive 区域。</p>
+<p>我的 OneDrive 是国际版，输入的是 1.</p>
+<p>⑦ 编辑高级设置。</p>
+<pre><code>Edit advanced config?
+y) Yes
+n) No (default)
+y/n&gt;
+</code></pre>
+<p>不需要填写，请直接按下回车键。</p>
+<p>⑧ 自动配置。</p>
+<pre><code>Use auto config?
+ * Say Y if not sure
+ * Say N if you are working on a remote or headless machine
+
+y) Yes (default)
+n) No
+y/n&gt; n
+</code></pre>
+<p>请输入 <code>n</code>。</p>
+<p>⑨ 输入授权码。</p>
+<pre><code>Option config_token.
+For this to work, you will need rclone available on a machine that has
+a web browser available.
+For more help and alternate methods see: https://rclone.org/remote_setup/
+Execute the following on the machine with the web browser (same rclone
+version recommended):
+        rclone authorize &quot;onedrive&quot;
+Then paste the result.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+config_token&gt; ...
+</code></pre>
+<p>请输入上文中提到的授权码。</p>
+<p>⑩ 选择 OneDrive 账户的类型。</p>
+<pre><code>Option config_type.
+Type of connection
+Enter a string value. Press Enter for the default (&quot;onedrive&quot;).
+Choose a number from below, or type in an existing value.
+ 1 / OneDrive Personal or Business
+   \ &quot;onedrive&quot;
+ 2 / Root Sharepoint site
+   \ &quot;sharepoint&quot;
+   / Sharepoint site name or URL
+ 3 | E.g. mysite or https://contoso.sharepoint.com/sites/mysite
+   \ &quot;url&quot;
+ 4 / Search for a Sharepoint site
+   \ &quot;search&quot;
+ 5 / Type in driveID (advanced)
+   \ &quot;driveid&quot;
+ 6 / Type in SiteID (advanced)
+   \ &quot;siteid&quot;
+   / Sharepoint server-relative path (advanced)
+ 7 | E.g. /teams/hr
+   \ &quot;path&quot;
+config_type&gt; 1
+</code></pre>
+<p>我的 OneDrive 是个人版，输入的是 1。</p>
+<p>⑪ 确认。</p>
+<pre><code>Drive OK?
+
+Found drive &quot;root&quot; of type &quot;personal&quot;
+URL: https://onedrive.live.com/?cid=7f2fe84d72080a6b
+
+y) Yes (default)
+n) No
+y/n&gt;
+</code></pre>
+<p>不需要输入，请直接按下回车键。</p>
+<p>⑫ 再次确认。</p>
+<pre><code>--------------------
+[onedrive]
+type = onedrive
+token = ...
+drive_id = 7f2fe84d72080a6b
+drive_type = personal
+--------------------
+y) Yes this is OK (default)
+e) Edit this remote
+d) Delete this remote
+y/e/d&gt;
+</code></pre>
+<p>不需要输入，请直接按下回车键。</p>
+<p>⑬ 退出。</p>
+<pre><code>Current remotes:
+
+Name                 Type
+====                 ====
+onedrive             onedrive
+
+e) Edit existing remote
+n) New remote
+d) Delete remote
+r) Rename remote
+c) Copy remote
+s) Set configuration password
+q) Quit config
+e/n/d/r/c/s/q&gt; q
+</code></pre>
+<p>请输入 <code>q</code>。</p>
+<h2 id="三-rclone-挂载-onedrive">三、Rclone 挂载 OneDrive</h2>
+<h3 id="step1新建一个本地目录">Step1：新建一个本地目录</h3>
+<p>请输入下面的命令，新建一个本地目录。</p>
+<pre><code>mkdir -p /home/ubuntu/rclone/onedrive
+</code></pre>
+<p>请将 <code>/home/ubuntu/rclone/onedrive</code> 修改为你的本地目录。</p>
+<h3 id="step2rclone-挂载-onedrive">Step2：Rclone 挂载 OneDrive</h3>
+<p>请确保本地目录和 OneDrive 远程目录已存在，然后输入下面的命令，挂载本地目录到 OneDrive 远程目录。</p>
+<pre><code>rclone mount onedrive:rclone/onedrive /home/ubuntu/rclone/onedrive --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
+</code></pre>
+<p>请将 <code>onedrive</code> 修改为你的连接名，<code>rclone/onedrive</code> 修改为你的 OneDrive 远程目录，<code>/home/ubuntu/rclone/onedrive</code> 修改为你的本地目录。</p>
+<p>如果挂载过程中提示 <code>mount helper error: fusermount: option allow_other only allowed if 'user_allow_other' is set in /etc/fuse.conf</code>，则请在 <code>/etc/fuse.conf</code> 文件的末尾添加 <code>user_allow_other</code>，然后重新挂载即可。</p>
+<p>挂载过程中长时间无响应，这属于正常现象，实际上已经挂载成功了。</p>
+<h3 id="step3检查是否挂载成功">Step3：检查是否挂载成功</h3>
+<p>请输入下面的命令，检查是否挂载成功。</p>
+<pre><code>df -h
+</code></pre>
+<p>如果终端中出现了类似的提示信息，则说明已经挂载成功了。</p>
+<pre><code>ubuntu@Azure-HK:~$ df -h
+Filesystem                Size  Used Avail Use% Mounted on
+/dev/root                  62G  1.5G   61G   3% /
+devtmpfs                  452M     0  452M   0% /dev
+tmpfs                     456M     0  456M   0% /dev/shm
+tmpfs                      92M  1.1M   91M   2% /run
+tmpfs                     5.0M     0  5.0M   0% /run/lock
+tmpfs                     456M     0  456M   0% /sys/fs/cgroup
+/dev/loop0                 62M   62M     0 100% /snap/core20/1328
+/dev/loop2                 44M   44M     0 100% /snap/snapd/14549
+/dev/loop1                 68M   68M     0 100% /snap/lxd/21835
+/dev/sda15                105M  5.2M  100M   5% /boot/efi
+/dev/sdb1                 3.9G   16M  3.7G   1% /mnt
+tmpfs                      92M     0   92M   0% /run/user/1000
+onedrive:rclone/onedrive  1.1T  267G  763G  26% /home/ubuntu/rclone/onedrive
+</code></pre>
+<h2 id="四-设置-rclone-开机启动">四、设置 Rclone 开机启动</h2>
+<h3 id="step1切换到-root-用户">Step1：切换到 <code>root</code> 用户。</h3>
+<p>请输入下面的命令，切换到 <code>root</code> 用户。</p>
+<pre><code>sudo su
+</code></pre>
+<h3 id="step2新建一个-systemctl-配置文件">Step2：新建一个 systemctl 配置文件</h3>
+<p>请输入下面的命令，新建一个 systemctl 配置文件。</p>
+<p>以下的是一个完整的命令，请全部复制并黏贴到终端中。</p>
+<pre><code>cat &gt; /etc/systemd/system/rclone.service &lt;&lt;EOF
+
+[Unit]
+Description=rclone
+        
+[Service]
+User=ubuntu
+ExecStart=rclone mount onedrive:rclone/onedrive /home/ubuntu/rclone/onedrive --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
+Restart=on-abort
+        
+[Install]
+WantedBy=multi-user.target
+
+EOF
+</code></pre>
+<p>请将 <code>ubuntu</code> 修改为你的用户名，<code>rclone mount onedrive:rclone/onedrive /home/ubuntu/rclone/onedrive ...</code> 修改为你的命令。</p>
+<h3 id="step3设置-rclone-开机启动">Step3：设置 Rclone 开机启动</h3>
+<p>输入下面的命令，设置 Rclone 开机启动。</p>
+<pre><code>systemctl enable rclone
+</code></pre>
+<h3 id="step4启动-rclone">Step4：启动 Rclone</h3>
+<p>输入下面的命令，启动 Rclone。</p>
+<pre><code>systemctl start rclone
+</code></pre>
+<h3 id="step5更多命令">Step5：更多命令</h3>
+<pre><code>//启动 Rclone
+systemctl start rclone
+
+//停止 Rclone
+systemctl stop rclone
+
+//重启 Rclone
+systemctl restart rclone
+
+//查看 Rclone 状态
+systemctl status rclone
+
+//设置 Rclone 开机启动
+systemctl enable rclone
+
+//禁止 Rclone 开机启动
+systemctl disable rclone
+
+//重新加载配置文件
+systemctl daemon-reload
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/rclone/" class="tag">
+                    rclone
+                  </a>
+                
+                  <a href="https://blog.jianrry.com/tag/onedrive/" class="tag">
+                    onedrive
+                  </a>
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/microsoft-365-e5/">
+                  <h3 class="post-title">
+                    免费申请 Microsoft 365 E5 开发者订阅
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

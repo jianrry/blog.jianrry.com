@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>IntelliJ IDEA 设置类注释和方法注释 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文介绍了 IntelliJ IDEA 设置类注释和方法注释，为 Java 中的类和方法生成注释。
+
+
+
+
+类注释
+方法注释
+
+
+
+
+类注释
+① 打开 &quot;文件→设置&quot;
+
+② 依次打开 &quot;编辑器→文件和代码模板→..." />
+    <meta name="keywords" content="intellij idea" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">IntelliJ IDEA 设置类注释和方法注释</h2>
+            <div class="post-date">2019-12-31</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/intellij-idea-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文介绍了 IntelliJ IDEA 设置类注释和方法注释，为 Java 中的类和方法生成注释。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%B1%BB%E6%B3%A8%E9%87%8A">类注释</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E6%B3%A8%E9%87%8A">方法注释</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="类注释">类注释</h2>
+<p>① 打开 &quot;文件→设置&quot;</p>
+<figure data-type="image" tabindex="1"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation.jpg" alt="" loading="lazy"></figure>
+<p>② 依次打开 &quot;编辑器→文件和代码模板→Class&quot;</p>
+<figure data-type="image" tabindex="2"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation2.jpg" alt="" loading="lazy"></figure>
+<p>③ 如上图所示，输入下面的代码，并点击 &quot;应用（A）&quot; 按钮</p>
+<pre><code class="language-java">/**
+ * @ClassName ${NAME}
+ * @Description TODO
+ * @Author ${USER}
+ * @CreateTime ${DATE} ${TIME}
+ * @Version 1.0.0
+ */
+</code></pre>
+<p>新建一个 Java 类，会自动出现注释</p>
+<figure data-type="image" tabindex="3"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation3.jpg" alt="" loading="lazy"></figure>
+<h2 id="方法注释">方法注释</h2>
+<p>① 打开 &quot;文件→设置&quot;</p>
+<figure data-type="image" tabindex="4"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation.jpg" alt="" loading="lazy"></figure>
+<p>② 依次打开 &quot;编辑器→实时模板→模板组&quot;</p>
+<figure data-type="image" tabindex="5"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation4.jpg" alt="" loading="lazy"></figure>
+<p>③ 创建一个名为 &quot;Custom&quot; 的模板组</p>
+<figure data-type="image" tabindex="6"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation5.jpg" alt="" loading="lazy"></figure>
+<p>④ 在 &quot;Custom&quot; 模板组下，创建一个名为 &quot;*&quot; 的实时模板</p>
+<figure data-type="image" tabindex="7"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation6.jpg" alt="" loading="lazy"></figure>
+<p>⑤ 如上图所示，输入下面的代码</p>
+<pre><code class="language-java">*
+ * @Description TODO
+ * @Author $user$
+ * @CreateTime $date$ $time$
+ * @Param: $param$
+ * @Return: $return$
+ */
+</code></pre>
+<p>⑥ 点击 &quot;编辑变量（E）&quot; 按钮</p>
+<figure data-type="image" tabindex="8"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation7.jpg" alt="" loading="lazy"></figure>
+<p>⑦ 点击 &quot;定义&quot; 按钮，并勾选 &quot;Java&quot;</p>
+<figure data-type="image" tabindex="9"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation8.jpg" alt="" loading="lazy"></figure>
+<p>⑧ 将展开方式修改为 &quot;Enter&quot;，并点击 &quot;应用（A）&quot; 按钮</p>
+<figure data-type="image" tabindex="10"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation9.jpg" alt="" loading="lazy"></figure>
+<p>新建一个 Java 方法，按下 <code>/**</code> 并回车，会自动出现注释。</p>
+<figure data-type="image" tabindex="11"><img src="https://netdisk.jianrry.com/image/intellij-idea-set-annotation3.jpg" alt="" loading="lazy"></figure>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/intellij-idea/" class="tag">
+                    intellij idea
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/java-abstraction/">
+                  <h3 class="post-title">
+                    Java 入门指南（二十五）：抽象类
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

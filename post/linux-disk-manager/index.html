@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十六）：Linux 磁盘管理 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十六篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 磁盘管理。
+
+
+
+
+du（查看文件或目录的磁盘使用空间）
+
+描述：
+用法：
+选项：
+实例：
+
+
+df（查看磁盘的使用情况）
+
+描述：
+用法..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十六）：Linux 磁盘管理</h2>
+            <div class="post-date">2019-03-04</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十六篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 磁盘管理。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#du%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E7%A9%BA%E9%97%B4">du（查看文件或目录的磁盘使用空间）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#df%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E7%9A%84%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5">df（查看磁盘的使用情况）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#fdisk%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA">fdisk（磁盘分区）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-3">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-3">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+<li><a href="#mount%E6%8C%82%E8%BD%BD%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">mount（挂载文件系统）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-4">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-4">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-4">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-4">实例：</a></li>
+</ul>
+</li>
+<li><a href="#umount%E5%8D%B8%E8%BD%BD%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">umount（卸载文件系统）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-5">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-5">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-5">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-5">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="du查看文件或目录的磁盘使用空间">du（查看文件或目录的磁盘使用空间）</h2>
+<h3 id="描述">描述：</h3>
+<p>&quot;disk usage（磁盘使用情况）&quot; 的缩写，查看文件或目录的磁盘使用空间。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      du [选项] [文件名]/[目录名]
+</code></pre>
+<h3 id="选项">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-0</td>
+<td>--null</td>
+<td>每行输出使用 NUL 空字符结尾而非使用换行符</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>--all</td>
+<td>输出所有文件的磁盘用量，不仅仅是目录</td>
+</tr>
+<tr>
+<td></td>
+<td>--apparent-size</td>
+<td>显示表面用量，而并非是磁盘用量；虽然表面用量通常会小一些，但有时它会因为稀疏文件间的“洞”、内部碎片、非直接引用的块等原因显得更大一些</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>--block-size=大小</td>
+<td>以指定大小为单位对块大小进行输出；例如，'BM' 以 1,048,576 字节为单位输出大小；详情请参见下方的“SIZE 格式”部分</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>--bytes</td>
+<td>等效于 '--apparent-size --block-size=1'</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>--total</td>
+<td>显示总计信息</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>--dereference-args</td>
+<td>只在符号链接显式在命令行列出时对其进行解引用</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>--max-depth=N</td>
+<td>仅当目录（或在 --all 选项启用时包括文件）层级不高于命令行参数指定的 N 层时输出对应目录或文件的对应大小；</td>
+</tr>
+<tr>
+<td></td>
+<td>--max-depth=0</td>
+<td>等效于 --summarize</td>
+</tr>
+<tr>
+<td></td>
+<td>--files0-from=F</td>
+<td>统计由文件 F 给出的由 NUL 空字符结束的文件名列表所对应各个文件的信息；如果 F 是 -，则从标准输入读取文件名列表</td>
+</tr>
+<tr>
+<td>-H</td>
+<td></td>
+<td>等效于 --dereference-args (-D)</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--human-readable</td>
+<td>以人类可读的格式输出大小（例如，1K 234M 2G）</td>
+</tr>
+<tr>
+<td></td>
+<td>--inodes</td>
+<td>列出 inode 使用信息而非块使用信息</td>
+</tr>
+<tr>
+<td>-k</td>
+<td></td>
+<td>等效于 --block-size=1K</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>--dereference</td>
+<td>解引用所有符号链接</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--count-links</td>
+<td>如果是硬连接，则重复计算其尺寸</td>
+</tr>
+<tr>
+<td>-m</td>
+<td></td>
+<td>等效于 --block-size=1M</td>
+</tr>
+<tr>
+<td>-P</td>
+<td>--no-dereference</td>
+<td>不跟随任何符号链接（默认行为）</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>--separate-dirs</td>
+<td>不包括子目录的占用量</td>
+</tr>
+<tr>
+<td></td>
+<td>--si</td>
+<td>类似 -h，但使用 1000 的倍数，而非 1024</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--summarize</td>
+<td>只分别计算命令列中每个参数所占的总用量</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--threshold=大小</td>
+<td>如果指定大小为正值，排除比该值更小的项，或者在值为负时排除更大的项</td>
+</tr>
+<tr>
+<td></td>
+<td>--time</td>
+<td>显示目录中或其子目录下所有文件的最后修改时间</td>
+</tr>
+<tr>
+<td></td>
+<td>--time=关键字</td>
+<td>显示指定关键字对应的时间而非最后修改时间：atime, access, use, ctime 或 status</td>
+</tr>
+<tr>
+<td></td>
+<td>--time-style=格式</td>
+<td>使用指定格式显示时间，格式可以为：full-iso, long-iso, iso 或 +FORMAT；FORMAT 字符串以与 'date' 工具类似的方式解读</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>--exclude-from=文件</td>
+<td>排除所有与指定&lt;文件&gt;所提供模式匹配的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>--exclude=模式</td>
+<td>排除所有与所给&lt;模式&gt;匹配的文件</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>--one-file-system</td>
+<td>跳过位于不同文件系统上的目录</td>
+</tr>
+<tr>
+<td></td>
+<td>--help</td>
+<td>显示此帮助信息并退出</td>
+</tr>
+<tr>
+<td></td>
+<td>--version</td>
+<td>显示版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例">实例：</h3>
+<p>显示文件的磁盘使用空间（以可读性高的方式，显示文件 /home/jianrry/.profile 的磁盘使用空间）</p>
+<pre><code>du -h /home/jianrry/.profile
+</code></pre>
+<p>显示目录的磁盘使用空间（以可读性高的方式，显示目录 /home/jianrry 的磁盘使用空间）</p>
+<pre><code>du -h /home/jianrry
+</code></pre>
+<h2 id="df查看磁盘的使用情况">df（查看磁盘的使用情况）</h2>
+<h3 id="描述-2">描述：</h3>
+<p>&quot;disk free（磁盘剩余空间）&quot; 的缩写，查看磁盘的使用情况。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      df [选项] [文件名]
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>--all</td>
+<td>包含虚拟、重复和无法访问的文件系统</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>--block-size=大小</td>
+<td>使用指定字节数的块。例如，'-BM' 将以1,048,576 字节为单位显示大小。参见 SIZE 格式</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--human-readable</td>
+<td>以 1024 为基底显示大小（例如：1023M）</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>--si</td>
+<td>以 1000 为基底显示大小（例如，1.1G）</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--inodes</td>
+<td>显示inode 信息而非块使用量</td>
+</tr>
+<tr>
+<td>-k</td>
+<td></td>
+<td>即--block-size=1K</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--local</td>
+<td>只显示本机的文件系统</td>
+</tr>
+<tr>
+<td></td>
+<td>--no-sync</td>
+<td>取得使用量数据前不进行同步动作(默认)</td>
+</tr>
+<tr>
+<td></td>
+<td>--output[=域列表]</td>
+<td>使用给定域列表定义的输出格式，或者在缺省情况下输出所有域。</td>
+</tr>
+<tr>
+<td>-P</td>
+<td>--portability</td>
+<td>使用 POSIX 兼容的输出格式</td>
+</tr>
+<tr>
+<td></td>
+<td>--sync</td>
+<td>取得使用量数据前先调用同步（sync）动作</td>
+</tr>
+<tr>
+<td></td>
+<td>--total</td>
+<td>省略所有对可用空间无显著影响的项并生成总计值</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--type=类型</td>
+<td>只显示指定文件系统为指定类型的信息</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>--print-type</td>
+<td>显示文件系统类型</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>--exclude-type=类型</td>
+<td>只显示文件系统不是指定类型的信息</td>
+</tr>
+<tr>
+<td>-v</td>
+<td></td>
+<td>（忽略）</td>
+</tr>
+<tr>
+<td></td>
+<td>--help</td>
+<td>显示此帮助信息并退出</td>
+</tr>
+<tr>
+<td></td>
+<td>--version</td>
+<td>显示版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-2">实例：</h3>
+<p>显示磁盘的使用情况（以可读性高的方式，显示磁盘的使用情况）</p>
+<pre><code>df -h
+</code></pre>
+<h2 id="fdisk磁盘分区">fdisk（磁盘分区）</h2>
+<h3 id="描述-3">描述：</h3>
+<p>fdisk 是一款磁盘分区软件，可以对磁盘分区。</p>
+<h3 id="用法-3">用法：</h3>
+<pre><code>      fdisk [选项] [设备名]
+</code></pre>
+<h3 id="选项-3">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-b</td>
+<td>--sectors-size &lt;大小&gt;</td>
+<td>显示扇区计数和大小</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>--protect-boot</td>
+<td>创建新标签时不要擦除 bootbits</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>--compatibility[=&lt;模式&gt;]  模式</td>
+<td>为“dos”或“nondos”(默认)</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>--color[=<when>]</td>
+<td>颜色输出 (auto, always or never) 默认启用颜色</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--list</td>
+<td>显示分区并退出</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>--list-details</td>
+<td>类似 --list 但有更多细节</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>--noauto-pt</td>
+<td>不在空设备上创建默认分区表</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>--output &lt;列表&gt;</td>
+<td>输出列</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--type &lt;类型&gt;</td>
+<td>只识别指定的分区表类型</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>--units[=&lt;单位&gt;]</td>
+<td>显示单位，“cylinders”柱面或“sectors”扇区(默认)</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--getsz</td>
+<td>以 512-字节扇区显示设备大小[已废弃]</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>--bytes</td>
+<td>以字节为单位而非易读的格式来打印 SIZE</td>
+</tr>
+<tr>
+<td></td>
+<td>--lock[=<mode>]</td>
+<td>使用独占设备锁 (yes, no or nonblock)</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>--wipe <mode></td>
+<td>擦除签名 (auto, always or never)</td>
+</tr>
+<tr>
+<td>-W</td>
+<td>--wipe-partitions <mode></td>
+<td>从新分区擦除签名 (auto, always or never)</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>--cylinders &lt;数字&gt;</td>
+<td>指定柱面数</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>--heads &lt;数字&gt;</td>
+<td>指定磁头数</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>--sectors &lt;数字&gt;</td>
+<td>指定每条磁道的扇区数</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--help</td>
+<td>显示帮助</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>--version</td>
+<td>显示版本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-3">实例：</h3>
+<p>列出全部分区</p>
+<pre><code>root@jianrry:/home/jianrry# fdisk -l
+...
+Disk /dev/sdb：50 GiB，53687091200 字节，104857600 个扇区
+
+Disk model: VBOX HARDDISK   
+
+单元：扇区 / 1 * 512 = 512 字节
+
+扇区大小(逻辑/物理)：512 字节 / 512 字节
+
+I/O 大小(最小/最佳)：512 字节 / 512 字节
+
+磁盘标签类型：dos
+
+磁盘标识符：0x4e3ee6e6
+...
+</code></pre>
+<p>选择磁盘</p>
+<pre><code>root@jianrry:/home/jianrry# fdisk /dev/sdb
+</code></pre>
+<p>获取帮助</p>
+<pre><code>命令(输入 m 获取帮助)： m
+
+
+
+帮助：
+
+
+
+  DOS (MBR)
+
+   a   开关 可启动 标志
+
+   b   编辑嵌套的 BSD 磁盘标签
+
+   c   开关 dos 兼容性标志
+
+
+
+  常规
+
+   d   删除分区
+
+   F   列出未分区的空闲区
+
+   l   列出已知分区类型
+
+   n   添加新分区
+
+   p   打印分区表
+
+   t   更改分区类型
+
+   v   检查分区表
+
+   i   打印某个分区的相关信息
+
+
+
+  杂项
+
+   m   打印此菜单
+
+   u   更改 显示/记录 单位
+
+   x   更多功能(仅限专业人员)
+
+
+
+  脚本
+
+   I   从 sfdisk 脚本文件加载磁盘布局
+
+   O   将磁盘布局转储为 sfdisk 脚本文件
+
+
+
+  保存并退出
+
+   w   将分区表写入磁盘并退出
+
+   q   退出而不保存更改
+
+
+
+  新建空磁盘标签
+
+   g   新建一份 GPT 分区表
+
+   G   新建一份空 GPT (IRIX) 分区表
+
+   o   新建一份的空 DOS 分区表
+
+   s   新建一份空 Sun 分区表
+</code></pre>
+<p>新建分区</p>
+<pre><code>命令(输入 m 获取帮助)： n
+
+分区类型
+
+   p   主分区 (0 primary, 0 extended, 4 free)
+
+   e   扩展分区 (逻辑分区容器)
+
+选择 (默认 p)： 
+
+
+
+将使用默认回应 p。
+
+分区号 (1-4, 默认  1): 
+
+第一个扇区 (2048-104857599, 默认 2048): 
+
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-104857599, 默认 104857599):     
+
+
+
+创建了一个新分区 1，类型为“Linux”，大小为 50 GiB。
+
+分区 #1 包含一个 ext4 签名。
+
+
+
+您想移除该签名吗？ 是[Y]/否[N]： Y
+
+
+
+写入命令将移除该签名。
+</code></pre>
+<p>保存并退出</p>
+<pre><code>命令(输入 m 获取帮助)： w
+
+分区表已调整。
+
+将调用 ioctl() 来重新读分区表。
+
+正在同步磁盘。
+</code></pre>
+<p>格式化分区</p>
+<pre><code>root@jianrry:/home/jianrry# mkfs -t ext4 /dev/sdb1
+
+mke2fs 1.46.3 (27-Jul-2021)
+
+创建含有 13106944 个块（每块 4k）和 3276800 个inode的文件系统
+
+文件系统UUID：338a5ceb-4a70-4b80-bfb9-2e02482db0ac
+
+超级块的备份存储于下列块： 
+
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+
+	4096000, 7962624, 11239424
+
+
+
+正在分配组表： 完成                            
+
+正在写入inode表： 完成                            
+
+创建日志（65536 个块） 完成
+
+写入超级块和文件系统账户统计信息： 已完成 
+</code></pre>
+<h2 id="mount挂载文件系统">mount（挂载文件系统）</h2>
+<h3 id="描述-4">描述：</h3>
+<p>mount 可以挂载文件系统。</p>
+<h3 id="用法-4">用法：</h3>
+<pre><code>      mount [选项] [设备名] [挂载点]
+</code></pre>
+<h3 id="选项-4">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>--all</td>
+<td>挂载 fstab 中的所有文件系统</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>--no-canonicalize</td>
+<td>不对路径规范化</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>--fake</td>
+<td>空运行；跳过 mount(2) 系统调用</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>--fork</td>
+<td>对每个设备禁用 fork(和 -a 选项一起使用)</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>--fstab &lt;路径&gt;</td>
+<td>/etc/fstab 的替代文件</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--internal-only</td>
+<td>不调用 mount.<type> 辅助程序</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--show-labels</td>
+<td>也显示文件系统标签</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>--no-mtab</td>
+<td>不写 /etc/mtab</td>
+</tr>
+<tr>
+<td></td>
+<td>--options-mode <mode></td>
+<td>如何处理从 fstab 加载的选项</td>
+</tr>
+<tr>
+<td></td>
+<td>--options-source <source></td>
+<td>挂载选项源</td>
+</tr>
+<tr>
+<td></td>
+<td>--options-source-force</td>
+<td>强制使用 fstab/mtab 中的选项</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>--options &lt;列表&gt;</td>
+<td>挂载选项列表，以英文逗号分隔</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>--test-opts &lt;列表&gt;</td>
+<td>限制文件系统集合(和 -a 选项一起使用)</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>--read-only</td>
+<td>以只读方式挂载文件系统(同 -o ro)</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--types &lt;列表&gt;</td>
+<td>限制文件系统类型集合</td>
+</tr>
+<tr>
+<td></td>
+<td>--source &lt;源&gt;</td>
+<td>指明源(路径、标签、uuid)</td>
+</tr>
+<tr>
+<td></td>
+<td>--target &lt;目标&gt;</td>
+<td>指明挂载点</td>
+</tr>
+<tr>
+<td></td>
+<td>--target-prefix <path></td>
+<td>指定所有挂载点的路径使用</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--verbose</td>
+<td>打印当前进行的操作</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>--rw, --read-write</td>
+<td>以读写方式挂载文件系统(默认)</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>--namespace <ns></td>
+<td>在另一个命名空间中执行挂载</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--help</td>
+<td>显示此帮助</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>--version</td>
+<td>显示版本</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>--label <label></td>
+<td>LABEL=<label> 的同义词</td>
+</tr>
+<tr>
+<td>-U</td>
+<td>--uuid <uuid></td>
+<td>UUID=<uuid> 的同义词</td>
+</tr>
+<tr>
+<td></td>
+<td>LABEL=<label></td>
+<td>通过文件系统标签指定设备</td>
+</tr>
+<tr>
+<td></td>
+<td>UUID=<uuid></td>
+<td>通过文件系统 UUID 指定设备</td>
+</tr>
+<tr>
+<td></td>
+<td>PARTLABEL=<label></td>
+<td>通过分区标签指定设备</td>
+</tr>
+<tr>
+<td></td>
+<td>PARTUUID=<uuid></td>
+<td>通过分区 UUID 指定设备</td>
+</tr>
+<tr>
+<td></td>
+<td>ID=<id></td>
+<td>通过 udev 硬件 ID 指定设备</td>
+</tr>
+<tr>
+<td></td>
+<td>&lt;设备&gt;</td>
+<td>按路径指定设备</td>
+</tr>
+<tr>
+<td></td>
+<td>&lt;目录&gt;</td>
+<td>绑定式挂载的挂载点(参阅 --bind/rbind)</td>
+</tr>
+<tr>
+<td></td>
+<td>&lt;文件&gt;</td>
+<td>用于设置回环设备的常规文件</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>--bind</td>
+<td>挂载其他位置的子树(同 -o bind)</td>
+</tr>
+<tr>
+<td>-M</td>
+<td>--move</td>
+<td>将子树移动到其他位置</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>--rbind</td>
+<td>挂载其他位置的子树及其包含的所有子挂载(submount)</td>
+</tr>
+<tr>
+<td></td>
+<td>--make-shared</td>
+<td>将子树标记为 共享</td>
+</tr>
+<tr>
+<td></td>
+<td>--make-slave</td>
+<td>将子树标记为 从属</td>
+</tr>
+<tr>
+<td></td>
+<td>--make-private</td>
+<td>将子树标记为 私有</td>
+</tr>
+<tr>
+<td></td>
+<td>--make-unbindable</td>
+<td>将子树标记为 不可绑定</td>
+</tr>
+<tr>
+<td></td>
+<td>--make-rshared</td>
+<td>递归地将整个子树标记为 共享</td>
+</tr>
+<tr>
+<td></td>
+<td>--make-rslave</td>
+<td>递归地将整个子树标记为 从属</td>
+</tr>
+<tr>
+<td></td>
+<td>--make-rprivate</td>
+<td>递归地将整个子树标记为 私有</td>
+</tr>
+<tr>
+<td></td>
+<td>--make-runbindable</td>
+<td>递归地将整个子树标记为 不可绑定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-4">实例：</h3>
+<p>挂载文件系统（以只读的方式，挂载文件系统）</p>
+<pre><code>mount -r /dev/sdb1 /home/jianrry
+</code></pre>
+<p>挂载文件系统（以读写的方式，挂载文件系统）</p>
+<pre><code>mount -w /dev/sdb1 /home/jianrry
+</code></pre>
+<h2 id="umount卸载文件系统">umount（卸载文件系统）</h2>
+<h3 id="描述-5">描述：</h3>
+<p>umount 可以卸载文件系统。</p>
+<h3 id="用法-5">用法：</h3>
+<pre><code>      umount [选项] [设备名]/[挂载点]
+</code></pre>
+<h3 id="选项-5">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>--all</td>
+<td>卸载所有文件系统</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>--all-targets</td>
+<td>卸载当前名字空间内指定设备对应的所有挂臷点</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>--no-canonicalize</td>
+<td>不对路径规范化</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>--detach-loop</td>
+<td>若挂臷了回环设备，也释放该回环设备</td>
+</tr>
+<tr>
+<td></td>
+<td>--fake</td>
+<td>空运行；跳过 umount(2) 系统调用</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>--force</td>
+<td>强制卸载(遇到不响应的 NFS 系统时)</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--internal-only</td>
+<td>不调用 umount.&lt;类型&gt; 辅助程序</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>--no-mtab</td>
+<td>不写 /etc/mtab</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--lazy</td>
+<td>立即断开文件系统，清理以后执行</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>--test-opts &lt;列表&gt;</td>
+<td>限制文件系统集合(和 -a 选项一起使用)</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>--recursive</td>
+<td>递归卸载目录及其子对象</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>--read-only</td>
+<td>若卸载失败，尝试以只读方式重新挂臷</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--types &lt;列表&gt;</td>
+<td>限制文件系统集合</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>--verbose</td>
+<td>打印当前进行的操作</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>--quiet</td>
+<td>不打印 'not mounted' 错误消息</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>--namespace <ns></td>
+<td>在另一个命名空间中执行 umount</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--help</td>
+<td>显示此帮助</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>--version</td>
+<td>显示版本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-5">实例：</h3>
+<p>卸载文件系统（通过设备名 /dev/sdb1，卸载文件系统）</p>
+<pre><code>umount /dev/sdb1
+</code></pre>
+<p>卸载文件系统（通过挂载点 /home/jianrry，卸载文件系统）</p>
+<pre><code>umount /home/jianrry
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-file-compress/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十五）：Linux 文件压缩
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

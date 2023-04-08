@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十二）：Linux 文件管理 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十二篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 文件管理。
+
+
+
+
+ls（列出目录内容）
+
+描述：
+用法：
+选项：
+实例：
+
+
+cd（改变工作目录）
+
+描述：
+用法：
+选项：
+实例：
+
+..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十二）：Linux 文件管理</h2>
+            <div class="post-date">2019-02-28</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十二篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 文件管理。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#ls%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95%E5%86%85%E5%AE%B9">ls（列出目录内容）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#cd%E6%94%B9%E5%8F%98%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95">cd（改变工作目录）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+<li><a href="#pwd%E6%98%BE%E7%A4%BA%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95">pwd（显示工作目录）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-3">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-3">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-3">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-3">实例：</a></li>
+</ul>
+</li>
+<li><a href="#mkdir%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95">mkdir（创建目录）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-4">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-4">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-4">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-4">实例：</a></li>
+</ul>
+</li>
+<li><a href="#rmdir%E5%88%A0%E9%99%A4%E7%A9%BA%E7%9B%AE%E5%BD%95">rmdir（删除空目录）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-5">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-5">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-5">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-5">实例：</a></li>
+</ul>
+</li>
+<li><a href="#cp%E5%A4%8D%E5%88%B6-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95">cp（复制 文件/目录）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-6">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-6">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-6">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-6">实例：</a></li>
+</ul>
+</li>
+<li><a href="#mv%E7%A7%BB%E5%8A%A8%E9%87%8D%E5%91%BD%E5%90%8D-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95">mv（移动/重命名 文件/目录）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-7">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-7">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-7">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-7">实例：</a></li>
+</ul>
+</li>
+<li><a href="#rm%E5%88%A0%E9%99%A4-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95">rm（删除 文件/目录）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-8">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-8">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-8">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-8">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="ls列出目录内容">ls（列出目录内容）</h2>
+<h3 id="描述">描述：</h3>
+<p>&quot;list（列举）&quot; 的缩写，列出目录内容。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      ls [选项] [文件名]/[目录名]
+</code></pre>
+<h3 id="选项">选项：</h3>
+<pre><code>  -a, --all                                          不隐藏任何以 . 开始的项目
+
+  -A, --almost-all                                   列出除 . 及 .. 以外的任何项目
+
+      --author                                       与 -l 同时使用时，列出每个文件的作者
+
+  -b, --escape                                       以 C 风格的转义序列表示不可打印的字符
+
+      --block-size=大小                              与 -l 同时使用时，将文件大小以此处给定的大小为单位进行缩放；例如：“--block-size=M”；请参考下文的大小格式说明
+
+  -B, --ignore-backups                               不列出任何以 ~ 字符结束的项目
+
+  -c                                                 与 -lt 共同使用时：根据 ctime 排序并显示 ctime（文件状态最后更改的时间）；与 -l 共同使用时：显示 ctime 并按照名称排序；其它情况：按照 ctime 排序，最新的最前
+
+  -C                                                 每栏由上至下列出项目
+
+      --color[=WHEN]                                 控制是否使用带颜色的输出；WHEN 可以是“always”（默认缺省值）、“auto”或“never”；更多信息请见下文
+
+  -d, --directory                                    当遇到目录时列出目录本身而非目录内的文件
+
+  -D, --dired                                        产生适合 Emacs 的 dired 模式使用的结果
+
+  -f                                                 不进行排序，-aU 选项生效，禁用 -ls --color
+
+  -F, --classify                                     加上文件类型的指示符号（*/=@| 其中一个）
+
+      --file-type                                    类似，但不后缀‘*’字符
+
+      --format=关键字                                 交错 -x，逗号分隔 -m，水平 -x，长 -l，
+单栏 -1，详细 -l，垂直 -C
+
+      --full-time                                    类似 -l --time-style=full-iso
+
+  -g                                                 类似 -l，但不列出所有者
+
+      --group-directories-first                      在文件前分组目录；此选项可与--sort 一起使用，但是一旦使用 --sort=none (-U) 将禁用分组
+
+  -G, --no-group                                     以一个长列表的形式，不输出组名
+
+  -h, --human-readable                               与 -l 和 -s 一起，以易于阅读的格式输出文件大小（例如 1K 234M 2G等）
+
+      --si                                           同上面类似，但是使用 1000 为基底而非 1024
+
+  -H, --dereference-command-line                     跟随命令行列出的符号链接
+
+      --dereference-command-line-symlink-to-dir      跟随命令行列出的指向目录的符号链接
+
+      --hide=PATTERN                                 隐藏符合 shell PATTERN 模式的项目（-a 或 -A 将覆盖此选项）
+
+      --hyperlink[=WHEN]                             文件名使用超链接；WHEN 可以是“always”（缺省时的默认选项）、“auto”或“never”
+
+      --indicator-style=方式                         指定在每个项目名称后加上指示符号方式：none（默认）、slash（-p）、 file-type（--file-type）以及 classify（-F）
+
+  -i, --inode                                        显示每个文件的索引编号（inode 号）
+
+  -I, --ignore=模式                                  不显示任何匹配指定 shell &lt;模式&gt;的项目
+
+  -k, --kibibytes                                    默认使用 1024 字节的块显示磁盘使用量； 只用于 -s 和每个目录的总计
+
+  -l				                                 使用较长格式列出信息
+
+  -L, --dereference		                             当显示符号链接的文件信息时，显示符号链接所指示的对象而并非符号链接本身的信息
+
+  -m				                                 所有项目以逗号分隔，并填满整行行宽
+
+  -n, --numeric-uid-gid                              类似 -l，但列出用户和组的 ID 号
+
+  -N, --literal                                      输出未经引号括起的项目名称
+
+  -o                                                 类似 -l，但不列出有关组的信息
+
+  -p, --indicator-style=slash                        对目录附加“/”作为指示符号
+
+  -q, --hide-control-chars                           以“?”字符代替无法打印的字符
+
+      --show-control-chars                           原样显示无法打印的字符（这是默认行为，除非被调用本程序的名称是“ls”而且是在终端中进行输出）
+
+  -Q, --quote-name                                   将条目名称括上双引号
+
+      --quoting-style=方式                           使用指定引用的方式显示条目的名称：literal, locale, shell, shell-always,shell-escape, shell-escape-always, c, escape（该选项优先于 QUOTING_STYLE 环境变量的配置）
+
+  -r, --reverse			                             逆序排列
+
+  -R, --recursive		                             递归显示子目录
+
+  -s, --size			                             以块数形式显示每个文件分配的尺寸
+
+  -S                                                 按文件大小排序，最大的在前
+
+      --sort=WORD                                    按 WORD 而不是名称排序: none (-U), size (-S),time (-t), version (-v), extension (-X)
+
+      --time=WORD                                    更改使用修改时间的默认值; access time (-u): atime, access, use;change time (-c): ctime, status;birth time: birth, creation; with -l, WORD determines which time to show; with --sort=time, sort by WORD (newest first)
+
+      --time-style=TIME_STYLE                        使用 -l 时显示的时间/日期格式；请见下面 TIME_STYLE 的相关内容
+
+  -t                                                 按时间排序，最新的最前；参见 --time
+
+  -T, --tabsize=COLS                                 指定制表符（Tab）的宽度，而非默认8字符
+
+  -u                                                 同 -lt 一起使用：按照访问时间排序并显示；同 -l 一起使用：显示访问时间并按文件名排序; 其它：按照访问时间排序，最新的最靠前
+
+  -U                                                 不进行排序；按照目录顺序列出项目
+
+  -v                                                 在文本中进行数字（版本）的自然排序
+
+  -w, --width=COLS                                   设置输出宽度为 COLS 对应的值。0 代表无限制
+
+  -x                                                 逐行列出项目而不是逐栏列出
+
+  -X                                                 根据扩展名按字母顺序排序
+
+  -Z, --context                                      输出每个文件的所有安全上下文信息
+
+  -1                                                 每行只列出一个文件。与 -q 或 -b 共用时避免 '\n'
+
+      --help		                                 显示此帮助信息并退出
+
+      --version		                                 显示版本信息并退出
+</code></pre>
+<h3 id="实例">实例：</h3>
+<p>列出目录内容（以列表的形式列出当前目录的内容）</p>
+<pre><code>ls -l
+</code></pre>
+<p>列出目录内容（以列表的形式列出当前目录的内容，并显示隐藏的文件/目录）</p>
+<pre><code>ls -al
+</code></pre>
+<p>列出目录内容（以列表的形式列出 <code>/tmp</code> 的内容，并显示隐藏的文件/目录）</p>
+<pre><code>ls -al /tmp
+</code></pre>
+<h2 id="cd改变工作目录">cd（改变工作目录）</h2>
+<h3 id="描述-2">描述：</h3>
+<p>&quot;change directory（改变目录）&quot; 的缩写，改变工作目录。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      cd [选项] [目录名]
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<pre><code>        -L	强制跟随符号链接: 在处理 `..' 之后解析 DIR 中的符号链接。
+
+        -P	使用物理目录结构而不跟随符号链接: 在处理 `..' 之前解析 DIR 中的符号链接。
+
+        -e	如果使用了 -P 参数，但不能成功确定当前工作目录时，返回非零的返回值。
+
+        -@	在支持拓展属性的系统上，将一个有这些属性的文件当作有文件属性的目录。
+</code></pre>
+<h3 id="实例-2">实例：</h3>
+<p>改变工作目录（进入上一级目录）</p>
+<pre><code>cd ..
+</code></pre>
+<p>改变工作目录（进入根目录）</p>
+<pre><code>cd /
+</code></pre>
+<p>改变工作目录（进入家目录）</p>
+<pre><code>cd ~
+</code></pre>
+<h2 id="pwd显示工作目录">pwd（显示工作目录）</h2>
+<h3 id="描述-3">描述：</h3>
+<p>&quot; print working directory（打印工作目录）&quot; 的缩写，显示工作目录。</p>
+<h3 id="用法-3">用法：</h3>
+<pre><code>      pwd [选项] [目录名]
+</code></pre>
+<h3 id="选项-3">选项：</h3>
+<pre><code>      -L	打印 $PWD 变量的值，如果它包含了当前的工作目录
+
+      -P	打印当前的物理路径，不带有任何的符号链接
+</code></pre>
+<h3 id="实例-3">实例：</h3>
+<p>显示工作目录（显示当前的工作目录的绝对路径）</p>
+<pre><code>pwd
+</code></pre>
+<h2 id="mkdir创建目录">mkdir（创建目录）</h2>
+<h3 id="描述-4">描述：</h3>
+<p>&quot; make directory（创建目录）&quot; 的缩写，创建目录。</p>
+<h3 id="用法-4">用法：</h3>
+<pre><code>      mkdir [选项] [目录名]
+</code></pre>
+<h3 id="选项-4">选项：</h3>
+<pre><code>  -m, --mode=模式         设置权限模式（类似chmod），而不是 a=rwx 减 umask
+
+  -p, --parents           需要时创建目标目录的上层目录，但即使这些目录已存在，也不当作错误处理
+
+  -v, --verbose           每次创建新目录都显示信息
+
+  -Z                      设置每个创建的目录的 SELinux 安全上下文为默认类型
+
+      --context[=CTX]     类似 -Z，或如果指定了 CTX，则将 SELinux 或 SMACK 安全 上下文设置为 CTX 对应的值
+
+      --help		      显示此帮助信息并退出
+
+      --version		      显示版本信息并退出
+</code></pre>
+<h3 id="实例-4">实例：</h3>
+<p>创建目录（创建目录 rat）</p>
+<pre><code>mkdir rat
+</code></pre>
+<p>创建目录（递归创建目录 ox/tiger。如果上级目录 ox 不存在，则会自动创建。）</p>
+<pre><code>mkdir -p ox/tiger
+</code></pre>
+<h2 id="rmdir删除空目录">rmdir（删除空目录）</h2>
+<h3 id="描述-5">描述：</h3>
+<p>&quot; remove directory（移除目录）&quot; 的缩写，删除空目录。</p>
+<h3 id="用法-5">用法：</h3>
+<pre><code>      rmdir [选项] [目录名]
+</code></pre>
+<h3 id="选项-5">选项：</h3>
+<pre><code>      --ignore-fail-on-non-empty           忽略仅由目录非空产生的所有错误
+
+  -p, --parents                            删除指定目录及其各个上级文件夹，例如“rmdir -p a/b/c'”，与“rmdir a/b/c a/b a'”类似
+
+  -v, --verbose                            输出每个被处理目录的详情和诊断信息
+
+      --help		                       显示此帮助信息并退出
+
+      --version		                       显示版本信息并退出
+</code></pre>
+<h3 id="实例-5">实例：</h3>
+<p>删除目录（删除目录 rat）</p>
+<pre><code>rmdir rat
+</code></pre>
+<p>删除目录（递归删除目录 ox/tiger。如果上级目录 ox 是空目录，则一并删除。）</p>
+<pre><code>rmdir -p ox/tiger
+</code></pre>
+<h2 id="cp复制-文件目录">cp（复制 文件/目录）</h2>
+<h3 id="描述-6">描述：</h3>
+<p>&quot; copy（复制）&quot; 的缩写，复制 文件/目录。</p>
+<h3 id="用法-6">用法：</h3>
+<pre><code>      cp [选项] [文件名]/[目录名] [文件名]/[目录名] 
+</code></pre>
+<h3 id="选项-6">选项：</h3>
+<pre><code>  -a, --archive			                              等于-dR --preserve=all
+
+      --attributes-only	                              仅复制属性而不复制数据      
+      
+      --backup[=CONTROL		                          为每个已存在的目标文件创建备份
+
+  -b				                                  类似--backup 但不接受参数
+
+      --copy-contents		                          在递归处理是复制特殊文件内容
+
+  -d				                                  等于--no-dereference --preserve=links
+
+  -f, --force                                         如果有已存在的目标文件且无法打开，则将其删除并重试（该选项在与 -n 选项同时使用时将被忽略）
+
+  -i, --interactive                                   覆盖前询问（使前面的 -n 选项失效）
+
+  -H                                                  跟随源文件中的命令行符号链接
+
+  -l, --link                                          硬链接文件以代替复制
+
+  -L, --dereference                                   总是跟随源文件中的符号链接
+
+  -n, --no-clobber		                              不要覆盖已存在的文件(使前面的 -i 选项失效)
+
+  -P, --no-dereference		                          不跟随源文件中的符号链接
+
+  -p				                                  等于--preserve=模式,所有权,时间戳
+
+      --preserve[=属性列表	                          保持指定的属性(默认：模式,所有权,时间戳)，如果可能保持附加属性：上下文、链接、xattr 等
+
+      --sno-preserve=属性列表	                      不保留指定的文件属性
+
+      --parents			                              复制前在目标目录创建来源文件路径中的所有目录
+
+  -R, -r, --recursive		                          递归复制目录及其子目录内的所有内容
+
+      --reflink[=WHEN]		                          控制克隆/CoW 副本。请查看下面的内如。
+
+      --remove-destination	                          尝试打开目标文件前先删除已存在的目的地文件 (相对于 --force 选项)
+
+      --sparse=WHEN		                              控制创建稀疏文件的方式
+
+      --strip-trailing-slashes	                      删除参数中所有源文件/目录末端的斜杠
+
+  -s, --symbolic-link		                          只创建符号链接而不复制文件
+
+  -S, --suffix=后缀		                              自行指定备份文件的后缀
+
+  -t,  --target-directory=目录	                      将所有参数指定的源文件/目录复制至目标目录
+
+  -T, --no-target-directory	                          将目标目录视作普通文件
+
+  -u, --update			                              只在源文件比目标文件新，或目标文件不存在时才进行复制
+
+  -v, --verbose		                                  显示详细的进行步骤
+
+  -x, --one-file-system	                              不跨越文件系统进行操作
+
+  -Z                                                  设置目标文件的 SELinux 安全上下文为默认类型
+
+      --context[=上下文]                               类似 -Z；如果指定了上下文，则将 SELinux 或 SMACK 安全上下文设置为指定值
+
+      --help		                                  显示此帮助信息并退出
+
+      --version		                                  显示版本信息并退出
+</code></pre>
+<h3 id="实例-6">实例：</h3>
+<p>复制文件（复制文件 rat 到目录 rabbit）</p>
+<pre><code>cp rat rabbit
+</code></pre>
+<p>复制目录（递归复制目录 ox 到目录 rabbit）</p>
+<pre><code>cp -r ox rabbit
+</code></pre>
+<p>复制文件和目录（递归复制文件 rat 和 目录 ox 到目录 dragon）</p>
+<pre><code>cp -r rat ox dragon
+</code></pre>
+<h2 id="mv移动重命名-文件目录">mv（移动/重命名 文件/目录）</h2>
+<h3 id="描述-7">描述：</h3>
+<p>&quot; move（移动）&quot; 的缩写，移动/重命名 文件/目录。</p>
+<h3 id="用法-7">用法：</h3>
+<pre><code>      mv [选项] [文件名]/[目录名] [文件名]/[目录名] 
+</code></pre>
+<h3 id="选项-7">选项：</h3>
+<pre><code>      --backup[=CONTROL]       为每个已存在的目标文件创建备份
+
+  -b                           类似--backup 但不接受参数
+
+  -f, --force                  覆盖前不询问
+
+  -i, --interactive            覆盖前询问
+
+  -n, --no-clobber             不覆盖已存在文件。如果您指定了-i、-f、-n 中的多个，仅最后一个生效。
+
+      --strip-trailing-slashes 去掉每个源文件参数尾部的斜线
+
+  -S, --suffix=SUFFIX		   替换常用的备份文件后缀
+
+  -t, --target-directory=目录  将所有&lt;源文件&gt;移动至指定的&lt;目录&gt;中
+
+  -T, --no-target-directory    将参数中所有&lt;目标文件&gt;部分视为普通文件
+
+  -u, --update                 仅在&lt;源文件&gt;比目标文件更新，或者目标文件不存在时进行移动操作
+
+  -v, --verbose                对正在发生的操作给出解释
+
+  -Z, --context                将目标文件的 SELinux 安全上下文设置为默认类型
+
+      --help		           显示此帮助信息并退出
+
+      --version		           显示版本信息并退出
+</code></pre>
+<h3 id="实例-7">实例：</h3>
+<p>移动文件（移动文件 rat 到目录 snake）</p>
+<pre><code>mv rat snake
+</code></pre>
+<p>移动目录（移动目录 ox 到目录 snake）</p>
+<pre><code>mv ox/ snake
+</code></pre>
+<p>移动文件和目录（移动文件 snake/rat 和 目录 snake/ox 到目录 horse）</p>
+<pre><code>mv snake/rat snake/ox/ horse
+</code></pre>
+<p>重命名目录（重命名目录 horse→sheep）</p>
+<pre><code>mv horse sheep
+</code></pre>
+<h2 id="rm删除-文件目录">rm（删除 文件/目录）</h2>
+<h3 id="描述-8">描述：</h3>
+<p>&quot; remove（移除）&quot; 的缩写，删除 文件/目录。</p>
+<h3 id="用法-8">用法：</h3>
+<pre><code>      rm [选项] [文件名]/[目录名]
+</code></pre>
+<h3 id="选项-8">选项：</h3>
+<pre><code>  -f, --force                        强制删除。忽略不存在的文件，不提示确认
+
+  -i                                 每次删除前提示确认
+
+  -I                                 在删除超过三个文件或者递归删除前提示一次并要求确认；此选项比 -i 提示内容更少，但同样可以阻止大多数错误发生
+
+      --interactive[=场景]           根据指定的&lt;场景&gt;进行确认提示：never（从不）、 once（一次，等效于使用 -I）或者 always（总是，等效于使用 -i）。如果使用此参数没有指定&lt;场景&gt;则总是提示
+
+      --one-file-system		         递归删除一个层级时，跳过所有不符合命令行参数的文件系统上的文件
+
+      --no-preserve-root             不要对“/”特殊处理
+
+      --preserve-root[=all]          不要删除“/”（默认行为）；如添加了“all”参数，将拒绝处理与父目录位于不同设备上的命令行参数
+
+  -r, -R, --recursive                递归删除目录及其内容
+
+  -d, --dir                          删除空目录
+
+  -v, --verbose                      详细显示进行的步骤
+
+      --help		                 显示此帮助信息并退出
+
+      --version		                 显示版本信息并退出
+</code></pre>
+<h3 id="实例-8">实例：</h3>
+<p>删除文件（删除文件 rabbit/rat）</p>
+<pre><code>rm rabbit/rat
+</code></pre>
+<p>删除目录（递归删除目录 rabbit/ox）</p>
+<pre><code>rm -r rabbit/ox
+</code></pre>
+<p>删除文件和目录（递归删除文件 sheep/rat 和目录 sheep/ox）</p>
+<pre><code>rm -rf sheep/rat sheep/ox
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-process-manage/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十一）：Linux 进程管理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

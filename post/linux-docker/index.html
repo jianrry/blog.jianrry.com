@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十八）：Linux 安装 Docker | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十八篇文章，以 Ubuntu 20.04 为例，介绍了 Linux 安装 Docker。
+
+
+
+
+操作系统要求
+卸载旧版本
+下载 &amp; 安装
+
+海外地区
+中国大陆地区
+
+
+配置 Docker 镜像站
+..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十八）：Linux 安装 Docker</h2>
+            <div class="post-date">2019-03-06</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十八篇文章，以 Ubuntu 20.04 为例，介绍了 Linux 安装 Docker。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82">操作系统要求</a></li>
+<li><a href="#%E5%8D%B8%E8%BD%BD%E6%97%A7%E7%89%88%E6%9C%AC">卸载旧版本</a></li>
+<li><a href="#%E4%B8%8B%E8%BD%BD-%E5%AE%89%E8%A3%85">下载 &amp; 安装</a>
+<ul>
+<li><a href="#%E6%B5%B7%E5%A4%96%E5%9C%B0%E5%8C%BA">海外地区</a></li>
+<li><a href="#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%9C%B0%E5%8C%BA">中国大陆地区</a></li>
+</ul>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE-docker-%E9%95%9C%E5%83%8F%E7%AB%99">配置 Docker 镜像站</a></li>
+<li><a href="#%E5%8D%B8%E8%BD%BD">卸载</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="操作系统要求">操作系统要求</h2>
+<p>Docker 支持以下的 Ubuntu 64位 版本：</p>
+<ul>
+<li>Ubuntu Hirsute 21.04</li>
+<li>Ubuntu Focal 20.04 (LTS)</li>
+<li>Ubuntu Bionic 18.04 (LTS)</li>
+</ul>
+<p>Docker 支持 x86_64 (或 amd64 )，armhf，arm64，以及 s390x 架构。</p>
+<h2 id="卸载旧版本">卸载旧版本</h2>
+<p>卸载旧版本</p>
+<pre><code>sudo apt-get remove docker docker-engine docker.io containerd runc
+</code></pre>
+<h2 id="下载-安装">下载 &amp; 安装</h2>
+<h3 id="海外地区">海外地区</h3>
+<p>你可以使用官方的脚本，从官方镜像源下载并安装 Docker ，推荐海外地区用户使用。</p>
+<pre><code>curl -fsSL https://get.docker.com -o get-docker.sh &amp;&amp; sudo sh get-docker.sh
+</code></pre>
+<h3 id="中国大陆地区">中国大陆地区</h3>
+<p>你也可以使用 DaoCloud 的脚本，从 DaoCloud 镜像源下载并安装 Docker ，推荐中国大陆地区用户使用。</p>
+<pre><code>sudo curl -sSL https://get.daocloud.io/docker | sh
+</code></pre>
+<h2 id="配置-docker-镜像站">配置 Docker 镜像站</h2>
+<p>可以提升国内网络访问 Docker Hub 的速度，推荐中国大陆地区用户使用。</p>
+<pre><code>curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://f1361db2.m.daocloud.io
+</code></pre>
+<p>该脚本可以将 --registry-mirror 加入到你的 Docker 配置文件 /etc/docker/daemon.json 中。适用于 Ubuntu14.04、Debian、CentOS6 、CentOS7、Fedora、Arch Linux、openSUSE Leap 42.1，其他版本可能有细微不同。更多详情请访问文档。</p>
+<h2 id="卸载">卸载</h2>
+<p>卸载 Docker</p>
+<pre><code>sudo apt-get purge docker-ce docker-ce-cli containerd.io
+</code></pre>
+<p>删除容器、镜像、存储卷</p>
+<pre><code> sudo rm -rf /var/lib/docker
+ sudo rm -rf /var/lib/containerd
+</code></pre>
+<h2 id="常用命令">常用命令</h2>
+<table>
+<thead>
+<tr>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>docker version</td>
+<td>查看 docker 版本</td>
+</tr>
+<tr>
+<td>docker images</td>
+<td>列出全部镜像</td>
+</tr>
+<tr>
+<td>docker search 镜像名</td>
+<td>搜索指定镜像</td>
+</tr>
+<tr>
+<td>docker pull 镜像名</td>
+<td>下载指定镜像</td>
+</tr>
+<tr>
+<td>docker rmi 镜像名</td>
+<td>删除指定镜像</td>
+</tr>
+<tr>
+<td>docker rmi -f $(docker images -qa)</td>
+<td>删除全部镜像</td>
+</tr>
+<tr>
+<td>docker run --name 容器名 -d 镜像名</td>
+<td>创建并启动容器（在后台运行）</td>
+</tr>
+<tr>
+<td>docker ps</td>
+<td>列出（正在运行的）容器</td>
+</tr>
+<tr>
+<td>docker ps -a</td>
+<td>列出全部容器</td>
+</tr>
+<tr>
+<td>docker logs 容器名</td>
+<td>查看指定容器的日志</td>
+</tr>
+<tr>
+<td>docker start 容器名</td>
+<td>启动指定容器</td>
+</tr>
+<tr>
+<td>docker restart 容器名</td>
+<td>重新启动指定容器</td>
+</tr>
+<tr>
+<td>docker stop 容器名</td>
+<td>停止指定容器</td>
+</tr>
+<tr>
+<td>docker rm 容器名</td>
+<td>删除指定容器</td>
+</tr>
+<tr>
+<td>docker rm -f $(docker ps -qa)</td>
+<td>删除全部容器</td>
+</tr>
+<tr>
+<td>docker cp 容器名:容器文件地址 宿主机文件地址</td>
+<td>从容器拷贝文件到宿主机</td>
+</tr>
+<tr>
+<td>docker exec -it 容器ID或容器名 /bin/bash</td>
+<td>进入容器内部</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>退出容器</td>
+</tr>
+<tr>
+<td>docker login -u 用户名 -p 密码</td>
+<td>登录到 一个镜像仓库，默认为 <code>hub.docker.com</code></td>
+</tr>
+<tr>
+<td>docker build -t 用户名/镜像名:标签名 .</td>
+<td>使用当前目录的 <code>Dockerfile</code> 创建一个镜像，标签名为 用户名/镜像名:标签名</td>
+</tr>
+<tr>
+<td>docker tag 用户名/镜像名:标签名 目标用户名/镜像名:标签名</td>
+<td>修改镜像的标签名</td>
+</tr>
+<tr>
+<td>docker push 用户名/镜像名:标签名</td>
+<td>上传镜像到镜像仓库，默认为 <code>hub.docker.com</code></td>
+</tr>
+<tr>
+<td>docker login ghcr.io -u 用户名 -p 密码</td>
+<td>登录到 <code>ghcr.io</code> 镜像仓库</td>
+</tr>
+<tr>
+<td>docker tag 用户名/镜像名:标签名 ghcr.io/用户名/镜像名:标签名</td>
+<td>修改镜像的标签名</td>
+</tr>
+<tr>
+<td>docker push ghcr.io/用户名/镜像名:标签名</td>
+<td>上传镜像到 <code>ghcr.io</code> 镜像仓库</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-crontab/">
+                  <h3 class="post-title">
+                    Linux 入门指南（十七）：Linux 计划任务
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

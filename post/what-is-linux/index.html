@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（一）：Linux 是什么？ | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第一篇文章，介绍了  Linux 是什么，能做什么，有何优势？
+
+
+
+
+Linux 是什么？
+Linux 能做什么？
+
+服务器
+嵌入式设备
+智能移动设备
+桌面系统
+
+
+Linux 有什么优势？
+
+免费
+开源
+..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（一）：Linux 是什么？</h2>
+            <div class="post-date">2019-02-17</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第一篇文章，介绍了  Linux 是什么，能做什么，有何优势？</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#linux-%E6%98%AF%E4%BB%80%E4%B9%88">Linux 是什么？</a></li>
+<li><a href="#linux-%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88">Linux 能做什么？</a>
+<ul>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8">服务器</a></li>
+<li><a href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%AE%BE%E5%A4%87">嵌入式设备</a></li>
+<li><a href="#%E6%99%BA%E8%83%BD%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87">智能移动设备</a></li>
+<li><a href="#%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F">桌面系统</a></li>
+</ul>
+</li>
+<li><a href="#linux-%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF">Linux 有什么优势？</a>
+<ul>
+<li><a href="#%E5%85%8D%E8%B4%B9">免费</a></li>
+<li><a href="#%E5%BC%80%E6%BA%90">开源</a></li>
+<li><a href="#%E7%A4%BE%E5%8C%BA">社区</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="linux-是什么">Linux 是什么？</h2>
+<p>Linux 是一种自由和开放源码的类 Unix 操作系统。</p>
+<p>它开放源代码，任何人都可以自由地使用源代码，甚至修改和再发布，前提是遵循 GPL 。</p>
+<p>它是在 Minix（一个迷你版本的类 Unix 操作系统） 的启发下创作的，它是类 Unix 操作系统，但它不是 Unix 操作系统。</p>
+<p>它是一个操作系统，类似于 Windows，能够完成 Windows 的大部分工作。</p>
+<h2 id="linux-能做什么">Linux 能做什么？</h2>
+<p>它能够完成 Windows 的大部分工作，它能够做到的事情很多，下面只列举 Linux 的一部分应用场景。</p>
+<h3 id="服务器">服务器</h3>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E4%BB%BD%E9%A2%9D#%E4%BC%BA%E6%9C%8D%E5%99%A8%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1">Linux 在服务器操作系统的占有率达到了 60% 以上</a>，超过了 Windows。</p>
+<p>甚至 <a href="https://www.zdnet.com/article/linux-now-dominates-azure/">Linux 成为了微软 Azure 上最流行的操作系统，超过一半的 Azure VM 是 Linux</a>。</p>
+<p>我们平时浏览网页，其中有很多网页的后台采用了 LNMP 架构，服务器运行在 Linux 上。</p>
+<h3 id="嵌入式设备">嵌入式设备</h3>
+<p>Linux的低成本、强大的定制功能以及良好的移植性能，使得Linux在嵌入式系统方面也得到广泛应用。</p>
+<p>我们平时使用路由器拨号上网，其中有很多路由器是基于 OpenWrt（专为嵌入式设备定制的Linux系统）制作的，比如说小米路由器。</p>
+<h3 id="智能移动设备">智能移动设备</h3>
+<p>在智能手机、平板电脑等移动设备方面，Linux也得到重要发展，基于 Linux 内核的 Android 操作系统已经成为了全球最流行的智能手机操作系统。</p>
+<p>甚至出现了由 Linux 操作系统驱动的智能手机，比如说 PinePhone。</p>
+<h3 id="桌面系统">桌面系统</h3>
+<p>有很多软件都有 Linux 版本，比如说 Google Chrome。</p>
+<p>还有很多软件没有 Linux 版本，但是我们可以在 Linux 上找到大部分软件的替代品。</p>
+<p>还有一部分软件只能在 Windows 上运行，但是我们可以通过 Wine 正常运行和工作。</p>
+<p>甚至 Value 推出了 Proton（Wine 的一个分支），可以在 Linux 上允许 Windows 游戏，比如说 GTA5。</p>
+<h2 id="linux-有什么优势">Linux 有什么优势？</h2>
+<h3 id="免费">免费</h3>
+<p>绝大多数 Linux 发行版是免费的，任何人都可以免费从官网下载、安装和使用它们。</p>
+<p>但 Linux 并不意味着免费，少数 Linux 发行版是付费的，比如说 RHEL 。还有一部分 Linux 发行版提供付费的技术支持，比如说 Ubuntu。</p>
+<h3 id="开源">开源</h3>
+<p>所有的 Linux 发行版都必须遵循 GPL ，向所有人开放源代码。</p>
+<p>任何人都可以自由地使用源代码，甚至修改和再发布。</p>
+<p>如果存在什么安全漏洞，都能够在第一时间内发现，并进行修复。</p>
+<h3 id="社区">社区</h3>
+<p>大多数 Linux 发行版都有官方的 Wiki 和 论坛，比如说 <a href="https://wiki.ubuntu.com/">Ubuntu Wiki</a> 和 <a href="https://ubuntuforums.org/">Ubuntu 论坛</a>。</p>
+<p>如果你遇到什么问题，可以在 Wiki 上 查找解决方案。或者在论坛上向其他用户提问，问题一般都能得到解决。</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://zh.wikipedia.org/wiki/Linux">Linux - 维基百科</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/humble-bundle-refund-guide/">
+                  <h3 class="post-title">
+                    Humble Bundle 慈善包退款指南
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

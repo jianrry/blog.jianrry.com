@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Linux 入门指南（十）：Linux 后台命令 | Jianrry</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://blog.jianrry.com/favicon.ico?v=1680927635703">
+<link rel="stylesheet" href="https://blog.jianrry.com/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGRZ1YXWQQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZGRZ1YXWQQ');
+</script>
+
+
+    <meta name="description" content="本文是《Linux 入门指南》的第十篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 后台命令。
+
+
+
+
+nohup（在后台不挂断地运行命令）
+
+描述：
+用法：
+选项：
+实例：
+
+
+screen（会话管理）
+
+描述：
+用法：
+..." />
+    <meta name="keywords" content="linux" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://blog.jianrry.com">
+        <img src="https://blog.jianrry.com/images/avatar.png?v=1680927635703" class="site-logo">
+        <h1 class="site-title">Jianrry</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav" target="_blank">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav" target="_blank">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav" target="_blank">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav" target="_blank">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="site-nav" target="_blank">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/jianrry" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://blog.jianrry.com/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Linux 入门指南（十）：Linux 后台命令</h2>
+            <div class="post-date">2019-02-26</div>
+            
+              <div class="feature-container" style="background-image: url('https://netdisk.jianrry.com/image/linux-cover-picture.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本文是《Linux 入门指南》的第十篇文章，以 Ubuntu 21.10 为例，介绍了 Linux 后台命令。</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#nohup%E5%9C%A8%E5%90%8E%E5%8F%B0%E4%B8%8D%E6%8C%82%E6%96%AD%E5%9C%B0%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4">nohup（在后台不挂断地运行命令）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例：</a></li>
+</ul>
+</li>
+<li><a href="#screen%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86">screen（会话管理）</a>
+<ul>
+<li><a href="#%E6%8F%8F%E8%BF%B0-2">描述：</a></li>
+<li><a href="#%E7%94%A8%E6%B3%95-2">用法：</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9-2">选项：</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B-2">实例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="nohup在后台不挂断地运行命令">nohup（在后台不挂断地运行命令）</h2>
+<h3 id="描述">描述：</h3>
+<p>&quot;no hang up（不挂断）&quot; 的缩写，在后台不挂断地运行命令。</p>
+<p>在关闭终端/退出账户后，<code>nohup</code> 在后台继续运行。</p>
+<p>默认情况下，<code>nohup</code> 的输出会保存到当前目录下的 nohup.out 文件中。</p>
+<h3 id="用法">用法：</h3>
+<pre><code>      nohup [命令] 
+</code></pre>
+<h3 id="选项">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>长选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--help</td>
+<td>显示此帮助信息并退出</td>
+</tr>
+<tr>
+<td>--version</td>
+<td>显示版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例">实例：</h3>
+<p>后台运行命令（在后台不挂断地运行 <code>wget https://speed.hetzner.de/100MB.bin</code>）</p>
+<pre><code>nohup wget https://speed.hetzner.de/100MB.bin
+</code></pre>
+<p>如果你想停止运行命令，你需要查找对应的 PID，手动杀死对应的进程。</p>
+<pre><code># 查找对应的 PID
+jianrry@jianrry:~$ ps -aux | grep wget
+
+jianrry     2882  0.6  0.1  24220  6700 ?        S    23:23   0:00 wget https://speed.hetzner.de/100MB.bin
+
+jianrry     2940  0.0  0.0  17808  2488 pts/0    S+   23:23   0:00 grep --color=auto wget
+
+# 手动杀死对应的进程
+jianrry@jianrry:~$ kill -9 2882
+</code></pre>
+<h2 id="screen会话管理">screen（会话管理）</h2>
+<h3 id="描述-2">描述：</h3>
+<p><code>screen</code> 可以创建会话，在会话窗口中运行命令。</p>
+<p>挂起会话后，会话窗口中的命令在后台继续运行。</p>
+<p>在关闭终端/退出账户后，会话窗口中的命令不受影响。</p>
+<h3 id="用法-2">用法：</h3>
+<pre><code>      screen [选项] [会话名]
+</code></pre>
+<h3 id="选项-2">选项：</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-4</td>
+<td>仅将主机名解析为 IPv4 地址</td>
+</tr>
+<tr>
+<td>-6</td>
+<td>仅将主机名解析为 IPv6 地址</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>强制所有功能进入每个窗口的终端</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>将所有的视窗都调整为目前终端机的大小</td>
+</tr>
+<tr>
+<td>-c file</td>
+<td>读取配置文件而不是 .screenrc</td>
+</tr>
+<tr>
+<td>-d (-r)</td>
+<td>挂起正在运行的会话（并在此处恢复）</td>
+</tr>
+<tr>
+<td>-dmS name</td>
+<td>启动作为守护程序：挂起会话</td>
+</tr>
+<tr>
+<td>-D (-r)</td>
+<td>挂起和注销远程(并在此处恢复)</td>
+</tr>
+<tr>
+<td>-D -RR</td>
+<td>做任何需要的事情来获得一个会话</td>
+</tr>
+<tr>
+<td>-e xy</td>
+<td>更改命令字符</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>流量控制开启 -fn = off ;-fa = auto</td>
+</tr>
+<tr>
+<td>-h lines</td>
+<td>设置回滚历史记录缓冲区的大小</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>当流量控制打开时，会更快地中断输出</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>登录模式开启 (update /var/run/utmp)， -ln = off</td>
+</tr>
+<tr>
+<td>-ls [match] or -list</td>
+<td>列出所有的会话</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>打开输出日志记录</td>
+</tr>
+<tr>
+<td>-Logfile file</td>
+<td>设置日志文件名</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>忽略已经运行的会话，强制创建一个新的会话</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>选择最佳输出而不是 exact vt100 emulation</td>
+</tr>
+<tr>
+<td>-p window</td>
+<td>如果已命名的窗口存在，则预选该窗口</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>安静的启动。 如果不成功，则使用非零返回代码退出</td>
+</tr>
+<tr>
+<td>-Q</td>
+<td>命令将向查询过程的 STDOUT 发送响应</td>
+</tr>
+<tr>
+<td>-r [session]</td>
+<td>恢复已挂起的会话</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>尽可能地恢复一个会话，如果无法恢复，则创建一个新的会话</td>
+</tr>
+<tr>
+<td>-s shell</td>
+<td>指定建立新会话时，所要执行的 shell</td>
+</tr>
+<tr>
+<td>-S sockname</td>
+<td>指定会话名</td>
+</tr>
+<tr>
+<td>-t title</td>
+<td>设置标题（窗口名称）</td>
+</tr>
+<tr>
+<td>-T term</td>
+<td>对窗口使用 $term，而不是 screen</td>
+</tr>
+<tr>
+<td>-U</td>
+<td>使用 UTF-8 编码</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>显示版本信息</td>
+</tr>
+<tr>
+<td>-wipe [match]</td>
+<td>清理无法使用的会话</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>恢复之前挂起的会话</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>在指定的会话中，以命令的形式执行 <cmd></td>
+</tr>
+</tbody>
+</table>
+<h3 id="实例-2">实例：</h3>
+<p>创建会话（创建一个会话 wget，并打开一个窗口，在窗口中可以运行命令）</p>
+<pre><code>jianrry@jianrry:~$ screen -S wget
+</code></pre>
+<p>挂起会话（在会话窗口中，按下 &quot;Ctrl + A + D&quot; 键，会挂起当前的会话）</p>
+<pre><code># 会出现下面的提示 ，其中 wget 是会话名，11798 是进程的 ID 
+[detached from 11798.wget]
+</code></pre>
+<p>恢复会话（恢复会话 wget，打开之前的窗口，在窗口中可以继续运行命令）</p>
+<pre><code>jianrry@jianrry:~$ screen -r wget
+</code></pre>
+<p>列出会话（列出所有的会话）</p>
+<pre><code>jianrry@jianrry:~$ screen -ls
+
+There is a screen on:
+
+	11798.wget	(2021年11月21日 16时17分02秒)	(Detached)
+
+1 Socket in /run/screen/S-jianrry.
+</code></pre>
+<p>结束会话（可以通过会话名 wget 结束会话 wget 并退出）</p>
+<pre><code>jianrry@jianrry:~$ screen -XS wget quit
+</code></pre>
+<p>清理会话（清理已经死掉的会话，比如说因为手动杀死对应的进程而死掉的会话）</p>
+<pre><code>jianrry@jianrry:~$ screen -wipe
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://blog.jianrry.com/tag/linux/" class="tag">
+                    linux
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.jianrry.com/post/linux-daily-software/">
+                  <h3 class="post-title">
+                    Linux 入门指南（九）：Linux 常用软件
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '2ee8de73bab3ceb9781e',
+        clientSecret: 'd9632484c6bf0ed93c9f60013aa3ac318b847357',
+        repo: 'blog.jianrry.com',
+        owner: 'Jianrry',
+        admin: ['Jianrry'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
